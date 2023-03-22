@@ -4,7 +4,7 @@ from app.models import User
 
 user_routes = Blueprint('users', __name__)
 
-
+# GET ALL USER
 @user_routes.route('/')
 @login_required
 def users():
@@ -14,7 +14,7 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
-
+# GET USER BY USER ID
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
@@ -23,3 +23,9 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+# SEARCH FOR A USER
+@user_routes.route('/search')
+@login_required
+def user_search():
+    pass

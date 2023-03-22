@@ -78,11 +78,11 @@ class Activity(db.Model, UserMixin):
     title = db.Column(db.String(40), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     type = db.Column(db.String(20), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255))
     distance = db.Column(db.Float(precision=1, asdecimal=True), nullable=False)
     duration = db.Column(db.Integer, nullable=False)
-    calories = db.Column(db.Integer, nullable=False)
-    elevation = db.Column(db.Integer, nullable=False)
+    calories = db.Column(db.Integer)
+    elevation = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
@@ -94,6 +94,14 @@ class Activity(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'title': self.title,
+            'owner_id': self.owner_id,
+            'type': self.type,
+            'description': self.description,
+            'duration': self.duration,
+            'distance': self.distance,
+            'calories': self.calories,
+            'elevation': self.elevation,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
         }
