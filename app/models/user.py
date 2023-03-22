@@ -42,7 +42,7 @@ class User(db.Model, UserMixin):
 
     activities = db.relationship("Activity", cascade="all, delete", back_populates="owner")
     comments = db.relationship("Comment", cascade="all, delete", back_populates = "owner")
-    liked_activities = db.relationship("Activity", secondary=likes, back_populates="liked_users")
+    # liked_activities = db.relationship("Activity", secondary=likes, back_populates="liked_users")
     # followers = db.relationship("User", secondary=follows, back_populates="following")
     # following = db.relationship("User", secondary=follows, back_populates="followers")
 
@@ -88,7 +88,7 @@ class Activity(db.Model, UserMixin):
 
     owner = db.relationship("User", back_populates="activities")
     comments = db.relationship("Comment", cascade="all, delete", back_populates = "activity")
-    liked_users = db.relationship("User", secondary=likes, back_populates="liked_activities")
+    # liked_users = db.relationship("User", secondary=likes, back_populates="liked_activities")
     # photos = db.relationship("Photo", cascade="all, delete", back_populates = "activity")
 
     def to_dict(self):
