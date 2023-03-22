@@ -16,8 +16,8 @@ from sqlalchemy.ext.declarative import declarative_base
 likes = db.Table(
     "likes",
     db.Model.metadata,
-    db.Column("owner_id", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
-    db.Column("activity_id", db.Integer, add_prefix_for_prod(db.ForeignKey("activities.id")), primary_key=True)
+    db.Column("users", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
+    db.Column("activities", db.Integer, add_prefix_for_prod(db.ForeignKey("activities.id")), primary_key=True)
 )
 
 if environment == "production":
