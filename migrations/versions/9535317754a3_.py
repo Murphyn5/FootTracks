@@ -70,20 +70,20 @@ def upgrade():
                     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
-    op.create_table('likes',
-                    sa.Column('owner_id', sa.Integer(), nullable=False),
-                    sa.Column('activity_id', sa.Integer(), nullable=False),
-                    sa.ForeignKeyConstraint(
-                        ['activity_id'], ['activities.id'], ),
-                    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
-                    sa.PrimaryKeyConstraint('owner_id', 'activity_id')
-                    )
+    # op.create_table('likes',
+    #                 sa.Column('owner_id', sa.Integer(), nullable=False),
+    #                 sa.Column('activity_id', sa.Integer(), nullable=False),
+    #                 sa.ForeignKeyConstraint(
+    #                     ['activity_id'], ['activities.id'], ),
+    #                 sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    #                 sa.PrimaryKeyConstraint('owner_id', 'activity_id')
+    #                 )
     # ### end Alembic commands ###
 
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
-    
+
 
 
 def downgrade():
