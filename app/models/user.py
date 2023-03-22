@@ -13,15 +13,15 @@ from sqlalchemy.ext.declarative import declarative_base
 # if environment == "production":
 #     follows.schema = SCHEMA
 
-likes = db.Table(
-    "likes",
-    db.Model.metadata,
-    db.Column("users", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
-    db.Column("activities", db.Integer, add_prefix_for_prod(db.ForeignKey("activities.id")), primary_key=True)
-)
+# likes = db.Table(
+#     "likes",
+#     db.Model.metadata,
+#     db.Column("users", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
+#     db.Column("activities", db.Integer, add_prefix_for_prod(db.ForeignKey("activities.id")), primary_key=True)
+# )
 
-if environment == "production":
-    likes.schema = SCHEMA
+# if environment == "production":
+#     likes.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
