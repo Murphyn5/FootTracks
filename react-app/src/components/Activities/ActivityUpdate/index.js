@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { postActivityThunk } from "../../../store/activities";
-import "./ActivityCreate.css";
+import { postActivityThunk, getSingleActivityThunk, editActivityThunk } from "../../../store/activities";
+import "./ActivityUpdate.css";
 
 
 const inputStyle = (value) => ({
@@ -11,7 +11,9 @@ const inputStyle = (value) => ({
     "borderStyle": "solid"
 });
 
-const ActivityCreate = () => {
+const ActivityUpdate = () => {
+    const { activityId } = useParams()
+    let activity = useSelector(state => state.activities.singleActivity)
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState("");
@@ -25,7 +27,19 @@ const ActivityCreate = () => {
     // then format input data as string for hours of operations
     const [displayErrors, setDisplayErrors] = useState([]);
 
-
+    useEffect(() => {
+        const activityRestore = async () => {
+            const activity = await dispatch(getSingleActivityThunk(activityId))
+            setTitle(activity.title)
+            setType(activity.type)
+            setDescription(activity.description)
+            setDistance(activity.distance)
+            setDuration(activity.duration)
+            setElevation(activity.elevation)
+            setCalories(activity.calories)
+        }
+        activityRestore()
+    }, [dispatch, activityId])
 
     const onSubmit = async (e) => {
         let validationErrors = []
@@ -40,34 +54,21 @@ const ActivityCreate = () => {
             calories: calories,
         };
 
-        console.log(newActivity)
-
-
-
-        // helper fxn check image url ending
-
-
-
-
-
-
-
-
-
         if (validationErrors.length === 0) {
-            let createdActivity = await dispatch(postActivityThunk(newActivity));
-            console.log(createdActivity)
-            if (!createdActivity.errors) {
-                history.push(`/businesses/${createdActivity.id}`);
+            let updatedActivity = await dispatch(editActivityThunk(newActivity, activityId));
+            if (!updatedActivity.errors) {
+                history.push(`/`);
             }
             else {
-                createdActivity.errors.forEach((error) => { validationErrors.push(error) })
+                updatedActivity.errors.forEach((error) => { validationErrors.push(error) })
                 setDisplayErrors(validationErrors);
             }
         }
     };
 
-
+    if(!activity) {
+        return null
+    }
 
 
     return (
@@ -75,7 +76,7 @@ const ActivityCreate = () => {
             <div className="business-create-container">
 
                 <form onSubmit={onSubmit} className="business-form">
-                    <h1 className="form-title">Manual Entry</h1>
+                    <h1 className="form-title">Update Entry</h1>
                     <span>
                         We'll use this information to help you claim your Plate Pal page. Your
                         business will come up automatically if it is already listed.
@@ -154,7 +155,7 @@ const ActivityCreate = () => {
 
                     <div>
                     </div>
-                    <button type="submit" className="submit-button">Add Activity</button>
+                    <button type="submit" className="submit-button">Update Activity</button>
                 </form>
 
             </div>
@@ -163,4 +164,4 @@ const ActivityCreate = () => {
 };
 
 
-export default ActivityCreate;
+export default ActivityUpdate;
