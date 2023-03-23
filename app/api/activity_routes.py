@@ -25,8 +25,36 @@ def current_user_activities():
 
     return {'activities': {activity["id"]: activity for activity in activities}}
 
-# CREATE NEW ACTIVITY
+# GET BUSINESS DETAILS BY ID
 
+@activity_routes.route('/<int:id>')
+def get_activity_details(id):
+    # Single business
+    activity = Activity.query.get(id).to_dict()
+
+    if not activity:
+        return {
+            "errors": "Activity couldn't be found",
+            "status_code": 404
+        }, 404
+
+    # Handle comments
+    # comment_query = db.session.query(Comment).filter(Comment.activity_id == id)
+    # activity_comments = comment_query.all()
+    # activity['number_of_comments'] = len(activity_comments)
+
+    # Handle images
+    # images_query = db.session.query(Image).filter(Image.activity_id == id)
+    # images = images_query.all()
+    # activity['images'] = [image.to_dict() for image in images]
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
+    activity["owner_first_name"] = user.first_name
+    activity["owner_last_name"] = user.last_name
+    return jsonify(activity)
+
+
+# CREATE NEW ACTIVITY
 
 @activity_routes.route('/', methods=['POST'])
 @login_required
@@ -61,7 +89,7 @@ def create_new_activity():
 @login_required
 def get_comments_by_activity_id(id):
     comment_query = db.session.query(Comment).filter(Comment.activity_id == id)
-    activity_comments = [review.to_dict() for review in comment_query.all()]
+    activity_comments = [comment.to_dict() for comment in comment_query.all()]
 
     for comment in activity_comments:
         owner = User.query.get(comment["owner_id"])
@@ -69,7 +97,7 @@ def get_comments_by_activity_id(id):
         comment['owner_first_name'] = owner["first_name"]
         comment['owner_last_name'] = owner["last_name"]
 
-    return {"activityComments": {review['id']: review for review in activity_comments}}
+    return {"activityComments": {comment['id']: comment for comment in activity_comments}}
 
 # CREATE NEW COMMENT FOR AN  ACTIVITY
 # @login_required

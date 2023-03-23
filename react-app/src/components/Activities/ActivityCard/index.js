@@ -31,7 +31,7 @@ const ActivityCard = ({ activity }) => {
     }
 
     const handleEditRedirect = () => {
-        history.push(`/activitys/${activity.id}/edit`)
+        history.push(`/activities/${activity.id}/edit`)
     }
 
     const deleteRender = () => {
@@ -97,7 +97,7 @@ const ActivityCard = ({ activity }) => {
             </div>
 
             <br></br>
-            <div className="activity-card-images-activity">{activity.review}</div>
+            <div className="activity-card-images-activity">{activity.title}</div>
             <br></br>
             {/* {imagesRender()} */}
         </div>

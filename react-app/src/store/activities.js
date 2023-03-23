@@ -2,6 +2,7 @@
 
 /* ----- CONSTANTS ----- */
 const GET_CURRENT_ACTIVITIES = "activities/GET_CURRENT_ACTIVITIES";
+const GET_SINGLE_ACTIVITY = "activities/GET_SINGLE_ACTIVITY";
 const POST_ACTIVITY = "activities/POST_ACTIVITY";
 const DELETE_ACTIVITY = "activities/DELETE_ACTIVITY";
 const EDIT_ACTIVITY = "activities/EDIT_ACTIVITY";
@@ -17,6 +18,14 @@ const getAllActivitiesAction = (activities) => {
     activities,
   };
 };
+
+const getSingleActivityAction = (activity) => {
+  return {
+    type: GET_SINGLE_ACTIVITY,
+    activity,
+  };
+};
+
 
 const getCurrentActivitiesAction = (activities) => {
   return {
@@ -55,6 +64,16 @@ export const deleteActivityThunk = (activityId) => async (dispatch) => {
   });
   if (res.ok) {
     dispatch(deleteActivityAction(activityId));
+  }
+};
+
+// Display single activity details
+export const getSingleActivityThunk = (id) => async (dispatch) => {
+  const res = await fetch(`/api/activities/${id}`);
+  if (res.ok) {
+    const activity = await res.json();
+    dispatch(getSingleActivityAction(activity));
+    return activity;
   }
 };
 
@@ -97,7 +116,7 @@ export const postActivityThunk = (newActivity) => async (dispatch) => {
 };
 
 
-// Edit a activity by id
+// Edit an activity by id
 export const editActivityThunk =
   (activityContent, activityId) => async (dispatch) => {
     const res = await fetch(`/api/activities/${activityId}`, {
@@ -134,6 +153,9 @@ const activityReducer = (state = initialState, action) => {
     case GET_CURRENT_ACTIVITIES:
       newState.activities = action.activities.activities;
       return newState;
+    case GET_SINGLE_ACTIVITY:
+      newState.singleActivity = action.activity;
+      return newState;
     case POST_ACTIVITY:
       newState.singleActivity = action.activity;
       return newState;
@@ -141,8 +163,6 @@ const activityReducer = (state = initialState, action) => {
       if (newState.activities) {
         delete newState.activities[action.id];
       }
-      console.log(newState)
-      console.log(newState.activities)
       return newState;
     case EDIT_ACTIVITY:
       newState.singleActivity = action.activity;
