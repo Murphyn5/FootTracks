@@ -14,15 +14,14 @@ activity_routes = Blueprint('activities', __name__)
 @login_required
 def current_user_activities():
     user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
     activity_query = db.session.query(
         Activity).filter(Activity.owner_id == user_id)
     activities = [activity.to_dict() for activity in activity_query.all()]
 
-    # for activity in activities:
-    #     comments_query = db.session.query(Comment).filter(
-    #         Comment.activity_id == activity["id"])
-    #     comments = comments_query.all()
-    #     activity["comments"] = [comment.to_dict() for comment in comments]
+    for activity in activities:
+        activity["owner_first_name"] = user.first_name
+        activity["owner_last_name"] = user.last_name
 
     return {'activities': {activity["id"]: activity for activity in activities}}
 

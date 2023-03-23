@@ -7,6 +7,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import TrackerSummary from "./components/Tracker/TrackerSummary";
 import Tracker from "./components/Tracker";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Splashpage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +22,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <ProtectedRoute>
+              <Splashpage></Splashpage>
+            </ProtectedRoute>
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -27,7 +34,9 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/tracker">
-            <Tracker></Tracker>
+            <ProtectedRoute>
+              <Tracker></Tracker>
+            </ProtectedRoute>
           </Route>
           <Route exact path="/tracker/:distance/:duration/:coordinates">
             <TrackerSummary></TrackerSummary>
