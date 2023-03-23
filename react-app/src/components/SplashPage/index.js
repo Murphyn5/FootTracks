@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import "./SplashPage.css";
 import { useEffect } from "react";
-import { getCurrentActivitiesThunk } from "../../store/activities";
+import { getCurrentActivitiesThunk, loadAllActivites } from "../../store/activities";
 import ActivityCard from "../Activities/ActivityCard";
 
 function Splashpage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    let activities = useSelector((state) => state.activities.activities)
+    let activities = useSelector(loadAllActivites)
 
     useEffect(() => {
         const activityRestore = async () => {
@@ -21,8 +21,7 @@ function Splashpage() {
     if (!activities) {
         return null
     }
-    console.log(activities)
-    activities = Object.values(activities)
+
     console.log(activities)
 
     return (

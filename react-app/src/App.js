@@ -9,6 +9,7 @@ import TrackerSummary from "./components/Tracker/TrackerSummary";
 import Tracker from "./components/Tracker";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Splashpage from "./components/SplashPage";
+import ActivityCreate from "./components/Activities/ActivityCreate";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,11 @@ function App() {
           <Route exact path="/">
             <ProtectedRoute>
               <Splashpage></Splashpage>
+            </ProtectedRoute>
+          </Route>
+          <Route exact path="/activities/new">
+            <ProtectedRoute>
+              <ActivityCreate></ActivityCreate>
             </ProtectedRoute>
           </Route>
           <Route path="/login" >

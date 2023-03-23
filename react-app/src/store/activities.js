@@ -7,6 +7,9 @@ const DELETE_ACTIVITY = "activities/DELETE_ACTIVITY";
 const EDIT_ACTIVITY = "activities/EDIT_ACTIVITY";
 const GET_ALL_ACTIVITIES = "activities/GET_ALL_ACTIVITIES";
 
+/* ----- Selector ----- */
+export const loadAllActivites = (state) => Object.values(state.activities.activities)
+
 /* ----- ACTIONS ----- */
 const getAllActivitiesAction = (activities) => {
   return {
@@ -69,6 +72,7 @@ export const getCurrentActivitiesThunk = () => async (dispatch) => {
   const res = await fetch(`/api/activities/current`);
   if (res.ok) {
     const activities = await res.json();
+    console.log(activities)
     dispatch(getCurrentActivitiesAction(activities));
   }
 };
@@ -119,8 +123,8 @@ export const editActivityThunk =
 
 /* ----- INITIAL STATE ----- */
 const initialState = {
-  activities: null,
-  singleActivity: null
+  activities: {},
+  singleActivity: {}
 };
 
 /* ----- REDUCER ----- */
@@ -137,6 +141,8 @@ const activityReducer = (state = initialState, action) => {
       if (newState.activities) {
         delete newState.activities[action.id];
       }
+      console.log(newState)
+      console.log(newState.activities)
       return newState;
     case EDIT_ACTIVITY:
       newState.singleActivity = action.activity;

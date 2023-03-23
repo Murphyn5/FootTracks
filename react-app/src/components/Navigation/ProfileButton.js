@@ -46,14 +46,9 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <div className="user-drop-down-menu">
-            {/* <li>{user.username}</li> */}
             <li className="user-drop-down-name">
               {user.first_name} {`${user.last_name[0]}.`}
             </li>
-            {/* <li>{user.email}</li> */}
-            <hr></hr>
-            <hr></hr>
-            <br></br>
             <button className="button-logout" onClick={handleLogout}>
               Log Out
             </button>

@@ -14,7 +14,6 @@ function ActivityDeleteModal({ activityId }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await dispatch(deleteActivityThunk(activityId))
-    await dispatch(getCurrentActivitiesThunk());
     closeModal()
   };
 
