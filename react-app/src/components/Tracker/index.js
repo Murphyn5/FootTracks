@@ -210,10 +210,9 @@ function Tracker() {
                 eventRemove()
 
 
-                console.log(coordinates)
                 isStart = !isStart;
                 endTime = Date.now()
-                console.log(`${(endTime - startTime) / 1000} seconds`);
+
 
 
                 history.push(`/tracker/${accumulatedDistance}/${(endTime - startTime)/1000}/${coordinates.join(";")}`)

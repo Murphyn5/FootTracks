@@ -6,7 +6,8 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { Link } from "react-router-dom";
 
-function ProfileButton({ user }) {
+function ActivityButton
+({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -35,38 +36,27 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = "activity-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
     <>
-      <button onClick={openMenu} className="profile-button">
-        <i className="fas fa-user-circle" />
+      <button onClick={openMenu} className="activity-button">
+      <i className="fa-solid fa-circle-plus"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <div className="user-drop-down-menu">
-            <li className="user-drop-down-name">
-              {user.first_name} {`${user.last_name[0]}.`}
-            </li>
-            <button className="button-logout" onClick={handleLogout}>
-              Log Out
-            </button>
+      <div className="user-drop-down-menu">
+            <Link to="/tracker">
+              <button>Record an Activity</button>
+            </Link>
+            <Link to="/activities/new">
+              <button>Manual Upload</button>
+            </Link>
           </div>
-        ) : (
-          <>
-            <Link to="/login">
-              <button>Log In</button>
-            </Link>
-
-            <Link to="/signup">
-              <button>Sign Up</button>
-            </Link>
-          </>
-        )}
       </ul>
     </>
   );
 }
 
-export default ProfileButton;
+export default ActivityButton
+;
