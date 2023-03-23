@@ -165,7 +165,7 @@ const activityReducer = (state = initialState, action) => {
       }
       return newState;
     case EDIT_ACTIVITY:
-      newState.singleActivity = action.activity;
+      newState.activities[action.activity.id] = action.activity;
       return newState;
     case GET_ALL_ACTIVITIES:
       newState.activities = action.activities.activities;

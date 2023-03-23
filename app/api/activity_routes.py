@@ -25,11 +25,11 @@ def current_user_activities():
 
     return {'activities': {activity["id"]: activity for activity in activities}}
 
-# GET BUSINESS DETAILS BY ID
+# GET Activity DETAILS BY ID
 
 @activity_routes.route('/<int:id>')
 def get_activity_details(id):
-    # Single business
+    # Single activity
     activity = Activity.query.get(id).to_dict()
 
     if not activity:
@@ -116,6 +116,8 @@ def update_activity(id):
             "errors": ["Activity couldn't be found"],
             "status_code": 404
         }, 404
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
 
     data = request.get_json()
     if int(current_user.get_id()) == activity.owner_id:
@@ -126,9 +128,12 @@ def update_activity(id):
         activity.duration = data['duration']
         activity.calories = data['calories']
         activity.elevation = data['elevation']
-
         db.session.commit()
-        return activity.to_dict()
+        activity = activity.to_dict()
+        activity["owner_first_name"] = user.first_name
+        activity["owner_last_name"] = user.last_name
+
+        return activity
 
     else:
         return {

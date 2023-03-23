@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import OpenModalButton from "../../OpenModalButton";
 import ActivityDeleteModal from "../ActivityDeleteModal";
+import ActivityUpdateModal from "../ActivityUpdateModal";
 
 const ActivityCard = ({ activity }) => {
     const dispatch = useDispatch()
@@ -38,12 +39,20 @@ const ActivityCard = ({ activity }) => {
         if (user) {
             if (user.id === activity.owner_id) {
                 return (
-                    <OpenModalButton
-                        buttonText={"delete Activity"}
-                        modalComponent={<ActivityDeleteModal activityId={activity.id}/>}>
+                    <>
+                        <OpenModalButton
+                            buttonText={"delete Activity"}
+                            modalComponent={<ActivityDeleteModal activityId={activity.id} />}>
 
 
-                    </OpenModalButton>
+                        </OpenModalButton>
+                        <OpenModalButton
+                            buttonText={"update Activity"}
+                            modalComponent={<ActivityUpdateModal activity={activity} />}>
+
+
+                        </OpenModalButton>
+                    </>
                     // <div className="activity-card-delete-button-container">
                     //     <i className="fa-solid fa-trash"></i>
                     //     &nbsp;<div><span className={"activity-card-delete-button"} onClick={handleDeleteRedirect}> Delete Review</span></div>
