@@ -22,6 +22,9 @@ class Comment(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'body': self.body,
+            'owner_id': self.owner_id,
+            'activity_id': self.activity_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
         }

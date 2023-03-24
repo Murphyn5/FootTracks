@@ -17,8 +17,8 @@ function OpenCommentsModalButton({
   };
 
   return (
-    <button className='comments-modal-button'>
-      <i onClick={onClick} className="fa-regular fa-message modal-icon"></i>
+    <button className='comments-modal-button'  onClick={onClick}>
+      <i className="fa-regular fa-message modal-icon"></i>
     </ button>
   );
 }

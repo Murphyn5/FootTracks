@@ -98,9 +98,7 @@ def create_new_activity():
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # GET COMMENTS BY ACTIVITY ID
-
-
-@activity_routes.route('/<int:id>/comments', methods=['POST'])
+@activity_routes.route('/<int:id>/comments')
 @login_required
 def get_comments_by_activity_id(id):
     comment_query = db.session.query(Comment).filter(Comment.activity_id == id)
@@ -112,7 +110,7 @@ def get_comments_by_activity_id(id):
         comment['owner_first_name'] = owner["first_name"]
         comment['owner_last_name'] = owner["last_name"]
 
-    return {"activityComments": {comment['id']: comment for comment in activity_comments}}
+    return {"comments": {comment['id']: comment for comment in activity_comments}}
 
 # CREATE NEW COMMENT FOR AN  ACTIVITY
 # @login_required
@@ -120,10 +118,8 @@ def get_comments_by_activity_id(id):
 #     pass
 
 # UPDATE ACTIVITY
-
-
-@login_required
 @activity_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def update_activity(id):
     activity = Activity.query.get(id)
     if not activity:
@@ -158,8 +154,8 @@ def update_activity(id):
 
 
 # DELETE AN ACTIVITY
-@login_required
 @activity_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_activity(id):
     activity = Activity.query.get(id)
 
