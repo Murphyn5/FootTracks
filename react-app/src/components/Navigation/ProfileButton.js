@@ -56,11 +56,11 @@ function ProfileButton({ user }) {
         ) : (
           <>
             <Link to="/login">
-              <button>Log In</button>
+              <button onClick={closeMenu}>Log In</button>
             </Link>
 
             <Link to="/signup">
-              <button>Sign Up</button>
+              <button onClick={closeMenu}>Sign Up</button>
             </Link>
           </>
         )}

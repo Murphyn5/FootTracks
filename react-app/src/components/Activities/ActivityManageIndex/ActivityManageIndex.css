@@ -1,0 +1,10 @@
+.activities-manage-container-background {
+    background-color: white;
+    height: calc(100% - 81px);
+    padding: 20px;
+}
+
+.activities-manage-container {
+    width: 1216px;
+    margin: auto;
+}

@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Splashpage from "./components/SplashPage";
 import ActivityCreate from "./components/Activities/ActivityCreate";
 import ActivityUpdate from "./components/Activities/ActivityUpdate";
+import ActivitiesManageIndex from "./components/Activities/ActivityManageIndex";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,11 @@ function App() {
           <Route exact path="/activities/:activityId/edit">
             <ProtectedRoute>
               <ActivityUpdate></ActivityUpdate>
+            </ProtectedRoute>
+          </Route>
+          <Route exact path="/activities/current">
+            <ProtectedRoute>
+              <ActivitiesManageIndex></ActivitiesManageIndex>
             </ProtectedRoute>
           </Route>
           <Route path="/login" >

@@ -6,8 +6,8 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { Link } from "react-router-dom";
 
-function ActivityButton
-({ user }) {
+function TrainingButton
+  ({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -36,27 +36,24 @@ function ActivityButton
     dispatch(logout());
   };
 
-  const ulClassName = "activity-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = "training-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
     <>
       <button onClick={openMenu} className="activity-button">
-      <i className="fa-solid fa-circle-plus"></i>
+        <i className="fa-solid fa-circle-plus"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
-      <div className="user-drop-down-menu">
-            <Link to="/tracker">
-              <button onClick={closeMenu}>Record an Activity</button>
-            </Link>
-            <Link to="/activities/new">
-              <button onClick={closeMenu}>Manual Upload</button>
-            </Link>
-          </div>
+        <div className="user-drop-down-menu">
+          <Link to="activities/current">
+            <button onClick={closeMenu}>My Activities</button>
+          </Link>
+        </div>
       </ul>
     </>
   );
 }
 
-export default ActivityButton
-;
+export default TrainingButton
+  ;

@@ -126,9 +126,11 @@ body {
 html,
 body,
 #tracker {
-    height: calc(100vh - 71px);
-    width: 100vw;
     z-index: 0;
+}
+
+#tracker {
+  height: calc(100% - 80px);
 }
 
 .center-buttons {

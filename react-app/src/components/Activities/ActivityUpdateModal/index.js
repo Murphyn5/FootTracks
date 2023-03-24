@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { postActivityThunk, getSingleActivityThunk, editActivityThunk } from "../../../store/activities";
-import "./ActivityUpdate.css";
+import "./ActivityUpdateModal.css";
+import { useModal } from "../../../context/Modal";
 
 
 const inputStyle = (value) => ({
@@ -11,9 +12,7 @@ const inputStyle = (value) => ({
     "borderStyle": "solid"
 });
 
-const ActivityUpdate = () => {
-    const { activityId } = useParams()
-    let activity = useSelector(state => state.activities.singleActivity)
+const ActivityUpdateModal = ({ activity }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState("");
@@ -27,9 +26,10 @@ const ActivityUpdate = () => {
     // then format input data as string for hours of operations
     const [displayErrors, setDisplayErrors] = useState([]);
 
+    const { closeModal } = useModal();
+
     useEffect(() => {
         const activityRestore = async () => {
-            const activity = await dispatch(getSingleActivityThunk(activityId))
             setTitle(activity.title)
             setType(activity.type)
             setDescription(activity.description)
@@ -39,7 +39,7 @@ const ActivityUpdate = () => {
             setCalories(activity.calories)
         }
         activityRestore()
-    }, [dispatch, activityId])
+    }, [dispatch])
 
     const onSubmit = async (e) => {
         let validationErrors = []
@@ -55,9 +55,9 @@ const ActivityUpdate = () => {
         };
 
         if (validationErrors.length === 0) {
-            let updatedActivity = await dispatch(editActivityThunk(newActivity, activityId));
+            let updatedActivity = await dispatch(editActivityThunk(newActivity, activity.id));
             if (!updatedActivity.errors) {
-                history.push(`/`);
+                closeModal()
             }
             else {
                 updatedActivity.errors.forEach((error) => { validationErrors.push(error) })
@@ -70,9 +70,9 @@ const ActivityUpdate = () => {
         return null
     }
 
-
+    
     return (
-        <div className="main-container">
+        <div className="activity-update-main-container">
             <div className="activity-update-create-container">
 
                 <form onSubmit={onSubmit} className="activity-update-form">
@@ -164,4 +164,4 @@ const ActivityUpdate = () => {
 };
 
 
-export default ActivityUpdate;
+export default ActivityUpdateModal;
