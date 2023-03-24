@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .auth_routes import validation_errors_to_error_messages
 from app.models import Activity, db, Comment, User
 from app.forms.activities_form import ActivityForm
+from app.forms.comments_form import CommentForm
 from datetime import datetime
 
 activity_routes = Blueprint('activities', __name__)
@@ -70,16 +71,17 @@ def get_activity_details(id):
 
 
 # CREATE NEW ACTIVITY
-
 @activity_routes.route('/', methods=['POST'])
 @login_required
 def create_new_activity():
     form = ActivityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = request.get_json()
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
     if form.validate_on_submit():
         new_activity = Activity(
-            owner_id=int(current_user.get_id()),
+            owner_id=user_id,
             title=data['title'],
             type=data['type'],
             description=data['description'],
@@ -90,7 +92,10 @@ def create_new_activity():
         )
         db.session.add(new_activity)
         db.session.commit()
-        return new_activity.to_dict()
+        new_activity = new_activity.to_dict()
+        new_activity['owner_first_name'] = user.first_name
+        new_activity['owner_last_name'] = user.last_name
+        return new_activity
     if form.errors:
         return {
             "message": "Validation error",
@@ -113,9 +118,31 @@ def get_comments_by_activity_id(id):
     return {"comments": {comment['id']: comment for comment in activity_comments}}
 
 # CREATE NEW COMMENT FOR AN  ACTIVITY
-# @login_required
-# def create_new_comment():
-#     pass
+@activity_routes.route('/<int:id>/comments', methods=["POST"])
+@login_required
+def create_new_comment(id):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
+    data = request.get_json()
+    if form.validate_on_submit():
+        new_comment = Comment(
+            owner_id=int(current_user.get_id()),
+            activity_id=id,
+            body=data['body'],
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        new_comment = new_comment.to_dict()
+        new_comment['owner_first_name'] = user.first_name
+        new_comment['owner_last_name'] = user.last_name
+        return new_comment
+    if form.errors:
+        return {
+            "message": "Validation error",
+            "statusCode": 400,
+            'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # UPDATE ACTIVITY
 @activity_routes.route('/<int:id>', methods=['PUT'])

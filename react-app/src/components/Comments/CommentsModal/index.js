@@ -5,6 +5,7 @@ import { useModal } from "../../../context/Modal";
 import { useEffect } from "react";
 import "./CommentsModal.css";
 import { getActivityCommentsThunk, loadAllComments } from "../../../store/comments";
+import CommentCard from "../CommentCard";
 
 function CommentsModal({ activityTitle, activityId, type }) {
     const dispatch = useDispatch();
@@ -53,9 +54,7 @@ function CommentsModal({ activityTitle, activityId, type }) {
                     <div className="comment-modal-comments-container" style={{ minHeight: "211px", maxHeight: "805px" }}>
                         {comments.map((comment) => {
                             return (
-                                <div>
-                                    {comment.body}
-                                </div>
+                                <CommentCard comment={comment} key={comment.id}></CommentCard>
                             )
                         })}
                     </div>
