@@ -1,0 +1,204 @@
+.comment-card {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 725px;
+    padding: 12px 0px;
+    background-color: white;
+    overflow-y: hidden;
+}
+
+.comment-card-content{
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.comment-card h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.comment-card p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.comment-card-owner-container{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 40px 1fr;
+}
+
+.comment-card-owner-container i{
+    font-size: 40px;
+}
+
+.comment-card-owner-name {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-card-type-title-container{
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.comment-card-title{
+    line-height: 28px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.comment-card-description-container{
+    margin-top: 5px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 40px 1fr;
+}
+
+.comment-card-stats-headers-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.comment-card-stats-headers-container div {
+    font-size: 12px;
+    line-height: 16px;
+    color: #6d6d78;
+}
+
+.comment-card-stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.comment-card-related-info-buttons-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-card-images-container img{
+    height: 200px;
+}
+
+.comment-card-owner-image-count{
+    display: flex;
+    align-items: center;
+}
+
+.comment-card-owner-image-count img{
+    height: 18px;
+}
+
+.comment-card-rating-and-date-container{
+    display: flex;
+    align-items: center;
+}
+
+.comment-card-date{
+    color: rgba(110,112,114,1);
+}
+
+.comment-card-images-link-container{
+    display: flex;
+    align-items: center;
+}
+
+.comment-card-images-link-container img{
+    height: 18px;
+}
+
+.comment-card-images-link-text{
+    position: relative;
+    left: 10px;
+}
+
+.comment-card-images-container div{
+    border-radius: 10px;
+    background-size: cover;
+}
+
+.comment-card-images-container {
+    display: grid;
+    gap: 10px;
+}
+
+.comment-card-manage-buttons-container{
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+}
+
+.comment-card-delete-button {
+    text-decoration: underline;
+    color: rgba(2, 122, 151, 1);
+    cursor: pointer;
+    width: auto;
+}
+
+.comment-card-delete-button-container {
+    display: flex;
+    align-items: center;
+}
+
+
+.comment-card-edit-button {
+    text-decoration: underline;
+    color: rgba(2, 122, 151, 1);
+    cursor: pointer;
+    width: auto;
+}
+
+.comment-card-edit-button-container {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.comment-card-edit-button-container i {
+    font-size: 18px;
+    color: rgba(2, 122, 151, 1);
+}
+
+.comment-card-delete-button-container i {
+    font-size: 18px;
+    color: rgba(2, 122, 151, 1);
+}
+
+.comment-card-add-photo-button{
+    width: 80px;
+    padding: 5px;
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #666;
+    background: #fff;
+    border: 1px solid #ccc;
+    transition: all 0.6s;
+    transition-property: background-color, color, background-position, background-size, border-color, color;
+}
+
+.comment-card-add-photo-button:hover{
+    cursor: pointer;
+    color: rgba(2, 122, 151, 1);
+    border: 1px solid rgba(2, 122, 151, 1);
+}
+
+.comment-card-photos-buttons-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 180px;
+}
