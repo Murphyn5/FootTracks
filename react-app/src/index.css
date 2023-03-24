@@ -10,4 +10,14 @@ button {
 
 body {
     background-color: #f7f7fa;
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    height: 100%;
 }

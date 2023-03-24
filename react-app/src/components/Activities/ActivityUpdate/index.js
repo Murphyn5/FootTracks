@@ -73,13 +73,13 @@ const ActivityUpdate = () => {
 
     return (
         <div className="main-container">
-            <div className="business-create-container">
+            <div className="activity-update-create-container">
 
-                <form onSubmit={onSubmit} className="business-form">
+                <form onSubmit={onSubmit} className="activity-update-form">
                     <h1 className="form-title">Update Entry</h1>
                     <span>
                         We'll use this information to help you claim your Plate Pal page. Your
-                        business will come up automatically if it is already listed.
+                        activity-update will come up automatically if it is already listed.
                     </span>
                     <ul className="errors">{displayErrors.map((error, index) => (
                         <li key={index}>{error}</li>
@@ -89,7 +89,7 @@ const ActivityUpdate = () => {
                         placeholder="Title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="business-form-input"
+                        className="activity-update-form-input"
                         style={inputStyle(title)}
                     />
                     <input
@@ -97,7 +97,7 @@ const ActivityUpdate = () => {
                         placeholder="Elevation"
                         value={elevation}
                         onChange={(e) => setElevation(e.target.value)}
-                        className="business-form-input"
+                        className="activity-update-form-input"
                         style={inputStyle(elevation)}
                         pattern="\d{3}-\d{3}-\d{4}"
                         title="Phone number format: xxx-xxx-xxxx"
@@ -107,7 +107,7 @@ const ActivityUpdate = () => {
                         placeholder="Calories"
                         value={calories}
                         onChange={(e) => setCalories(e.target.value)}
-                        className="business-form-input"
+                        className="activity-update-form-input"
                         style={inputStyle(calories)}
                     ></input>
                     <span>
@@ -118,7 +118,7 @@ const ActivityUpdate = () => {
                         value={type}
                         placeholder='Select a type'
                         onChange={(e) => setType(e.target.value)}
-                        className="business-form-input"
+                        className="activity-update-form-input"
                         style={inputStyle(type)}
                     >
                         <option value="walking">Walking</option>
@@ -131,7 +131,7 @@ const ActivityUpdate = () => {
                         placeholder="description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        className="business-form-input"
+                        className="activity-update-form-input"
                         style={inputStyle(description)}
                     ></input>
                     <input
@@ -139,7 +139,7 @@ const ActivityUpdate = () => {
                         placeholder="Distance"
                         value={distance}
                         onChange={(e) => setDistance(e.target.value)}
-                        className="business-form-input"
+                        className="activity-update-form-input"
                         style={inputStyle(distance)}
                     ></input>
                     <input
@@ -147,7 +147,7 @@ const ActivityUpdate = () => {
                         placeholder="Duration"
                         value={duration}
                         onChange={(e) => setDuration(e.target.value)}
-                        className="business-form-input"
+                        className="activity-update-form-input"
                         style={inputStyle(duration)}
                     ></input>
 

@@ -25,6 +25,18 @@
   background-color: white;
 }
 
+.training-dropdown {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.244);
+  border-top: none;
+  text-align: left;
+  padding: 10px 15px 10px 15px;
+  left: 340px;
+  margin-top: 27px;
+  background-color: white;
+}
+
+
 
 .profile-dropdown > hr {
   margin-top: 10px;
@@ -176,6 +188,12 @@ ul {
 }
 
 .nav-right-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-left-container {
   display: flex;
   flex-direction: row;
   align-items: center;

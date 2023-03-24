@@ -1,0 +1,124 @@
+.activity-update-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .errors {
+    color: red;
+  }
+
+  /* Business card */
+  .activity-update-card {
+    background-color: #ffffff;
+    width: 207px;
+    padding-bottom: 18px;
+    padding-top: 22px;
+    min-height: 169px;
+    border-radius: 0%;
+  }
+
+  .activity-update-form {
+    background-color: #fff;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* grid-template-columns: 1fr; */
+    place-items: center;
+    line-height: 1.5;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
+    padding: 24px 31px 17px 27px;
+    margin-bottom: 20px;
+  }
+
+  .activity-update-form h2 {
+    font-size: 1.2rem;
+    color: #1A2250;
+  }
+
+  .activity-update-form p {
+    font-size: 14px;
+    color: #3B4169;
+    margin: 10px 0;
+  }
+
+  .activity-update-form input[type="text"],
+  .activity-update-form input[type="email"],
+  .activity-update-form input[type="number"],
+
+  .activity-update-form select,
+  .activity-update-form button {
+    width: 100%;
+    border: none;
+    padding: 14px;
+    border-radius: 3px;
+  }
+
+
+
+  .activity-update-form input[type="text"],
+  .activity-update-form input[type="email"],
+  .activity-update-form input[type="number"],
+  .day-hours input[type="time"],
+  .activity-update-form select {
+    border-radius: 3px;
+    border: 2px solid #DADDEC;
+    margin: 5px 0 10px;
+    font-size: 1rem;
+    color: #656880;
+  }
+
+  /* .autocomplete-container {
+    width: 100% !important;
+    margin: auto;
+    position: relative;
+    right: 15px;
+  } */
+
+  .activity-update-form select {
+    width: 631px;
+  }
+
+  .activity-update-form button {
+    display: block;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 20px #89caff94;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  .activity-update-form button:hover {
+    box-shadow: none;
+  }
+
+  .activity-update-form span {
+    display: block;
+    text-align: center;
+    margin: 10px 0 10px 0;
+    color: #BABDCB;
+    font-size: 12px;
+  }
+
+  .activity-update-form .price-radios label {
+    display: inline-block;
+
+  }
+
+  .image-preview {
+    border-radius: 5px;
+  }
+
+  .price-radios {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .activity-update-form-price-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
