@@ -33,7 +33,7 @@ const ActivityUpdateModal = ({ activity }) => {
             setTitle(activity.title)
             setType(activity.type)
             setDescription(activity.description)
-            setDistance(activity.distance)
+            setDistance(Math.round(activity.distance * 100) / 100)
             setDuration(activity.duration)
             setElevation(activity.elevation)
             setCalories(activity.calories)
@@ -70,7 +70,7 @@ const ActivityUpdateModal = ({ activity }) => {
         return null
     }
 
-    
+
     return (
         <div className="activity-update-main-container">
             <div className="activity-update-create-container">

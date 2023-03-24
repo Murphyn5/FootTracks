@@ -4,6 +4,7 @@ import './ActivityCard.css'
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import OpenCommentsModalButton from "../../OpenCommentsModalButton";
+import CommentsModal from "../../Comments/CommentsModal";
 
 
 const ActivityCard = ({ activity }) => {
@@ -114,10 +115,12 @@ const ActivityCard = ({ activity }) => {
                 <div>kudos</div>
                 <div>
                     <button className='comments-modal-button'>
-                        <i class="fa-regular fa-thumbs-up"></i>
+                        <i className="fa-regular fa-thumbs-up"></i>
                     </ button>
                     &nbsp;
-                    <OpenCommentsModalButton>
+                    <OpenCommentsModalButton
+                        modalComponent={<CommentsModal activityId={activity.id}></CommentsModal>}
+                    >
                     </OpenCommentsModalButton>
                 </div>
 

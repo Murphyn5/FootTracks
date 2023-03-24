@@ -33,7 +33,7 @@ const ActivityUpdate = () => {
             setTitle(activity.title)
             setType(activity.type)
             setDescription(activity.description)
-            setDistance(activity.distance)
+            setDistance(Math.round(activity.distance * 100) / 100)
             setDuration(activity.duration)
             setElevation(activity.elevation)
             setCalories(activity.calories)

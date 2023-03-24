@@ -24,6 +24,11 @@ function Splashpage() {
 
     console.log(activities)
 
+
+  activities?.sort(
+    (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
+  );
+
     return (
         <div className="splash-page-body">
             <div className="user-info-container">

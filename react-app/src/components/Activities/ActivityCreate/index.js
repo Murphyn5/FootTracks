@@ -120,14 +120,14 @@ const ActivityCreate = () => {
                         className="business-form-input"
                         style={inputStyle(type)}
                     >
-                        <option value="walking">Walking</option>
-                        <option value="running">Running</option>
-                        <option value="cycling">Cycling</option>
-                        <option value="hiking">Hiking</option>
+                        <option value="Run">Run</option>
+                        <option value="Ride">Ride</option>
+                        <option value="Hike">Hike</option>
+                        <option value="Walk">Walk</option>
                     </select>
                     <input
                         type="text"
-                        placeholder="description"
+                        placeholder="Description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         className="business-form-input"

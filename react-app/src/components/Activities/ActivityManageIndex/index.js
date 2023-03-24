@@ -22,6 +22,10 @@ function ActivitiesManageIndex() {
         return null
     }
 
+    activities?.sort(
+        (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
+    );
+
     console.log(activities)
 
     return (
@@ -29,8 +33,8 @@ function ActivitiesManageIndex() {
             <div className="activities-manage-container-background">
                 <div className="activities-manage-container">
                     <h1>My Activities</h1>
-                    <div style={{lineHeight:"22px",fontWeight:"400",fontSize:"22px"}}>{activities.length} Activities</div>
-                    <hr style={{marginBottom: "0",borderBottom:"0"}}></hr>
+                    <div style={{ lineHeight: "22px", fontWeight: "400", fontSize: "22px" }}>{activities.length} Activities</div>
+                    <hr style={{ marginBottom: "0", borderBottom: "0" }}></hr>
                     {activities.map((activity) => {
                         return (
                             <ActivityManageIndexItem activity={activity} key={activity.id} />
