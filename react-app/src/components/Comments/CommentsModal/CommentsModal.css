@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    border-radius: 200px;
     padding: 20px;
+    height: 406px;
+    width: 804px;
 }
 
 .comment-modal {
