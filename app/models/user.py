@@ -6,7 +6,6 @@ from sqlalchemy.ext.declarative import declarative_base
 
 # follows = db.Table(
 #     "follows",
-#     db.Model.metadata,
 #     db.Column("followed_id", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
 #     db.Column("follower_id", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True))
 
@@ -43,8 +42,14 @@ class User(db.Model, UserMixin):
     activities = db.relationship("Activity", cascade="all, delete", back_populates="owner")
     comments = db.relationship("Comment", cascade="all, delete", back_populates = "owner")
     # liked_activities = db.relationship("Activity", secondary=likes, back_populates="liked_users")
-    # followers = db.relationship("User", secondary=follows, back_populates="following")
-    # following = db.relationship("User", secondary=follows, back_populates="followers")
+    # followers = db.relationship("User", secondary=follows,
+    #                             primaryjoin=follows.c.follower_id,
+    #                             secondaryjoin=follows.c.followed_id,
+    #                             back_populates="following")
+    # following = db.relationship("User", secondary=follows,
+    #                             primaryjoin=follows.c.followed_id,
+    #                             secondaryjoin=follows.c.follower_id,
+    #                             back_populates="followers")
 
     @property
     def password(self):
@@ -67,6 +72,8 @@ class User(db.Model, UserMixin):
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
+
+
 
 class Activity(db.Model, UserMixin):
     __tablename__ = 'activities'

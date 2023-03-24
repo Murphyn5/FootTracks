@@ -6,6 +6,9 @@ const GET_SINGLE_REVIEW = "comments/GET_SINGLE_REVIEW";
 const EDIT_REVIEW = "comments/EDIT_REVIEW";
 
 /* ----- ACTIONS ----- */
+
+export const loadAllComments = (state) => Object.values(state.comments.comments)
+
 const getActivityCommentsAction = (comments) => {
     return {
         type: GET_ACTIVITY_COMMENTS,

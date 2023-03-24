@@ -1,36 +1,128 @@
 // frontend/src/components/deleteFormModal/index.js
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { useEffect } from "react";
 import "./CommentsModal.css";
-import { getActivityCommentsThunk } from "../../../store/comments";
+import { getActivityCommentsThunk, loadAllComments } from "../../../store/comments";
 
-function CommentsModal({ activityId }) {
-  const dispatch = useDispatch();
-  const { closeModal } = useModal();
+function CommentsModal({ activityTitle, activityId, type }) {
+    const dispatch = useDispatch();
+    const { closeModal } = useModal();
+    const comments = useSelector(loadAllComments)
+    const [kudosClassName, setKudosClassName] = useState("comment-modal-kudos-tab")
+    const [commentsClassName, setCommentsClassName] = useState("comment-modal-comments-tab")
+    const [contentType, setContentType] = useState("")
+    useEffect(() => {
+        const commentRestore = async () => {
+            await dispatch(getActivityCommentsThunk(activityId))
+        }
+        commentRestore()
+        if (type === "comments") {
+            setCommentsClassName("comment-modal-comments-tab-active")
+            setContentType("comments")
+        }
+        if (type === "kudos") {
+            setKudosClassName("comment-modal-kudos-tab-active")
+            setContentType("kudos")
+        }
+    }, [])
 
-  useEffect(() => {
-    const commentRestore = async () => {
-        await dispatch(getActivityCommentsThunk(activityId))
+
+    const kudosClick = () => {
+        if (kudosClassName === "comment-modal-kudos-tab") {
+            setKudosClassName("comment-modal-kudos-tab-active")
+            setContentType("kudos")
+            setCommentsClassName("comment-modal-comments-tab")
+        }
     }
-    commentRestore()
-  }, [])
 
-  return (
-    <>
-      <div className="comment-modal-container">
-        <form className={"comment-modal"}>
-          <h2 className="comment-modal-title">Confirm Delete</h2>
-          <span>
-            Are you sure you want to delete this Activity?
-          </span>
-          <button type="submit" className={"enabled"}>Yes (Delete Activity)</button>
-          <button type="submit" onClick={closeModal} className={"accent"}>No (Keep Activity)</button>
-        </form>
-      </div>
-    </>
-  );
+
+    const commentsClick = () => {
+        if (commentsClassName === "comment-modal-comments-tab") {
+            setCommentsClassName("comment-modal-comments-tab-active")
+            setKudosClassName("comment-modal-kudos-tab")
+            setContentType("comments")
+        }
+    }
+
+    const contentTypeChecker = () => {
+        if (contentType === "comments") {
+            return (
+                <>
+                    <div className="comment-modal-comments-container" style={{ minHeight: "211px", maxHeight: "805px" }}>
+                        {comments.map((comment) => {
+                            return (
+                                <div>
+                                    {comment.body}
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <form className="comment-modal-comments-submit-container">
+                        <div className="comment-modal-comments-submit-container-profile-icon">
+                            <i className="fas fa-user-circle" style={{fontSize:"24px"}}/>
+                        </div>
+                        <textarea
+                            type="text"
+                            className="comment-modal-comments-submit-input"
+                            placeholder="Add a comment"
+                        >
+                        </textarea>
+                        <div className="comment-modal-comments-submit-button-container">
+                            <button type="submit" className="comment-modal-comments-submit-button">
+                                Post
+                            </button>
+                        </div>
+                    </form>
+
+
+
+                </>
+
+            )
+        }
+
+        if (contentType === "kudos") {
+            return (
+                <>
+                    <div className="comment-modal-kudos-container" style={{ maxHeight: "568px", minHeight: "211px" }}>
+
+                    </div>
+                    <div className="comment-modal-kudos-submit-container">
+                        <button className="comment-modal-kudos-submit-button">Give Kudos</button>
+                    </div>
+                </>
+            )
+        }
+    }
+
+
+    return (
+        <>
+            <div className="comment-modal-container">
+
+                <div className="comment-modal-activity-info-container">
+                    <div className="activity-card-owner-image">
+                        <i className="fas fa-user-circle" />
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div className="comment-modal-title">{activityTitle}</div>
+                </div>
+                <div className="comment-modal-tabs-container">
+                    <div onClick={kudosClick} className={kudosClassName} >
+                        Kudos
+                    </div>
+                    <div onClick={commentsClick} className={commentsClassName} >
+                        Comments ({comments.length})
+                    </div>
+                </div>
+                {contentTypeChecker()}
+
+
+            </div>
+        </>
+    );
 }
 
 export default CommentsModal;
