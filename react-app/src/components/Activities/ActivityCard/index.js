@@ -4,6 +4,7 @@ import './ActivityCard.css'
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import OpenCommentsModalButton from "../../OpenCommentsModalButton";
+import OpenKudosModalButton from "../../OpenKudosModalButton";
 import CommentsModal from "../../Comments/CommentsModal";
 
 
@@ -17,7 +18,9 @@ const ActivityCard = ({ activity }) => {
         let month = String(d.getMonth() + 1);
         let day = String(d.getDate());
         const year = String(d.getFullYear());
-        return `${month}/${day}/${year}`;
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        const dayOfWeek =String(d.getDay())
+        return `${days[dayOfWeek]} ${month}/${day}/${year}`;
     }
 
     const date = formattedDate(activity.created_at)
@@ -114,12 +117,12 @@ const ActivityCard = ({ activity }) => {
             <div className="activity-card-related-info-buttons-container">
                 <div>kudos</div>
                 <div>
-                    <button className='comments-modal-button'>
-                        <i className="fa-regular fa-thumbs-up"></i>
-                    </ button>
+                    <OpenKudosModalButton
+                        modalComponent={<CommentsModal activityTitle={activity.title} activityId={activity.id} type="kudos"></CommentsModal>}
+                    ></OpenKudosModalButton>
                     &nbsp;
                     <OpenCommentsModalButton
-                        modalComponent={<CommentsModal activityId={activity.id}></CommentsModal>}
+                        modalComponent={<CommentsModal activityTitle={activity.title} activityId={activity.id} type="comments"></CommentsModal>}
                     >
                     </OpenCommentsModalButton>
                 </div>

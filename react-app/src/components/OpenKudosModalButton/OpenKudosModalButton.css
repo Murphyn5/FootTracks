@@ -1,0 +1,19 @@
+.modal-icon{
+    cursor: pointer;
+}
+
+.comments-modal-button {
+    background-color: #f0f0f5;
+    border: none;
+    padding: 6px 12px;
+    color: #494950;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: solid 1px #f0f0f5;
+    transition-property: background-color;
+    transition-duration: 1s;
+}
+
+.comments-modal-button:hover {
+    background-color: rgb(255, 255, 255);
+}
