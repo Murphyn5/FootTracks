@@ -79,7 +79,7 @@ export const getSingleActivityThunk = (id) => async (dispatch) => {
 
 //get all activities
 export const getAllActivitiesThunk = () => async (dispatch) => {
-  const res = await fetch(`/api/activities`);
+  const res = await fetch(`/api/activities/`);
   if (res.ok) {
     const activities = await res.json();
     dispatch(getAllActivitiesAction(activities));
