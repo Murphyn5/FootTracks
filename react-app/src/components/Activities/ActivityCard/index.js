@@ -3,9 +3,8 @@ import { useDispatch } from "react-redux";
 import './ActivityCard.css'
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import OpenModalButton from "../../OpenModalButton";
-import ActivityDeleteModal from "../ActivityDeleteModal";
-import ActivityUpdateModal from "../ActivityUpdateModal";
+import OpenCommentsModalButton from "../../OpenCommentsModalButton";
+
 
 const ActivityCard = ({ activity }) => {
     const dispatch = useDispatch()
@@ -26,89 +25,103 @@ const ActivityCard = ({ activity }) => {
         return null
     }
 
-    const handleDeleteRedirect = () => {
-        // history.push(`/activitys/${activity.id}/delete`)
-        // Open delete modal
-    }
-
-    const handleEditRedirect = () => {
-        history.push(`/activities/${activity.id}/edit`)
-    }
-
-    const deleteRender = () => {
-        if (user) {
-            if (user.id === activity.owner_id) {
-                return (
-                    <>
-                        <OpenModalButton
-                            buttonText={"delete Activity"}
-                            modalComponent={<ActivityDeleteModal activityId={activity.id} />}>
-
-
-                        </OpenModalButton>
-                        <OpenModalButton
-                            buttonText={"update Activity"}
-                            modalComponent={<ActivityUpdateModal activity={activity} />}>
-
-
-                        </OpenModalButton>
-                    </>
-                    // <div className="activity-card-delete-button-container">
-                    //     <i className="fa-solid fa-trash"></i>
-                    //     &nbsp;<div><span className={"activity-card-delete-button"} onClick={handleDeleteRedirect}> Delete Review</span></div>
-                    // </div>
-                )
-            }
+    function symbolRender() {
+        if (activity.type === "Ride") {
+            return <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><i style={{ fontSize: "20px" }} className="fa-solid fa-bicycle"></i></div>
+        }
+        if (activity.type === "Run") {
+            return <div style={{ display: "flex", justifyContent: "center" }}><i style={{ fontSize: "20px" }} className="fa-solid fa-person-running"></i></div>
+        }
+        if (activity.type === "Hike") {
+            return <div style={{ display: "flex", justifyContent: "center" }}><i style={{ fontSize: "20px" }} className="fa-solid fa-person-hiking"></i></div>
+        }
+        if (activity.type === "Walk") {
+            return <div style={{ display: "flex", justifyContent: "center" }}><i style={{ fontSize: "20px" }} className="fa-solid fa-person-walking-with-cane"></i></div>
         }
     }
 
-    const editRender = () => {
-        if (user) {
-            if (user.id === activity.owner_id) {
-                return (
-                    <div className="activity-card-edit-button-container">
-                        <i className="fa-solid fa-pen-to-square"></i>
-                        &nbsp; <div><span className={"activity-card-edit-button"} onClick={handleEditRedirect}> Edit Review</span></div>
-                    </div>
-                )
-            }
-        }
+    function hours() {
+        const hours = Math.floor(activity.duration / 3600)
+        if (hours !== 0) return `${hours}h`
+
     }
+
+    function minutes() {
+        const minutes = Math.floor((activity.duration - (Math.floor(activity.duration / 3600) * 3600)) / 60)
+        if (minutes !== 0) return `${minutes}m`
+
+    }
+
+    function seconds() {
+        const seconds = activity.duration - Math.floor(activity.duration / 3600) * 3600 - Math.floor((activity.duration - (Math.floor(activity.duration / 3600) * 3600)) / 60) * 60
+        if (seconds !== 0) return `${seconds}s`
+
+    }
+
+
 
     return (
         <div className="activity-card">
+            <div className="activity-card-content">
 
-            <div className="activity-card-owner-container">
-                <div className="activity-card-owner-image">
-                    <i className="fas fa-user-circle" />
-                </div>
-                <div className="activity-card-owner-information">
-                    <div className="activity-card-owner-name">{`${activity.owner_first_name} ${activity.owner_last_name[0]}.`}</div>
-                    <div className="activity-card-manage-buttons-container">
-                        {deleteRender()}
-                        {editRender()}
+                <div className="activity-card-owner-container">
+                    <div className="activity-card-owner-image">
+                        <i className="fas fa-user-circle" />
                     </div>
-
+                    <div className="activity-card-owner-information">
+                        <div className="activity-card-owner-name">{`${activity.owner_first_name} ${activity.owner_last_name[0]}.`}</div>
+                        <div className="activity-card-rating-and-date-container">
+                            <div className="activity-card-date">{date}</div>
+                        </div>
+                    </div>
                 </div>
+
+                <div className="activity-card-type-title-container">
+                    {symbolRender()}
+                    <div className="activity-card-title">
+                        {activity.title}
+                    </div>
+                </div>
+
+                <div className="activity-card-description-container">
+                    <div></div>
+                    <div>{activity.description}</div>
+                </div>
+
+                <div className="activity-card-description-container">
+                    <div></div>
+                    <div className="activity-card-stats-headers-container">
+                        <div>Distance</div>
+                        <div>Elev Gain</div>
+                        <div>Time</div>
+                    </div>
+                </div>
+
+                <div className="activity-card-description-container">
+                    <div></div>
+                    <div className="activity-card-stats-container">
+                        <div>{Math.round(activity.distance * 100) / 100} mi</div>
+                        <div>{activity.elevation} ft</div>
+                        <div>
+                            {hours()} {minutes()}  {seconds()}
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
+            <div className="activity-card-related-info-buttons-container">
+                <div>kudos</div>
+                <div>
+                    <button className='comments-modal-button'>
+                        <i class="fa-regular fa-thumbs-up"></i>
+                    </ button>
+                    &nbsp;
+                    <OpenCommentsModalButton>
+                    </OpenCommentsModalButton>
+                </div>
 
-            <br></br>
-
-            <div className="activity-card-rating-and-date-container">
-                <div className="activity-card-date">{date}</div>
             </div>
-
-            <br></br>
-
-            <div className="activity-card-photos-buttons-container">
-                {/* {imagesLinkRender()}
-                {addPhotoRender()} */}
-            </div>
-
-            <br></br>
-            <div className="activity-card-images-activity">{activity.title}</div>
-            <br></br>
-            {/* {imagesRender()} */}
         </div>
     );
 };

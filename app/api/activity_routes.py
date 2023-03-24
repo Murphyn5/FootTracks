@@ -7,8 +7,23 @@ from datetime import datetime
 
 activity_routes = Blueprint('activities', __name__)
 
-# GET ALL ACTIVITIES BY CURRENT USER
+# GET ALL ACTIVITIES
 
+@activity_routes.route('/')
+@login_required
+def get_activities():
+    activities = Activity.query.all()
+    activities = [activity.to_dict() for activity in activities]
+
+    for activity in activities:
+        user = User.query.get(activity['owner_id'])
+        activity["owner_first_name"] = user.first_name
+        activity["owner_last_name"] = user.last_name
+
+    return {'activities': {activity["id"]: activity for activity in activities}}
+
+
+# GET ALL ACTIVITIES BY CURRENT USER
 
 @activity_routes.route('/current')
 @login_required
@@ -25,7 +40,7 @@ def current_user_activities():
 
     return {'activities': {activity["id"]: activity for activity in activities}}
 
-# GET Activity DETAILS BY ID
+# GET ACTIVITY DETAILS BY ID
 
 @activity_routes.route('/<int:id>')
 def get_activity_details(id):
