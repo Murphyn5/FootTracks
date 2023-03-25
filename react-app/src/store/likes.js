@@ -17,17 +17,17 @@ const getActivityLikesAction = (likes) => {
     };
 };
 
-const postLikeAction = (likes) => {
+const postLikeAction = (likedUser) => {
     return {
         type: POST_LIKE,
-        likes,
+        likedUser,
     };
 };
 
-const deleteLikeAction = (id) => {
+const deleteLikeAction = (likes) => {
     return {
         type: DELETE_LIKE,
-        id,
+        likes,
     };
 };
 
@@ -35,12 +35,13 @@ const deleteLikeAction = (id) => {
 /* ----- THUNKS ----- */
 
 // Delete likes by id
-export const deleteLikeThunk = (likesId) => async (dispatch) => {
-    const res = await fetch(`/api/likes/${likesId}`, {
+export const deleteLikeThunk = (activityId) => async (dispatch) => {
+    const res = await fetch(`/api/activities/${activityId}/likes`, {
         method: "DELETE",
     });
     if (res.ok) {
-        dispatch(deleteLikeAction(likesId));
+        const likes = await res.json();
+        dispatch(deleteLikeAction(likes));
     }
 };
 
@@ -60,9 +61,9 @@ export const postLikeThunk = (activityId) => async (dispatch) => {
         headers: { "Content-Type": "application/json" }
     });
     if (res.ok) {
-        const createdLike = await res.json();
-        dispatch(postLikeAction(createdLike));
-        return createdLike;
+        const likedUser = await res.json();
+        dispatch(postLikeAction(likedUser));
+        return likedUser;
     } else if (res.status < 500) {
         const data = await res.json();
         return data;
@@ -85,12 +86,10 @@ const likesReducer = (state = initialState, action) => {
             newState.likedUsers = action.likes.liked_users;
             return newState;
         case POST_LIKE:
-            newState.singleLike = action.likes;
+            newState.likedUsers[action.likedUser.id] = action.likedUser;
             return newState;
         case DELETE_LIKE:
-            if (newState.likes) {
-                delete newState.likes[action.id];
-            }
+            newState.likedUsers = action.likes.liked_users;
             return newState;
         default:
             return state;
