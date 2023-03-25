@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 7307f27f5c14
+Revision ID: cc7de8e83e12
 Revises:
-Create Date: 2023-03-25 10:29:53.253865
+Create Date: 2023-03-25 10:35:46.860301
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '7307f27f5c14'
+revision = 'cc7de8e83e12'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,7 +35,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
-
 
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
@@ -84,6 +83,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
+        
     # ### end Alembic commands ###
 
 
@@ -94,19 +94,3 @@ def downgrade():
     op.drop_table('activities')
     op.drop_table('users')
     # ### end Alembic commands ###
-
-
-
-
-
-
-"""empty message
-
-Revision ID: 42a027959427
-Revises:
-Create Date: 2023-03-25 09:31:40.057372
-
-"""
-from alembic import op
-import sqlalchemy as sa
-
