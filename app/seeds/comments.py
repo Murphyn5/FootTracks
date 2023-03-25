@@ -7,96 +7,96 @@ from datetime import datetime
 def seed_comments():
 
     comment1 = Comment(
-        owner_id=1,
+        owner_id=2,
         activity_id=1,
         body="Nice job!"
 
     )
     comment2 = Comment(
-        owner_id=2,
+        owner_id=3,
         activity_id=2,
         body="Which mountain?"
     )
 
     comment3 = Comment(
-        owner_id=3,
+        owner_id=1,
         activity_id=3,
         body="So cool!"
     )
 
     comment4 = Comment(
-        owner_id=1,
+        owner_id=2,
         activity_id=4,
         body="Wish I was there!"
     )
 
     comment5 = Comment(
-        owner_id=2,
+        owner_id=3,
         activity_id=5,
         body="The weather was so nice yesterday"
     )
 
     comment6 = Comment(
-        owner_id=3,
+        owner_id=1,
         activity_id=6,
         body="Legend"
     )
     comment7 = Comment(
-        owner_id=1,
+        owner_id=2,
         activity_id=7,
         body="wow"
     )
 
     comment8 = Comment(
-        owner_id=2,
+        owner_id=3,
         activity_id=8,
         body="👏"
     )
 
     comment9 = Comment(
-        owner_id=3,
+        owner_id=1,
         activity_id=9,
         body="amazing"
     )
 
     comment10 = Comment(
-        owner_id=1,
+        owner_id=2,
         activity_id=10,
         body="Get after it!"
     )
 
     comment11 = Comment(
-        owner_id=2,
+        owner_id=3,
         activity_id=11,
         body="you inspire me!"
     )
 
     comment12 = Comment(
-        owner_id=3,
+        owner_id=1,
         activity_id=12,
         body="so early geeez"
     )
 
     comment13 = Comment(
-        owner_id=1,
+        owner_id=2,
         activity_id=13,
         body="you r 2 fast"
     )
 
     comment14 = Comment(
-        owner_id=3,
+        owner_id=1,
         activity_id=14,
         body="which park?"
     )
 
     comment15 = Comment(
-        owner_id=3,
+        owner_id=1,
         activity_id=15,
         body="love sunset rides"
     )
 
     comment16 = Comment(
-        owner_id=1,
+        owner_id=2,
         activity_id=16,
         body="I want to try that trail!"
     )

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import "./CommentDeleteModal.css";
 import { deleteCommentThunk } from "../../../store/comments";
-import OpenCommentsFromDeleteModalButton from "../../OpenCommentsFromDeleteModalButton copy";
+import OpenCommentsFromDeleteModalButton from "../../OpenCommentsFromDeleteModalButton";
 import OpenCommentsFromNoDeleteModalButton from "../../OpenCommentsFromNoDeleteModalButton";
 import CommentsModal from "../CommentsModal";
 

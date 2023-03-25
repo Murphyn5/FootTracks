@@ -137,6 +137,7 @@ const ActivityCard = ({ activity }) => {
                                 type="comments"
                                 ownerId={activity.owner_id}>
                             </CommentsModal>}
+                        commentsLength={activity.comments_length}
                     >
                     </OpenCommentsModalButton>
                 </div>

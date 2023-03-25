@@ -20,7 +20,7 @@ function OpenCommentsFromNoDeleteModalButton({
   };
 
   return (
-    <button type="submit" onClick={onClick} className={"comments-modal-cancel-delete-button"}>{buttonText}</button>
+    <button onClick={onClick} className={"comments-modal-cancel-delete-button"}>{buttonText}</button>
   );
 }
 

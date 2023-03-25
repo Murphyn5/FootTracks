@@ -40,7 +40,6 @@ const ActivityCreate = () => {
             calories: calories,
         };
 
-        console.log(newActivity)
 
 
 
@@ -56,7 +55,6 @@ const ActivityCreate = () => {
 
         if (validationErrors.length === 0) {
             let createdActivity = await dispatch(postActivityThunk(newActivity));
-            console.log(createdActivity)
             if (!createdActivity.errors) {
                 history.push(`/businesses/${createdActivity.id}`);
             }

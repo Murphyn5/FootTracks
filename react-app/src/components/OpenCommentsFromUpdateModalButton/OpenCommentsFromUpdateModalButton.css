@@ -1,0 +1,24 @@
+.modal-icon{
+    cursor: pointer;
+}
+
+.comments-modal-delete-button {
+    background-color: #ff5353;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: solid 1px #f0f0f5;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.comments-modal-delete-button:hover {
+    background-color: #d03e3e;
+}
+
+.disabled {
+    background-color: #f0f0f5;
+}

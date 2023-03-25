@@ -8,8 +8,6 @@ from datetime import datetime
 comment_routes = Blueprint('comments', __name__)
 
 # UPDATE ACTIVITY
-
-
 @comment_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_comment(id):
