@@ -17,13 +17,13 @@ likes = db.Table(
     db.Column(
         "user_id",
         db.Integer,
-        add_prefix_for_prod(db.ForeignKey("users.id")),
+        db.ForeignKey(add_prefix_for_prod("users.id")),
         primary_key=True
     ),
     db.Column(
         "activity_id",
         db.Integer,
-        add_prefix_for_prod(db.ForeignKey("activities.id")),
+        db.ForeignKey(add_prefix_for_prod("activities.id")),
         primary_key=True
     )
 )
