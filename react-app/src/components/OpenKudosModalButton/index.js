@@ -6,7 +6,8 @@ function OpenKudosModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
+  onModalClose,
+  likesLength // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -18,7 +19,7 @@ function OpenKudosModalButton({
 
   return (
     <button className='comments-modal-button'  onClick={onClick}>
-      <i className="fa-regular fa-thumbs-up" style={{position:"relative",top:"1px"}}></i>
+      <i className="fa-regular fa-thumbs-up" style={{position:"relative",top:"1px"}}></i> {likesLength === 0 ? null : likesLength}
     </ button>
   );
 }

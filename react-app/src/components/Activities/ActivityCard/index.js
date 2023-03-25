@@ -126,6 +126,7 @@ const ActivityCard = ({ activity }) => {
                                 type="kudos"
                                 ownerId={activity.owner_id}>
                             </CommentsModal>}
+                        likesLength={activity.likes_length}
                     ></OpenKudosModalButton>
                     &nbsp;
                     <OpenCommentsModalButton

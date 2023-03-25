@@ -5,13 +5,16 @@ import { useModal } from "../../../context/Modal";
 import { useEffect } from "react";
 import "./CommentsModal.css";
 import { getActivityCommentsThunk, loadAllComments } from "../../../store/comments";
+import { getActivityLikesThunk, loadAllLikes, postLikeThunk } from "../../../store/likes";
 import CommentCard from "../CommentCard";
+import KudosCard from "../KudosCard";
 import { postCommentThunk } from "../../../store/comments";
 
 function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const comments = useSelector(loadAllComments)
+    const likes = useSelector(loadAllLikes)
     const [kudosClassName, setKudosClassName] = useState("comment-modal-kudos-tab")
     const [commentsClassName, setCommentsClassName] = useState("comment-modal-comments-tab")
     const [contentType, setContentType] = useState("")
@@ -21,10 +24,11 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
 
     useEffect(() => {
         if (initialLoad) {
-            const commentRestore = async () => {
+            const commentAndLikesRestore = async () => {
                 await dispatch(getActivityCommentsThunk(activityId))
+                await dispatch(getActivityLikesThunk(activityId))
             }
-            commentRestore()
+            commentAndLikesRestore()
         }
         if (type === "comments") {
             setCommentsClassName("comment-modal-comments-tab-active")
@@ -81,6 +85,10 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
         }
     };
 
+    const kudosSubmit = async () => {
+        await dispatch(postLikeThunk(activityId))
+    }
+
 
     const contentTypeChecker = () => {
         if (contentType === "comments") {
@@ -98,7 +106,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
                             )
                         })}
                     </div>
-                    <form  onSubmit={onSubmit} className="comment-modal-comments-submit-container">
+                    <form onSubmit={onSubmit} className="comment-modal-comments-submit-container">
                         <div className="comment-modal-comments-submit-container-profile-icon">
                             <i className="fas fa-user-circle" style={{ fontSize: "24px" }} />
                         </div>
@@ -107,7 +115,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
                             className={`comment-modal-comments-submit-input ${placeHolderColor}`}
                             placeholder={displayErrors || "Add a comment"}
                             value={body}
-                            onChange={(e)=>{setBody(e.target.value)}}
+                            onChange={(e) => { setBody(e.target.value) }}
                         >
                         </textarea>
                         <div className="comment-modal-comments-submit-button-container">
@@ -123,13 +131,24 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
         }
 
         if (contentType === "kudos") {
+            console.log(likes)
             return (
                 <>
                     <div className="comment-modal-kudos-container" style={{ maxHeight: "568px", minHeight: "211px" }}>
-
+                        {likes.map((like) => {
+                            return (
+                                <KudosCard
+                                    likedUser={like}
+                                    key={like.id}
+                                    activityTitle={activityTitle}
+                                    activityId={activityId}
+                                    ownerId={ownerId}>
+                                </KudosCard>
+                            )
+                        })}
                     </div>
                     <div className="comment-modal-kudos-submit-container">
-                        <button className="comment-modal-kudos-submit-button">Give Kudos</button>
+                        <button onClick={kudosSubmit} className="comment-modal-kudos-submit-button">Give Kudos</button>
                     </div>
                 </>
             )

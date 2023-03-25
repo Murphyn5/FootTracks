@@ -84,6 +84,8 @@
 .comment-modal-kudos-container{
     box-sizing: border-box;
     border-bottom: 1px solid rgb(223, 223, 232);
+    padding: 24px 24px 0 24px;
+    overflow-y: scroll;
 }
 
 .comment-modal-comments-submit-container{
@@ -109,6 +111,13 @@
     border-radius: 4px;
     font-size: 14px;
     color: white;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.comment-modal-kudos-submit-button:hover {
+    background-color: #d03e3e;
 }
 
 .comment-modal-comments-submit-container-profile-icon{
