@@ -199,7 +199,6 @@ def delete_like(id):
         }, 404
 
     activity.liked_users = [user for user in activity.liked_users if user.id != session_user.id]
-    print('??????????', activity.liked_users)
     db.session.commit()
     return {"liked_users": {user.id: user.to_dict() for user in activity.liked_users}}
 

@@ -24,6 +24,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
     const [displayErrors, setDisplayErrors] = useState("Add a comment")
     const [placeHolderColor, setPlaceHolderColor] = useState("")
     const [kudosBoolean, setKudosBoolean] = useState("false")
+    const [disabled, setDisabled] = useState("")
 
     useEffect(() => {
         if (initialLoad) {
@@ -41,6 +42,11 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
             setKudosClassName("comment-modal-kudos-tab-active")
             setContentType("kudos")
         }
+
+        if( ownerId === user.id){
+            setDisabled("disabled")
+        }
+
     }, [])
 
     useEffect(() => {
@@ -175,7 +181,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
                         })}
                     </div>
                     <div className="comment-modal-kudos-submit-container">
-                        <button onClick={kudosSubmit} className="comment-modal-kudos-submit-button">{kudosButtonText()}</button>
+                        <button onClick={kudosSubmit} disabled={disabled} className={`comment-modal-kudos-submit-button ${disabled}`}>{kudosButtonText()}</button>
                     </div>
                 </>
             )
