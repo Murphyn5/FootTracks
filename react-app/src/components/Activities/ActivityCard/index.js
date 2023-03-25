@@ -19,7 +19,7 @@ const ActivityCard = ({ activity }) => {
         let day = String(d.getDate());
         const year = String(d.getFullYear());
         const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-        const dayOfWeek =String(d.getDay())
+        const dayOfWeek = String(d.getDay())
         return `${days[dayOfWeek]} ${month}/${day}/${year}`;
     }
 
@@ -118,11 +118,23 @@ const ActivityCard = ({ activity }) => {
                 <div>kudos</div>
                 <div>
                     <OpenKudosModalButton
-                        modalComponent={<CommentsModal activityTitle={activity.title} activityId={activity.id} type="kudos"></CommentsModal>}
+                        modalComponent={
+                            <CommentsModal
+                                activityTitle={activity.title}
+                                activityId={activity.id}
+                                type="kudos"
+                                ownerId={activity.owner_id}>
+                            </CommentsModal>}
                     ></OpenKudosModalButton>
                     &nbsp;
                     <OpenCommentsModalButton
-                        modalComponent={<CommentsModal activityTitle={activity.title} activityId={activity.id} type="comments"></CommentsModal>}
+                        modalComponent={
+                            <CommentsModal
+                                activityTitle={activity.title}
+                                activityId={activity.id}
+                                type="comments"
+                                ownerId={activity.owner_id}>
+                            </CommentsModal>}
                     >
                     </OpenCommentsModalButton>
                 </div>
