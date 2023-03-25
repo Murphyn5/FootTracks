@@ -19,7 +19,7 @@ function ActivityDeleteModal({ activityId }) {
 
   return (
     <>
-      <div className="actvity-delete-container">
+      <div className="activity-delete-container">
         <form className={"actvity-delete"} onSubmit={handleSubmit}>
           <h2 className="actvity-delete-title">Confirm Delete</h2>
           <span>

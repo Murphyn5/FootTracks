@@ -163,6 +163,12 @@
     align-items: center;
 }
 
+.comment-card-buttons-container{
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+}
+
 
 
 .comment-card-edit-button-container i {

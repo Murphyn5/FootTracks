@@ -15,10 +15,12 @@ function CommentsModal({ activityTitle, activityId, type }) {
     const [commentsClassName, setCommentsClassName] = useState("comment-modal-comments-tab")
     const [contentType, setContentType] = useState("")
     useEffect(() => {
-        const commentRestore = async () => {
-            await dispatch(getActivityCommentsThunk(activityId))
+        if (activityId) {
+            const commentRestore = async () => {
+                await dispatch(getActivityCommentsThunk(activityId))
+            }
+            commentRestore()
         }
-        commentRestore()
         if (type === "comments") {
             setCommentsClassName("comment-modal-comments-tab-active")
             setContentType("comments")
@@ -54,13 +56,17 @@ function CommentsModal({ activityTitle, activityId, type }) {
                     <div className="comment-modal-comments-container" style={{ minHeight: "211px", maxHeight: "805px" }}>
                         {comments.map((comment) => {
                             return (
-                                <CommentCard comment={comment} key={comment.id}></CommentCard>
+                                <CommentCard comment={comment}
+                                    key={comment.id}
+                                    activityTitle={activityTitle}
+                                    activityId={activityId}>
+                                </CommentCard>
                             )
                         })}
                     </div>
                     <form className="comment-modal-comments-submit-container">
                         <div className="comment-modal-comments-submit-container-profile-icon">
-                            <i className="fas fa-user-circle" style={{fontSize:"24px"}}/>
+                            <i className="fas fa-user-circle" style={{ fontSize: "24px" }} />
                         </div>
                         <textarea
                             type="text"
