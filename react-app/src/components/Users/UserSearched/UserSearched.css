@@ -1,0 +1,10 @@
+.users-search-container-background {
+  background-color: white;
+  height: calc(100% - 81px);
+  padding: 20px;
+}
+
+.users-search-container {
+  width: 1216px;
+  margin: auto;
+}

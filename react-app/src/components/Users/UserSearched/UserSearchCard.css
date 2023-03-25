@@ -1,0 +1,15 @@
+.users-search-item{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin: auto;
+  height: 54.5px;
+}
+
+.users-search-item > div{
+  display: flex;
+  align-items: center;
+}
+
+.gray {
+  background-color: #f7f7fa;
+}

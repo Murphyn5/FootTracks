@@ -12,6 +12,7 @@ import Splashpage from "./components/SplashPage";
 import ActivityCreate from "./components/Activities/ActivityCreate";
 import ActivityUpdate from "./components/Activities/ActivityUpdate";
 import ActivitiesManageIndex from "./components/Activities/ActivityManageIndex";
+import UserSearched from "./components/Users/UserSearched";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
             <ProtectedRoute>
               <ActivityCreate></ActivityCreate>
             </ProtectedRoute>
+          </Route>
+          <Route exact path="/users/search/:searchString">
+            <UserSearched />
           </Route>
           <Route exact path="/activities/:activityId/edit">
             <ProtectedRoute>
