@@ -84,7 +84,7 @@ def seed_comments():
     )
 
     comment14 = Comment(
-        owner_id=2,
+        owner_id=3,
         activity_id=14,
         body="which park?"
     )

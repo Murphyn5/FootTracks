@@ -10,7 +10,7 @@ import CommentDeleteModal from "../CommentDeleteModal";
 import { useState } from "react";
 
 
-const CommentCard = ({ comment, activityTitle, activityId }) => {
+const CommentCard = ({ comment, activityTitle, activityId, ownerId }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
@@ -33,13 +33,34 @@ const CommentCard = ({ comment, activityTitle, activityId }) => {
     }
 
     const onMouseEnter = () => {
-        if (user.id === comment.owner_id) {
+        if (user.id === comment.owner_id || user.id === ownerId) {
             setHover(true)
         }
     }
 
     const onMouseLeave = () => {
         setHover(false)
+    }
+
+    const deleteRender = () => {
+        if (user.id === ownerId || user.id === comment.owner_id)
+            return (
+                <OpenModalButton
+                    buttonText={"Delete"}
+                    modalComponent={<CommentDeleteModal activityTitle={activityTitle} activityId={activityId} ownerId={ownerId} commentId={comment.id}></CommentDeleteModal>}
+                >
+                </OpenModalButton>
+            )
+    }
+
+    const editRender = () => {
+        if (user.id === comment.owner_id)
+            return (
+                <OpenModalButton
+                    buttonText={"Edit"}>
+
+                </OpenModalButton>
+            )
     }
 
     return (
@@ -57,15 +78,11 @@ const CommentCard = ({ comment, activityTitle, activityId }) => {
                                     {`${comment.owner_first_name} ${comment.owner_last_name[0]}.`}
                                 </div>
                                 <div className="comment-card-buttons-container">
-                                    <OpenModalButton
-                                        buttonText={"Edit"}>
-
-                                    </OpenModalButton>
-                                    <OpenModalButton
-                                        buttonText={"Delete"}
-                                        modalComponent={<CommentDeleteModal activityTitle={activityTitle} activityId={activityId} commentId={comment.id}></CommentDeleteModal>}
-                                        >
-                                    </OpenModalButton>
+                                    {editRender()}
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    {deleteRender()}
                                 </div>
                             </div>
                             <div className="comment-card-rating-and-date-container">

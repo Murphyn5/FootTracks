@@ -166,7 +166,7 @@
 .comment-card-buttons-container{
     display: flex;
     width: 100px;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 

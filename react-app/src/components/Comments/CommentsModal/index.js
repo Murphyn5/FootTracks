@@ -7,7 +7,7 @@ import "./CommentsModal.css";
 import { getActivityCommentsThunk, loadAllComments } from "../../../store/comments";
 import CommentCard from "../CommentCard";
 
-function CommentsModal({ activityTitle, activityId, type }) {
+function CommentsModal({ activityTitle, activityId, type, ownerId }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const comments = useSelector(loadAllComments)
@@ -59,7 +59,8 @@ function CommentsModal({ activityTitle, activityId, type }) {
                                 <CommentCard comment={comment}
                                     key={comment.id}
                                     activityTitle={activityTitle}
-                                    activityId={activityId}>
+                                    activityId={activityId}
+                                    ownerId={ownerId}>
                                 </CommentCard>
                             )
                         })}
