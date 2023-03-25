@@ -12,6 +12,7 @@
     border: solid 1px #f0f0f5;
     transition-property: background-color;
     transition-duration: 1s;
+    cursor: pointer;
 }
 
 .comments-modal-button:hover {

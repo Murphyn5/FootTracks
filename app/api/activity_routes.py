@@ -23,6 +23,9 @@ def get_activities():
         activity["owner_first_name"] = user.first_name
         activity["owner_last_name"] = user.last_name
         activity["comments_length"] = len(comments)
+        activityObj = Activity.query.get(activity["id"])
+        activity["likes_length"] = len(activityObj.liked_users)
+
 
     return {'activities': {activity["id"]: activity for activity in activities}}
 
@@ -153,6 +156,18 @@ def create_new_comment(id):
             "statusCode": 400,
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+# GET LIKED USERS BY ACTIVITY ID
+@activity_routes.route('/<int:id>/likes')
+@login_required
+def get_likes_by_activity_id(id):
+    activity = Activity.query.get(id)
+    if not activity:
+        return {
+            "errors": ["Activity couldn't be found"],
+            "status_code": 404
+        }, 404
+
+    return {"liked_users": {user.id: user.to_dict() for user in activity.liked_users}}
 
 # CREATE A NEW LIKE FOR AN  ACTIVITY
 @activity_routes.route('/<int:id>/likes', methods=["POST"])
@@ -168,10 +183,28 @@ def create_new_like(id):
         }, 404
     activity.liked_users.append(user)
     db.session.commit()
+    return user.to_dict(), 201
+
+# DELETE A NEW LIKE FOR AN  ACTIVITY
+@activity_routes.route('/<int:id>/likes', methods=["DELETE"])
+@login_required
+def delete_like(id):
+    user_id = int(current_user.get_id())
+    session_user = User.query.get(user_id)
+    activity = Activity.query.get(id)
+    if not activity:
+        return {
+            "errors": ["Activity couldn't be found"],
+            "status_code": 404
+        }, 404
+
+    activity.liked_users = [user for user in activity.liked_users if user.id != session_user.id]
+    print('??????????', activity.liked_users)
+    db.session.commit()
     return {
-        "message": "Successfully liked",
-        "status_code": 201
-    }, 201
+        "message": "Successfully deleted",
+        "status_code": 200
+    }, 200
 
 
 # UPDATE ACTIVITY
