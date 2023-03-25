@@ -14,12 +14,23 @@ from sqlalchemy.ext.declarative import declarative_base
 
 likes = db.Table(
     "likes",
-    db.Column("user_id", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
-    db.Column("activity_id", db.Integer, add_prefix_for_prod(db.ForeignKey("activities.id")), primary_key=True)
+    db.Column(
+        "user_id",
+        db.Integer,
+        add_prefix_for_prod(db.ForeignKey("users.id")),
+        primary_key=True
+    ),
+    db.Column(
+        "activity_id",
+        db.Integer,
+        add_prefix_for_prod(db.ForeignKey("activities.id")),
+        primary_key=True
+    )
 )
 
-# if environment == "production":
-#     likes.schema = SCHEMA
+if environment == "production":
+    likes.schema = SCHEMA
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -35,12 +46,19 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.String(255))
     gender = db.Column(db.String(10), nullable=False)
     birthday = db.Column(db.Date, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow())
 
-    activities = db.relationship("Activity", cascade="all, delete", back_populates="owner")
-    comments = db.relationship("Comment", cascade="all, delete", back_populates = "owner")
-    liked_activities = db.relationship("Activity", secondary="likes", back_populates="liked_users")
+    activities = db.relationship(
+        "Activity", cascade="all, delete", back_populates="owner")
+    comments = db.relationship(
+        "Comment", cascade="all, delete", back_populates="owner")
+
+    liked_activities = db.relationship(
+        "Activity", secondary="likes", back_populates="liked_users")
+
     # followers = db.relationship("User", secondary=follows,
     #                             primaryjoin=follows.c.followed_id == id,
     #                             secondaryjoin=follows.c.follower_id == id,
@@ -67,11 +85,10 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
-            'profile_picture' : self.profile_picture,
+            'profile_picture': self.profile_picture,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
-
 
 
 class Activity(db.Model, UserMixin):
@@ -82,19 +99,24 @@ class Activity(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(40), nullable=False)
-    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("users.id")), nullable=False)
     type = db.Column(db.String(20), nullable=False)
     description = db.Column(db.String(255))
     distance = db.Column(db.Float(precision=1, asdecimal=True), nullable=False)
     duration = db.Column(db.Integer, nullable=False)
     calories = db.Column(db.Integer)
     elevation = db.Column(db.Integer)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow())
 
     owner = db.relationship("User", back_populates="activities")
-    comments = db.relationship("Comment", cascade="all, delete", back_populates = "activity")
-    liked_users = db.relationship("User", secondary="likes", back_populates="liked_activities")
+    comments = db.relationship(
+        "Comment", cascade="all, delete", back_populates="activity")
+    liked_users = db.relationship(
+        "User", secondary="likes", back_populates="liked_activities")
     # photos = db.relationship("Photo", cascade="all, delete", back_populates = "activity")
 
     def to_dict(self):

@@ -24,12 +24,10 @@ def get_activities():
         activity["owner_last_name"] = user.last_name
         activity["comments_length"] = len(comments)
 
-
     return {'activities': {activity["id"]: activity for activity in activities}}
 
 
 # GET ALL ACTIVITIES BY CURRENT USER
-
 @activity_routes.route('/current')
 @login_required
 def current_user_activities():
@@ -108,8 +106,6 @@ def create_new_activity():
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # GET COMMENTS BY ACTIVITY ID
-
-
 @activity_routes.route('/<int:id>/comments')
 @login_required
 def get_comments_by_activity_id(id):
@@ -125,11 +121,15 @@ def get_comments_by_activity_id(id):
     return {"comments": {comment['id']: comment for comment in activity_comments}}
 
 # CREATE NEW COMMENT FOR AN  ACTIVITY
-
-
 @activity_routes.route('/<int:id>/comments', methods=["POST"])
 @login_required
 def create_new_comment(id):
+    activity = Activity.query.get(id)
+    if not activity:
+        return {
+            "errors": ["Activity couldn't be found"],
+            "status_code": 404
+        }, 404
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     user_id = int(current_user.get_id())
@@ -153,9 +153,28 @@ def create_new_comment(id):
             "statusCode": 400,
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+
+# CREATE A NEW LIKE FOR AN  ACTIVITY
+@activity_routes.route('/<int:id>/likes', methods=["POST"])
+@login_required
+def create_new_like(id):
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
+    activity = Activity.query.get(id)
+    if not activity:
+        return {
+            "errors": ["Activity couldn't be found"],
+            "status_code": 404
+        }, 404
+    activity.liked_users.append(user)
+    db.session.commit()
+    return {
+        "message": "Successfully liked",
+        "status_code": 201
+    }, 201
+
+
 # UPDATE ACTIVITY
-
-
 @activity_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_activity(id):
@@ -207,7 +226,7 @@ def delete_activity(id):
         db.session.delete(activity)
         db.session.commit()
         return {
-            "errors": "Successfully deleted",
+            "message": "Successfully deleted",
             "status_code": 200
         }
     else:
