@@ -10,8 +10,8 @@ def seed_comments():
         owner_id=2,
         activity_id=1,
         body="Nice job!"
-
     )
+    
     comment2 = Comment(
         owner_id=3,
         activity_id=2,

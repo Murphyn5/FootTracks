@@ -54,7 +54,7 @@ def delete_comment(id):
         db.session.delete(comment)
         db.session.commit()
         return {
-            "errors": "Successfully deleted",
+            "message": "Successfully deleted",
             "status_code": 200
         }
     else:
