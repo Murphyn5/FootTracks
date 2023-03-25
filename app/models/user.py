@@ -12,12 +12,11 @@ from sqlalchemy.ext.declarative import declarative_base
 # if environment == "production":
 #     follows.schema = SCHEMA
 
-# likes = db.Table(
-#     "likes",
-#     db.Model.metadata,
-#     db.Column("users", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
-#     db.Column("activities", db.Integer, add_prefix_for_prod(db.ForeignKey("activities.id")), primary_key=True)
-# )
+likes = db.Table(
+    "likes",
+    db.Column("user_id", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
+    db.Column("activity_id", db.Integer, add_prefix_for_prod(db.ForeignKey("activities.id")), primary_key=True)
+)
 
 # if environment == "production":
 #     likes.schema = SCHEMA
@@ -41,14 +40,14 @@ class User(db.Model, UserMixin):
 
     activities = db.relationship("Activity", cascade="all, delete", back_populates="owner")
     comments = db.relationship("Comment", cascade="all, delete", back_populates = "owner")
-    # liked_activities = db.relationship("Activity", secondary=likes, back_populates="liked_users")
+    liked_activities = db.relationship("Activity", secondary="likes", back_populates="liked_users")
     # followers = db.relationship("User", secondary=follows,
-    #                             primaryjoin=follows.c.follower_id,
-    #                             secondaryjoin=follows.c.followed_id,
+    #                             primaryjoin=follows.c.followed_id == id,
+    #                             secondaryjoin=follows.c.follower_id == id,
     #                             back_populates="following")
     # following = db.relationship("User", secondary=follows,
-    #                             primaryjoin=follows.c.followed_id,
-    #                             secondaryjoin=follows.c.follower_id,
+    #                             primaryjoin=follows.c.follower_id == id,
+    #                             secondaryjoin=follows.c.followed_id == id,
     #                             back_populates="followers")
 
     @property
@@ -95,7 +94,7 @@ class Activity(db.Model, UserMixin):
 
     owner = db.relationship("User", back_populates="activities")
     comments = db.relationship("Comment", cascade="all, delete", back_populates = "activity")
-    # liked_users = db.relationship("User", secondary=likes, back_populates="liked_activities")
+    liked_users = db.relationship("User", secondary="likes", back_populates="liked_activities")
     # photos = db.relationship("Photo", cascade="all, delete", back_populates = "activity")
 
     def to_dict(self):
