@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from .auth_routes import validation_errors_to_error_messages
-from app.models import db, Comment, User
+from app.models import db, Comment, User, Activity
 from app.forms.comments_form import CommentForm
 from datetime import datetime
 
@@ -44,6 +44,7 @@ def update_comment(id):
 @login_required
 def delete_comment(id):
     comment = Comment.query.get(id)
+    activity = Activity.query.get(comment.activity_id)
 
     if not comment:
         return {
@@ -51,7 +52,7 @@ def delete_comment(id):
             "status_code": 404
         }, 404
 
-    if int(current_user.get_id()) == comment.owner_id:
+    if int(current_user.get_id()) == comment.owner_id or int(current_user.get_id()) == activity.owner_id:
         db.session.delete(comment)
         db.session.commit()
         return {

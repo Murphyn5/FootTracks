@@ -191,7 +191,7 @@ def delete_activity(id):
             "errors": "Activity couldn't be found",
             "status_code": 404
         }, 404
-
+    
     if int(current_user.get_id()) == activity.owner_id:
         db.session.delete(activity)
         db.session.commit()
