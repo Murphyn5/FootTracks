@@ -7,6 +7,7 @@ import OpenCommentsModalButton from "../../OpenCommentsModalButton";
 import OpenKudosModalButton from "../../OpenKudosModalButton";
 import OpenModalButton from "../../OpenModalButton";
 import CommentDeleteModal from "../CommentDeleteModal";
+import CommentUpdateModal from "../CommentUpdateModal";
 import { useState } from "react";
 
 
@@ -57,7 +58,9 @@ const CommentCard = ({ comment, activityTitle, activityId, ownerId }) => {
         if (user.id === comment.owner_id)
             return (
                 <OpenModalButton
-                    buttonText={"Edit"}>
+                    buttonText={"Edit"}
+                    modalComponent={<CommentUpdateModal commentBody={comment.body} activityTitle={activityTitle} activityId={activityId} ownerId={ownerId} commentId={comment.id}></CommentUpdateModal>}
+                    >
 
                 </OpenModalButton>
             )
