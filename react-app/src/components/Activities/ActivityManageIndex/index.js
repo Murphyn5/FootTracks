@@ -26,8 +26,6 @@ function ActivitiesManageIndex() {
         (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
     );
 
-    console.log(activities)
-
     return (
         <>
             <div className="activities-manage-container-background">

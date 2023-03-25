@@ -9,7 +9,6 @@ from datetime import datetime
 activity_routes = Blueprint('activities', __name__)
 
 # GET ALL ACTIVITIES
-
 @activity_routes.route('/')
 @login_required
 def get_activities():
@@ -17,9 +16,14 @@ def get_activities():
     activities = [activity.to_dict() for activity in activities]
 
     for activity in activities:
+        comment_query = db.session.query(
+            Comment).filter(Comment.activity_id == activity["id"])
+        comments = [comment.to_dict() for comment in comment_query.all()]
         user = User.query.get(activity['owner_id'])
         activity["owner_first_name"] = user.first_name
         activity["owner_last_name"] = user.last_name
+        activity["comments_length"] = len(comments)
+
 
     return {'activities': {activity["id"]: activity for activity in activities}}
 
@@ -42,6 +46,7 @@ def current_user_activities():
     return {'activities': {activity["id"]: activity for activity in activities}}
 
 # GET ACTIVITY DETAILS BY ID
+
 
 @activity_routes.route('/<int:id>')
 def get_activity_details(id):
@@ -103,6 +108,8 @@ def create_new_activity():
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # GET COMMENTS BY ACTIVITY ID
+
+
 @activity_routes.route('/<int:id>/comments')
 @login_required
 def get_comments_by_activity_id(id):
@@ -118,6 +125,8 @@ def get_comments_by_activity_id(id):
     return {"comments": {comment['id']: comment for comment in activity_comments}}
 
 # CREATE NEW COMMENT FOR AN  ACTIVITY
+
+
 @activity_routes.route('/<int:id>/comments', methods=["POST"])
 @login_required
 def create_new_comment(id):
@@ -145,6 +154,8 @@ def create_new_comment(id):
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # UPDATE ACTIVITY
+
+
 @activity_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_activity(id):
@@ -191,7 +202,7 @@ def delete_activity(id):
             "errors": "Activity couldn't be found",
             "status_code": 404
         }, 404
-    
+
     if int(current_user.get_id()) == activity.owner_id:
         db.session.delete(activity)
         db.session.commit()

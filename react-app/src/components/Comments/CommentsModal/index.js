@@ -61,13 +61,11 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
             body: body
         };
 
-        console.log(newComment)
 
 
 
         if (validationErrors.length === 0) {
             let createdComment = await dispatch(postCommentThunk(newComment, activityId));
-            console.log(createdComment)
             if (!createdComment.errors) {
                 setBody("")
                 setDisplayErrors("Add a comment")
@@ -76,8 +74,6 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
             else {
                 createdComment.errors.forEach((error) => { validationErrors.push(error) })
                 setBody("")
-                console.log(validationErrors)
-                console.log(validationErrors[0].split(": ")[1])
                 const error = validationErrors[0].split(": ")[1]
                 setDisplayErrors(error)
                 setPlaceHolderColor("placeholder");

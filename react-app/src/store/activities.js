@@ -91,7 +91,6 @@ export const getCurrentActivitiesThunk = () => async (dispatch) => {
   const res = await fetch(`/api/activities/current`);
   if (res.ok) {
     const activities = await res.json();
-    console.log(activities)
     dispatch(getCurrentActivitiesAction(activities));
   }
 };

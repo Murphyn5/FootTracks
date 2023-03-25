@@ -100,7 +100,7 @@ export const getSingleReviewThunk = (commentId) => async (dispatch) => {
 // Edit comment by comment id via current user
 export const editCommentThunk =
     (commentId, commentContent) => async (dispatch) => {
-        
+
         const res = await fetch(`/api/comments/${commentId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -130,7 +130,6 @@ const initialState = {
 /* ----- REDUCER ----- */
 const commentsReducer = (state = initialState, action) => {
     let newState = { ...state };
-    console.log(action)
     switch (action.type) {
         case GET_ACTIVITY_COMMENTS:
             newState.comments = action.comments.comments;

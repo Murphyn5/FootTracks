@@ -26,7 +26,6 @@ function OpenCommentsFromUpdateModalButton({
       setDisabled(true)
       setDisabledClass("disabled")
     }
-    console.log(disabled)
   }, [body])
 
 
