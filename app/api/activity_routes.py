@@ -201,10 +201,7 @@ def delete_like(id):
     activity.liked_users = [user for user in activity.liked_users if user.id != session_user.id]
     print('??????????', activity.liked_users)
     db.session.commit()
-    return {
-        "message": "Successfully deleted",
-        "status_code": 200
-    }, 200
+    return {"liked_users": {user.id: user.to_dict() for user in activity.liked_users}}
 
 
 # UPDATE ACTIVITY

@@ -5,7 +5,8 @@ import { useModal } from "../../../context/Modal";
 import { useEffect } from "react";
 import "./CommentsModal.css";
 import { getActivityCommentsThunk, loadAllComments } from "../../../store/comments";
-import { getActivityLikesThunk, loadAllLikes, postLikeThunk } from "../../../store/likes";
+import { getActivityLikesThunk, loadAllLikes, postLikeThunk, deleteLikeThunk } from "../../../store/likes";
+import { getAllActivitiesThunk } from "../../../store/activities";
 import CommentCard from "../CommentCard";
 import KudosCard from "../KudosCard";
 import { postCommentThunk } from "../../../store/comments";
@@ -15,12 +16,14 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
     const { closeModal } = useModal();
     const comments = useSelector(loadAllComments)
     const likes = useSelector(loadAllLikes)
+    const user = useSelector((state) => state.session.user)
     const [kudosClassName, setKudosClassName] = useState("comment-modal-kudos-tab")
     const [commentsClassName, setCommentsClassName] = useState("comment-modal-comments-tab")
     const [contentType, setContentType] = useState("")
     const [body, setBody] = useState("")
     const [displayErrors, setDisplayErrors] = useState("Add a comment")
     const [placeHolderColor, setPlaceHolderColor] = useState("")
+    const [kudosBoolean, setKudosBoolean] = useState("false")
 
     useEffect(() => {
         if (initialLoad) {
@@ -39,6 +42,17 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
             setContentType("kudos")
         }
     }, [])
+
+    useEffect(() => {
+        const likedUserIds = likes.map((likedUser) => {
+            return likedUser.id
+        })
+        if (!likedUserIds.includes(user.id)) {
+            setKudosBoolean(false)
+        } else {
+            setKudosBoolean(true)
+        }
+    }, [likes])
 
 
     const kudosClick = () => {
@@ -86,7 +100,21 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
     };
 
     const kudosSubmit = async () => {
-        await dispatch(postLikeThunk(activityId))
+        if (!kudosBoolean) {
+            await dispatch(postLikeThunk(activityId))
+            await dispatch(getAllActivitiesThunk());
+        } else {
+            await dispatch(deleteLikeThunk(activityId))
+            await dispatch(getAllActivitiesThunk());
+        }
+    }
+
+    const kudosButtonText = () => {
+        if(kudosBoolean){
+            return "Remove Kudos"
+        } else{
+            return "Give Kudos"
+        }
     }
 
 
@@ -131,7 +159,6 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
         }
 
         if (contentType === "kudos") {
-            console.log(likes)
             return (
                 <>
                     <div className="comment-modal-kudos-container" style={{ maxHeight: "568px", minHeight: "211px" }}>
@@ -148,7 +175,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
                         })}
                     </div>
                     <div className="comment-modal-kudos-submit-container">
-                        <button onClick={kudosSubmit} className="comment-modal-kudos-submit-button">Give Kudos</button>
+                        <button onClick={kudosSubmit} className="comment-modal-kudos-submit-button">{kudosButtonText()}</button>
                     </div>
                 </>
             )
