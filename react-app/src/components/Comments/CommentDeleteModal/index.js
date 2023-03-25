@@ -9,7 +9,7 @@ import OpenCommentsFromNoDeleteModalButton from "../../OpenCommentsFromNoDeleteM
 import CommentsModal from "../CommentsModal";
 
 
-function CommentDeleteModal({ commentId, activityTitle, ownerId }) {
+function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId }) {
     const dispatch = useDispatch();
 
     const { closeModal } = useModal();
@@ -30,13 +30,13 @@ function CommentDeleteModal({ commentId, activityTitle, ownerId }) {
                     <div>
                         <OpenCommentsFromNoDeleteModalButton
                             buttonText={"Cancel"}
-                            modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
+                            modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityId={activityId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
                         ></OpenCommentsFromNoDeleteModalButton>
                         &nbsp;&nbsp;
                         <OpenCommentsFromDeleteModalButton
                             buttonText={"Ok"}
                             commentId={commentId}
-                            modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
+                            modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityId={activityId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
                         ></OpenCommentsFromDeleteModalButton>
                     </div>
                     {/* <button type="submit" onClick={handleSubmit} className={"enabled"}>Yes (Delete Comment)</button>

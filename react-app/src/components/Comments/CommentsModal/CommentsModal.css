@@ -143,7 +143,7 @@
     box-sizing: border-box;
     border-radius: 4px;
     padding: 6px 10px;
-    width: 100%;
+    width: 50px;
     border: none;
     color: #ff5353;
     background-color: white;
@@ -154,4 +154,8 @@
 
 .comment-modal-comments-submit-button:hover {
     background-color: #ffeded;
+}
+
+.placeholder::placeholder{
+    color: #ff5353;
 }

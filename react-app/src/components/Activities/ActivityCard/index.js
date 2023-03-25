@@ -122,6 +122,7 @@ const ActivityCard = ({ activity }) => {
                             <CommentsModal
                                 activityTitle={activity.title}
                                 activityId={activity.id}
+                                initialLoad={true}
                                 type="kudos"
                                 ownerId={activity.owner_id}>
                             </CommentsModal>}
@@ -132,6 +133,7 @@ const ActivityCard = ({ activity }) => {
                             <CommentsModal
                                 activityTitle={activity.title}
                                 activityId={activity.id}
+                                initialLoad={true}
                                 type="comments"
                                 ownerId={activity.owner_id}>
                             </CommentsModal>}

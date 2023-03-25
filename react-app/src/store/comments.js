@@ -1,9 +1,9 @@
 /* ----- CONSTANTS ----- */
 const GET_ACTIVITY_COMMENTS = "comments/GET_ACTIVITY_COMMENTS";
 const POST_COMMENT = "comments/POST_COMMENT";
-const DELETE_REVIEW = "comments/DELETE_REVIEW";
+const DELETE_COMMENT = "comments/DELETE_COMMENT";
 const GET_SINGLE_REVIEW = "comments/GET_SINGLE_REVIEW";
-const EDIT_REVIEW = "comments/EDIT_REVIEW";
+const EDIT_COMMENT = "comments/EDIT_COMMENT";
 
 /* ----- ACTIONS ----- */
 
@@ -25,7 +25,7 @@ const postCommentAction = (comment) => {
 
 const deleteCommentAction = (id) => {
     return {
-        type: DELETE_REVIEW,
+        type: DELETE_COMMENT,
         id,
     };
 };
@@ -39,7 +39,7 @@ const getSingleCommentAction = (comment) => {
 
 const editCommentAction = (comment) => {
     return {
-        type: EDIT_REVIEW,
+        type: EDIT_COMMENT,
         comment,
     };
 };
@@ -80,10 +80,10 @@ export const postCommentThunk = (newComment, activityId) => async (dispatch) => 
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
-            return data.errors;
+            return data;
         }
     } else {
-        return { "errors": ["A server error occurred. Please try again."] };
+        return { "errors": [ "server : A server error occurred. Please try again."] };
     }
 };
 
@@ -135,9 +135,9 @@ const commentsReducer = (state = initialState, action) => {
             newState.comments = action.comments.comments;
             return newState;
         case POST_COMMENT:
-            newState.singleComment = action.comment;
+            newState.comments[action.comment.id] = action.comment;
             return newState;
-        case DELETE_REVIEW:
+        case DELETE_COMMENT:
             if (newState.comments) {
                 delete newState.comments[action.id];
             }
@@ -145,7 +145,7 @@ const commentsReducer = (state = initialState, action) => {
         case GET_SINGLE_REVIEW:
             newState.singleComment = action.comment;
             return newState;
-        case EDIT_REVIEW:
+        case EDIT_COMMENT:
             newState.singleComment = action.comment;
             return newState;
         default:

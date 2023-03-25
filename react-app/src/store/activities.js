@@ -111,7 +111,7 @@ export const postActivityThunk = (newActivity) => async (dispatch) => {
     const data = await res.json();
     return data;
   } else {
-    return {"errors": ["A server error occurred. Please try again."]};
+    return {"errors": ["server : A server error occurred. Please try again."]};
   }
 };
 
@@ -135,7 +135,7 @@ export const editActivityThunk =
         return data;
       }
     } else {
-      return {"errors": ["A server error occurred. Please try again."]};
+      return {"errors": ["server : A server error occurred. Please try again."]};
     }
   };
 

@@ -6,16 +6,21 @@ import { useEffect } from "react";
 import "./CommentsModal.css";
 import { getActivityCommentsThunk, loadAllComments } from "../../../store/comments";
 import CommentCard from "../CommentCard";
+import { postCommentThunk } from "../../../store/comments";
 
-function CommentsModal({ activityTitle, activityId, type, ownerId }) {
+function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const comments = useSelector(loadAllComments)
     const [kudosClassName, setKudosClassName] = useState("comment-modal-kudos-tab")
     const [commentsClassName, setCommentsClassName] = useState("comment-modal-comments-tab")
     const [contentType, setContentType] = useState("")
+    const [body, setBody] = useState("")
+    const [displayErrors, setDisplayErrors] = useState("Add a comment")
+    const [placeHolderColor, setPlaceHolderColor] = useState("")
+
     useEffect(() => {
-        if (activityId) {
+        if (initialLoad) {
             const commentRestore = async () => {
                 await dispatch(getActivityCommentsThunk(activityId))
             }
@@ -49,6 +54,38 @@ function CommentsModal({ activityTitle, activityId, type, ownerId }) {
         }
     }
 
+    const onSubmit = async (e) => {
+        let validationErrors = []
+        e.preventDefault();
+        const newComment = {
+            body: body
+        };
+
+        console.log(newComment)
+
+
+
+        if (validationErrors.length === 0) {
+            let createdComment = await dispatch(postCommentThunk(newComment, activityId));
+            console.log(createdComment)
+            if (!createdComment.errors) {
+                setBody("")
+                setDisplayErrors("Add a comment")
+                setPlaceHolderColor("")
+            }
+            else {
+                createdComment.errors.forEach((error) => { validationErrors.push(error) })
+                setBody("")
+                console.log(validationErrors)
+                console.log(validationErrors[0].split(": ")[1])
+                const error = validationErrors[0].split(": ")[1]
+                setDisplayErrors(error)
+                setPlaceHolderColor("placeholder");
+            }
+        }
+    };
+
+
     const contentTypeChecker = () => {
         if (contentType === "comments") {
             return (
@@ -65,14 +102,16 @@ function CommentsModal({ activityTitle, activityId, type, ownerId }) {
                             )
                         })}
                     </div>
-                    <form className="comment-modal-comments-submit-container">
+                    <form  onSubmit={onSubmit} className="comment-modal-comments-submit-container">
                         <div className="comment-modal-comments-submit-container-profile-icon">
                             <i className="fas fa-user-circle" style={{ fontSize: "24px" }} />
                         </div>
                         <textarea
                             type="text"
-                            className="comment-modal-comments-submit-input"
-                            placeholder="Add a comment"
+                            className={`comment-modal-comments-submit-input ${placeHolderColor}`}
+                            placeholder={displayErrors || "Add a comment"}
+                            value={body}
+                            onChange={(e)=>{setBody(e.target.value)}}
                         >
                         </textarea>
                         <div className="comment-modal-comments-submit-button-container">
@@ -81,8 +120,6 @@ function CommentsModal({ activityTitle, activityId, type, ownerId }) {
                             </button>
                         </div>
                     </form>
-
-
 
                 </>
 
