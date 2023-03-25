@@ -100,13 +100,13 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
     };
 
     const kudosSubmit = async () => {
-        // if (!kudosBoolean) {
+        if (!kudosBoolean) {
             await dispatch(postLikeThunk(activityId))
             await dispatch(getAllActivitiesThunk());
-        // } else {
-        //     await dispatch(deleteLikeThunk(activityId))
-        //     await dispatch(getAllActivitiesThunk());
-        // }
+        } else {
+            await dispatch(deleteLikeThunk(activityId))
+            await dispatch(getAllActivitiesThunk());
+        }
     }
 
     const kudosButtonText = () => {
