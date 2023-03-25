@@ -56,7 +56,7 @@ export const getActivityCommentsThunk = (id) => async (dispatch) => {
 };
 
 // Delete comment by comment id for current user
-export const deleteReviewThunk = (commentId) => async (dispatch) => {
+export const deleteCommentThunk = (commentId) => async (dispatch) => {
     const res = await fetch(`/api/comments/${commentId}`, {
         method: "DELETE",
     });
@@ -138,11 +138,8 @@ const commentsReducer = (state = initialState, action) => {
             newState.singleComment = action.comment;
             return newState;
         case DELETE_REVIEW:
-            if (newState.userReviews) {
-                delete newState.userReviews[action.id];
-            }
-            if (newState.activityComments) {
-                delete newState.activityComments[action.id];
+            if (newState.comments) {
+                delete newState.comments[action.id];
             }
             return newState;
         case GET_SINGLE_REVIEW:
