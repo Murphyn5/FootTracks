@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import logo from "../../assets/LittleFoot.png";
 import ActivityButton from './ActivityButton';
 import TrainingButton from './TrainingButton';
+import SearchBar from './SearchBar';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector((state) => state.session.user);
@@ -21,9 +22,14 @@ function Navigation({ isLoaded }) {
 						</NavLink>
 					</li>
 					{isLoaded && sessionUser ? (
+						<>
+						<SearchBar></SearchBar>
+						&nbsp;&nbsp;
 						<li className="nav-right-login">
 							<TrainingButton className="profile-button" user={sessionUser} />
 						</li>
+						</>
+
 					) : (
 						<></>
 					)}

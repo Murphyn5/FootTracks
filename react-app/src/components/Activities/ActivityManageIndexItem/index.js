@@ -7,7 +7,7 @@ import OpenModalButton from "../../OpenModalButton";
 import ActivityDeleteModal from "../ActivityDeleteModal";
 import ActivityUpdateModal from "../ActivityUpdateModal";
 
-const ActivityManageIndexItem = ({ activity }) => {
+const ActivityManageIndexItem = ({ activity, count }) => {
     const user = useSelector(state => state.session.user)
     function formattedDate(d) {
         d = new Date(d)
@@ -23,7 +23,7 @@ const ActivityManageIndexItem = ({ activity }) => {
         return null
     }
     let rowColor
-    if(activity.id % 2 === 1){
+    if(count % 2 === 1){
         rowColor = "gray"
     }
 
