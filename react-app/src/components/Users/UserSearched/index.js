@@ -1,9 +1,8 @@
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsersSearchThunk } from "../../../store/users";
+import { getUsersSearchThunk, getUserFollowingThunk, loadSearchedUsers, loadUserFollowing  } from "../../../store/users";
 import UserSearchCard from "./UserSearchCard";
-import { loadSearchedUsers } from "../../../store/users";
 
 import "./UserSearched.css";
 
@@ -12,13 +11,14 @@ const UserSearched = () => {
   const history = useHistory();
   const { searchString } = useParams();
   const users = useSelector(loadSearchedUsers)
-
+  const following = useSelector(loadUserFollowing)
 
 
 
   useEffect(() => {
     const searchUsers = async () => {
       await dispatch(getUsersSearchThunk(searchString));
+      await dispatch(getUserFollowingThunk())
     };
     searchUsers();
   }, [dispatch, searchString]);
