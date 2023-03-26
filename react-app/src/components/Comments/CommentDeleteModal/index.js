@@ -6,6 +6,7 @@ import "./CommentDeleteModal.css";
 import { deleteCommentThunk } from "../../../store/comments";
 import OpenCommentsFromDeleteModalButton from "../../OpenCommentsFromDeleteModalButton";
 import OpenCommentsFromNoDeleteModalButton from "../../OpenCommentsFromNoDeleteModalButton";
+import { getAllFollowedActivitiesThunk } from "../../../store/activities";
 import CommentsModal from "../CommentsModal";
 
 
