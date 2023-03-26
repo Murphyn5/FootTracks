@@ -11,7 +11,7 @@ const UserSearched = () => {
   const history = useHistory();
   const { searchString } = useParams();
   const users = useSelector(loadSearchedUsers)
-
+  const following = useSelector(loadUserFollowing)
 
 
 

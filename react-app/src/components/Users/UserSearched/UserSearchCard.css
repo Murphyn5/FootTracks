@@ -59,7 +59,7 @@
     font-weight: 700;
 }
 
-.users-serach-follow-submit-container {
+.users-search-follow-submit-container {
   height: 100%;
   padding: 12px 24px;
   box-sizing: border-box;
@@ -71,4 +71,45 @@
   transition-property: background-color;
   transition-duration: 0.5s;
   cursor: pointer;
+}
+
+.users-search-unfollow-submit-container {
+  height: 100%;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  text-align: center;
+  border: solid 1px rgb(223, 223, 232);
+  background-color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  color: rgb(36, 36, 40);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.users-search-unfollow-submit-container::Before {
+  content: "Following";
+}
+
+.users-search-unfollow-submit-container:hover {
+  height: 100%;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  text-align: center;
+  border: solid 1px rgb(223, 223, 232);
+  background-color: #ff5353;
+  border-radius: 4px;
+  font-size: 14px;
+  color: white;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  font-weight: 400;
+  content: "UnFollow";
+}
+
+.users-search-unfollow-submit-container:hover::before {
+  content: "UnFollow";
 }
