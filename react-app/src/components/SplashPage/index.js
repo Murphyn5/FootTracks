@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import "./SplashPage.css";
 import { useEffect } from "react";
-import { getAllActivitiesThunk, loadAllActivites } from "../../store/activities";
+import { getAllFollowedActivitiesThunk, loadAllActivites } from "../../store/activities";
 import ActivityCard from "../Activities/ActivityCard";
 
 function Splashpage() {
@@ -13,7 +13,7 @@ function Splashpage() {
 
     useEffect(() => {
         const activityRestore = async () => {
-            await dispatch(getAllActivitiesThunk());
+            await dispatch(getAllFollowedActivitiesThunk());
         };
         activityRestore();
     }, [dispatch]);

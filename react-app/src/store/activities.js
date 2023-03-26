@@ -6,15 +6,15 @@ const GET_SINGLE_ACTIVITY = "activities/GET_SINGLE_ACTIVITY";
 const POST_ACTIVITY = "activities/POST_ACTIVITY";
 const DELETE_ACTIVITY = "activities/DELETE_ACTIVITY";
 const EDIT_ACTIVITY = "activities/EDIT_ACTIVITY";
-const GET_ALL_ACTIVITIES = "activities/GET_ALL_ACTIVITIES";
+const GET_ACTIVITIES = "activities/GET_ACTIVITIES";
 
 /* ----- Selector ----- */
 export const loadAllActivites = (state) => Object.values(state.activities.activities)
 
 /* ----- ACTIONS ----- */
-const getAllActivitiesAction = (activities) => {
+const getActivitiesAction = (activities) => {
   return {
-    type: GET_ALL_ACTIVITIES,
+    type: GET_ACTIVITIES,
     activities,
   };
 };
@@ -82,7 +82,16 @@ export const getAllActivitiesThunk = () => async (dispatch) => {
   const res = await fetch(`/api/activities/`);
   if (res.ok) {
     const activities = await res.json();
-    dispatch(getAllActivitiesAction(activities));
+    dispatch(getActivitiesAction(activities));
+  }
+};
+
+//get all activities of followed users
+export const getAllFollowedActivitiesThunk = () => async (dispatch) => {
+  const res = await fetch(`/api/activities/following`);
+  if (res.ok) {
+    const activities = await res.json();
+    dispatch(getActivitiesAction(activities));
   }
 };
 
@@ -166,7 +175,7 @@ const activityReducer = (state = initialState, action) => {
     case EDIT_ACTIVITY:
       newState.activities[action.activity.id] = action.activity;
       return newState;
-    case GET_ALL_ACTIVITIES:
+    case GET_ACTIVITIES:
       newState.activities = action.activities.activities;
       return newState;
     default:
