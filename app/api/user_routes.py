@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.models import Activity, db, Comment, User
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User
 
 user_routes = Blueprint('users', __name__)
@@ -31,6 +31,8 @@ def user(id):
 def user_search():
     if request.args:
         search_query = request.args['query']
+        user_id = int(current_user.get_id())
+        session_user = User.query.get(user_id)
         if not search_query:
             return {'users': {}}
 
@@ -39,7 +41,7 @@ def user_search():
             (User.last_name.ilike(f'%{search_query}%'))
         )
 
-        users = [user.to_dict() for user in users_query.all()]
+        users = [user.to_dict() for user in users_query.all() if user.id != session_user.id]
 
 
         for user in users:

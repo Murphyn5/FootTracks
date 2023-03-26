@@ -58,3 +58,17 @@
     font-size: 22px;
     font-weight: 700;
 }
+
+.users-serach-follow-submit-container {
+  height: 100%;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  text-align: center;
+  border: solid 1px #f0f0f5;
+  border-radius: 4px;
+  font-size: 14px;
+  color: white;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
