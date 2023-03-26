@@ -25,7 +25,7 @@ const SearchBar = () => {
         <input
           className="search-container-input"
           type="text"
-          placeholder="Search"
+          placeholder="Search for an athlete..."
           value={searchString}
           onChange={(e) => setSearchString(e.target.value)}
         ></input>

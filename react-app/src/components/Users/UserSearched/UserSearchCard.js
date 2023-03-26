@@ -31,7 +31,7 @@ const UserSearchCard = ({ user, count }) => {
             </div>
           </div>
           <div className="users-search-item-owner-activities-info">
-            <button onClick={FollowSubmit} className={`comment-modal-kudos-submit-button`}>Following</button>
+            <button onClick={FollowSubmit} className={`users-serach-follow-submit-container`}>Following</button>
             <div></div>
             <div style={{position:"relative",bottom:"15px"}}>
               <div>{user.ride_count === 0 ? null : (user.ride_count === 1 ? `${user.ride_count} Bike Ride` : `${user.ride_count} Bike Rides`)}</div>

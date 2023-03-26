@@ -4,13 +4,23 @@ from flask_login import UserMixin
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 
-# follows = db.Table(
-#     "follows",
-#     db.Column("followed_id", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True),
-#     db.Column("follower_id", db.Integer, add_prefix_for_prod(db.ForeignKey("users.id")), primary_key=True))
+follows = db.Table(
+    "follows",
+    db.Column(
+        "followed_id",
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("users.id")),
+        primary_key=True
+    ),
+    db.Column(
+        "follower_id",
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("users.id")),
+        primary_key=True
+    ))
 
-# if environment == "production":
-#     follows.schema = SCHEMA
+if environment == "production":
+    follows.schema = SCHEMA
 
 likes = db.Table(
     "likes",
@@ -59,14 +69,18 @@ class User(db.Model, UserMixin):
     liked_activities = db.relationship(
         "Activity", secondary="likes", back_populates="liked_users")
 
-    # followers = db.relationship("User", secondary=follows,
-    #                             primaryjoin=follows.c.followed_id == id,
-    #                             secondaryjoin=follows.c.follower_id == id,
-    #                             back_populates="following")
-    # following = db.relationship("User", secondary=follows,
-    #                             primaryjoin=follows.c.follower_id == id,
-    #                             secondaryjoin=follows.c.followed_id == id,
-    #                             back_populates="followers")
+    followers = db.relationship("User",
+                                secondary=follows,
+                                primaryjoin=follows.c.followed_id == id,
+                                secondaryjoin=follows.c.follower_id == id,
+                                back_populates="following"
+                                )
+    following = db.relationship("User",
+                                secondary=follows,
+                                primaryjoin=follows.c.follower_id == id,
+                                secondaryjoin=follows.c.followed_id == id,
+                                back_populates="followers"
+                                )
 
     @property
     def password(self):

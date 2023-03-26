@@ -185,7 +185,7 @@ def create_new_like(id):
     db.session.commit()
     return user.to_dict(), 201
 
-# DELETE A NEW LIKE FOR AN  ACTIVITY
+# DELETE A NEW LIKE FOR AN ACTIVITY
 @activity_routes.route('/<int:id>/likes', methods=["DELETE"])
 @login_required
 def delete_like(id):
