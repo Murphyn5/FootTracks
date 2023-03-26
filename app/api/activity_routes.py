@@ -9,6 +9,8 @@ from datetime import datetime
 activity_routes = Blueprint('activities', __name__)
 
 # GET ALL ACTIVITIES
+
+
 @activity_routes.route('/')
 @login_required
 def get_activities():
@@ -26,6 +28,25 @@ def get_activities():
         activityObj = Activity.query.get(activity["id"])
         activity["likes_length"] = len(activityObj.liked_users)
 
+    return {'activities': {activity["id"]: activity for activity in activities}}
+
+# GET ALL ACTIVITIES FOR FOLLOWED USERS
+@activity_routes.route('/following')
+@login_required
+def get_followed_activities():
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
+    activities = []
+    for user in user.following:
+        for activity in user.activities:
+            comments_length = len(activity.comments)
+            likes_length = len(activity.liked_users)
+            activity = activity.to_dict()
+            activity["owner_first_name"] = user.first_name
+            activity["owner_last_name"] = user.last_name
+            activity["comments_length"] = comments_length
+            activity["likes_length"] = likes_length
+            activities.append(activity)
 
     return {'activities': {activity["id"]: activity for activity in activities}}
 
@@ -109,6 +130,8 @@ def create_new_activity():
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # GET COMMENTS BY ACTIVITY ID
+
+
 @activity_routes.route('/<int:id>/comments')
 @login_required
 def get_comments_by_activity_id(id):
@@ -124,6 +147,8 @@ def get_comments_by_activity_id(id):
     return {"comments": {comment['id']: comment for comment in activity_comments}}
 
 # CREATE NEW COMMENT FOR AN  ACTIVITY
+
+
 @activity_routes.route('/<int:id>/comments', methods=["POST"])
 @login_required
 def create_new_comment(id):
@@ -157,6 +182,8 @@ def create_new_comment(id):
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # GET LIKED USERS BY ACTIVITY ID
+
+
 @activity_routes.route('/<int:id>/likes')
 @login_required
 def get_likes_by_activity_id(id):
@@ -170,6 +197,8 @@ def get_likes_by_activity_id(id):
     return {"liked_users": {user.id: user.to_dict() for user in activity.liked_users}}
 
 # CREATE A NEW LIKE FOR AN  ACTIVITY
+
+
 @activity_routes.route('/<int:id>/likes', methods=["POST"])
 @login_required
 def create_new_like(id):
@@ -192,6 +221,8 @@ def create_new_like(id):
     return user.to_dict(), 201
 
 # DELETE A NEW LIKE FOR AN ACTIVITY
+
+
 @activity_routes.route('/<int:id>/likes', methods=["DELETE"])
 @login_required
 def delete_like(id):
@@ -204,7 +235,8 @@ def delete_like(id):
             "status_code": 404
         }, 404
 
-    activity.liked_users = [user for user in activity.liked_users if user.id != session_user.id]
+    activity.liked_users = [
+        user for user in activity.liked_users if user.id != session_user.id]
     db.session.commit()
     return {"liked_users": {user.id: user.to_dict() for user in activity.liked_users}}
 
