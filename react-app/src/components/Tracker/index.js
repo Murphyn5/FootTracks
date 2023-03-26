@@ -1,13 +1,15 @@
 // frontend/src/components/deleteFormModal/index.js
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Tracker.css";
 function Tracker() {
     const history = useHistory()
+    // const [altitudes, setAltitudes] = useState([])
+    // const [altitudeGain, setAltitudeGain] = useState(0)
+
+
     useEffect(() => {
-
-
         function distance(lat1, lon1, lat2, lon2, unit) {
             if ((lat1 == lat2) && (lon1 == lon2)) {
                 return 0;
@@ -31,6 +33,10 @@ function Tracker() {
         }
 
         const L = window.L
+        const mapbox = window.mapboxgl
+
+
+
         const LONDON_CENTRE_LAT_LNG = [51.505, -0.09];
         const HIGH_ACCURACY = true;
         const LOW_ACCURACY = false;
@@ -44,7 +50,9 @@ function Tracker() {
         let path = null;
         let accumulatedDistance = 0;
         let currentMarker = null;
-        let coordinates= []
+        let coordinates = []
+        let altitudes = []
+        let altitudeGain = 0
         const logConsole = document.querySelector('#log-console');
         const distanceBox = document.querySelector('#distance-box');
 
@@ -81,12 +89,45 @@ function Tracker() {
             }
         }
 
+
+
+        const asyncElevation = async (latitude, longitude) => {
+            async function getElevation() {
+                // Construct the API request.
+                const query = await fetch(
+                    `https://api.mapbox.com/v4/mapbox.mapbox-terrain-v2/tilequery/${longitude},${latitude}.json?layers=contour&limit=50&access_token=pk.eyJ1IjoibTQxaGlnaHdheSIsImEiOiJja295ZjQya2wwaTkxMnFtY203Z21wNjhzIn0.uF1S6TqlDfW7wmQ17Kp4NQ`,
+                    { method: 'GET' }
+                );
+                if (query.status !== 200) return;
+                const data = await query.json();
+                // Get all the returned features.
+                const allFeatures = data.features;
+                // console.log(allFeatures);
+                // For each returned feature, add elevation data to the elevations array.
+                const elevations = allFeatures.map((feature) => feature.properties.ele);
+                // console.log(elevations);
+                // In the elevations array, find the largest value.
+                const highestElevation = Math.max(...elevations);
+                return highestElevation
+            }
+            const altitude = await getElevation()
+            altitudes.push(altitude)
+            if(altitudes.length > 1){
+                if(altitudes[-1] > altitudes[-2]){
+                    altitudeGain += altitudes[-1] - altitudes[-2]
+                }
+            }
+            return altitude
+        }
+
+
         const updateMap = (event) => {
 
+            console.log(event)
+            const { latitude, longitude, timestamp, accuracy, altitudeAccuracy, heading, speed } = event.detail;
+            asyncElevation(latitude, longitude)
 
-            const { latitude, longitude, timestamp, accuracy, altitude, altitudeAccuracy, heading, speed } = event.detail;
-
-            report(`2. Received lat: ${latitude} | lng: ${longitude} | accuracy: ${accuracy} | altitude: ${altitude} | altitudeAccuracy ${altitudeAccuracy} | heading: ${heading} | speed: ${speed} | timestamp: ${timestamp}`);
+            report(`2. Received lat: ${latitude} | lng: ${longitude} | accuracy: ${accuracy} | altitude: ${altitudeGain} | altitudeAccuracy ${altitudeAccuracy} | heading: ${heading} | speed: ${speed} | timestamp: ${timestamp}`);
             coordinates.push(`${latitude},${longitude}`)
             drawNewSegment(event.detail)
                 .then((detail) => drawNewMarker(detail))
@@ -215,7 +256,7 @@ function Tracker() {
 
 
 
-                history.push(`/tracker/${accumulatedDistance}/${(endTime - startTime)/1000}/${coordinates.join(";")}`)
+                history.push(`/tracker/${accumulatedDistance}/${(endTime - startTime) / 1000}/${coordinates.join(";")}/${altitudeGain}`)
 
             }
         }
@@ -248,7 +289,6 @@ function Tracker() {
 
     const openNav = () => document.getElementById("myNav").style.width = "100%";
     const closeNav = () => document.getElementById("myNav").style.width = "0%";
-
 
     return (
         <>
