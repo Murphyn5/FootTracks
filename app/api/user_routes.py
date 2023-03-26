@@ -25,6 +25,68 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+# GET LIST OF WHO USER IS FOLLOWING BY USER ID
+@user_routes.route('/current/following')
+@login_required
+def get_comments_by_activity_id():
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
+    if not user:
+        return {
+            "errors": ["error: User couldn't be found"],
+            "status_code": 404
+        }, 404
+
+    return {"following": {user.id: user.to_dict() for user in user.following}}
+
+
+## FOLLOW A USER
+@user_routes.route('/<int:id>/follow', methods=["POST"])
+@login_required
+def user_follow(id):
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
+    user_to_follow = User.query.get(id)
+    if not user_to_follow:
+        return {
+            "errors": ["error: User couldn't be found"],
+            "status_code": 404
+        }, 404
+
+    if user_to_follow.id == user.id:
+        return {
+            "errors": ["error: Users can't follow themselves"],
+            "status_code": 403
+        }, 403
+
+    user.following.append(user_to_follow)
+    db.session.commit()
+    return user_to_follow.to_dict(), 201
+
+# UNFOLLOW A USER
+@user_routes.route('/<int:id>/unfollow', methods=["DELETE"])
+@login_required
+def user_unfollow(id):
+    user_id = int(current_user.get_id())
+    user_to_unfollow = User.query.get(id)
+    user = User.query.get(user_id)
+    if not user_to_unfollow:
+        return {
+            "errors": ["error: User couldn't be found"],
+            "status_code": 404
+        }, 404
+
+    if user_to_unfollow.id == user.id:
+        return {
+            "errors": ["error: Users can't unfollow themselves"],
+            "status_code": 403
+        }, 403
+
+
+    user.following = [user for user in user.following if user.id != user_to_unfollow.id]
+    db.session.commit()
+    return {"following": {user.id: user.to_dict() for user in user.following}}
+
 # SEARCH FOR A USER
 @user_routes.route('/search')
 @login_required

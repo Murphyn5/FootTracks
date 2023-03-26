@@ -56,7 +56,7 @@ def get_activity_details(id):
 
     if not activity:
         return {
-            "errors": "Activity couldn't be found",
+            "errors": "error: Activity couldn't be found",
             "status_code": 404
         }, 404
 
@@ -130,7 +130,7 @@ def create_new_comment(id):
     activity = Activity.query.get(id)
     if not activity:
         return {
-            "errors": ["Activity couldn't be found"],
+            "errors": ["error: Activity couldn't be found"],
             "status_code": 404
         }, 404
     form = CommentForm()
@@ -163,7 +163,7 @@ def get_likes_by_activity_id(id):
     activity = Activity.query.get(id)
     if not activity:
         return {
-            "errors": ["Activity couldn't be found"],
+            "errors": ["error: Activity couldn't be found"],
             "status_code": 404
         }, 404
 
@@ -178,9 +178,15 @@ def create_new_like(id):
     activity = Activity.query.get(id)
     if not activity:
         return {
-            "errors": ["Activity couldn't be found"],
+            "errors": ["error: Activity couldn't be found"],
             "status_code": 404
         }, 404
+
+    if activity.owner_id == user.id:
+        return {
+            "errors": ["error: Users can't like their own activities"],
+            "status_code": 403
+        }, 403
     activity.liked_users.append(user)
     db.session.commit()
     return user.to_dict(), 201
@@ -194,7 +200,7 @@ def delete_like(id):
     activity = Activity.query.get(id)
     if not activity:
         return {
-            "errors": ["Activity couldn't be found"],
+            "errors": ["error: Activity couldn't be found"],
             "status_code": 404
         }, 404
 
@@ -210,7 +216,7 @@ def update_activity(id):
     activity = Activity.query.get(id)
     if not activity:
         return {
-            "errors": ["Activity couldn't be found"],
+            "errors": ["error: Activity couldn't be found"],
             "status_code": 404
         }, 404
     user_id = int(current_user.get_id())
@@ -234,7 +240,7 @@ def update_activity(id):
 
     else:
         return {
-            "errors": ["Forbidden"],
+            "errors": ["error: Forbidden"],
             "status_code": 403
         }, 403
 
@@ -247,7 +253,7 @@ def delete_activity(id):
 
     if not activity:
         return {
-            "errors": "Activity couldn't be found",
+            "errors": "error: Activity couldn't be found",
             "status_code": 404
         }, 404
 
@@ -260,6 +266,6 @@ def delete_activity(id):
         }
     else:
         return {
-            "errors": "Forbidden",
+            "errors": "error: Forbidden",
             "status_code": 403
         }, 403
