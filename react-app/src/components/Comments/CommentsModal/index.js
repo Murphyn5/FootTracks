@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import "./CommentsModal.css";
 import { getActivityCommentsThunk, loadAllComments } from "../../../store/comments";
 import { getActivityLikesThunk, loadAllLikes, postLikeThunk, deleteLikeThunk } from "../../../store/likes";
-import { getAllActivitiesThunk } from "../../../store/activities";
+import { getAllFollowedActivitiesThunk } from "../../../store/activities";
 import CommentCard from "../CommentCard";
 import KudosCard from "../KudosCard";
 import { postCommentThunk } from "../../../store/comments";
@@ -33,7 +33,13 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
                 await dispatch(getActivityLikesThunk(activityId))
             }
             commentAndLikesRestore()
+        } else {
+            const activityRestore = async () => {
+                await dispatch(getAllFollowedActivitiesThunk())
+            }
+            activityRestore()
         }
+
         if (type === "comments") {
             setCommentsClassName("comment-modal-comments-tab-active")
             setContentType("comments")
@@ -43,7 +49,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
             setContentType("kudos")
         }
 
-        if( ownerId === user.id){
+        if (ownerId === user.id) {
             setDisabled("disabled")
         }
 
@@ -94,6 +100,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
                 setBody("")
                 setDisplayErrors("Add a comment")
                 setPlaceHolderColor("")
+                await dispatch(getAllFollowedActivitiesThunk())
             }
             else {
                 createdComment.errors.forEach((error) => { validationErrors.push(error) })
@@ -108,17 +115,17 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
     const kudosSubmit = async () => {
         if (!kudosBoolean) {
             await dispatch(postLikeThunk(activityId))
-            await dispatch(getAllActivitiesThunk());
+            await dispatch(getAllFollowedActivitiesThunk());
         } else {
             await dispatch(deleteLikeThunk(activityId))
-            await dispatch(getAllActivitiesThunk());
+            await dispatch(getAllFollowedActivitiesThunk());
         }
     }
 
     const kudosButtonText = () => {
-        if(kudosBoolean){
+        if (kudosBoolean) {
             return "Remove Kudos"
-        } else{
+        } else {
             return "Give Kudos"
         }
     }
