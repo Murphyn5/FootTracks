@@ -1,15 +1,60 @@
 .users-search-item{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   margin: auto;
-  height: 54.5px;
+  padding: 16px 0;
+  height: 110px;
+  box-sizing: border-box;
 }
 
 .users-search-item > div{
-  display: flex;
-  align-items: center;
+
 }
 
 .gray {
   background-color: #f7f7fa;
+}
+
+.users-search-item-owner-container{
+    padding: 0px 10px;
+    display: grid;
+    gap: 50px;
+    font-size: 17px;
+    grid-template-columns: 40px 1fr;
+}
+
+.users-search-item-owner-container i{
+    font-size: 70px;
+}
+
+.users-search-item-owner-information{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.users-search-item-owner-name {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.users-search-item-owner-activities-info {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 56% 50%;
+
+}
+.users-search-item-type-title-container{
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.users-search-item-title{
+    line-height: 28px;
+    font-size: 22px;
+    font-weight: 700;
 }

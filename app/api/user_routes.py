@@ -39,15 +39,17 @@ def user_search():
             (User.last_name.ilike(f'%{search_query}%'))
         )
 
-        users = [user.to_dict()
-                      for user in users_query.all()]
+        users = [user.to_dict() for user in users_query.all()]
 
-        # for user in users:
-            # images_query = db.session.query(Image).filter(
-            #     Image.user_id == user["id"])
-            # images = images_query.all()
-            # user["images"] = [image.to_dict() for image in images]
 
+        for user in users:
+            activities_query = db.session.query(Activity).filter(
+                Activity.owner_id == user["id"])
+            activities = activities_query.all()
+            runs = [ activity for activity in activities if activity.type == "Run" ]
+            rides = [ activity for activity in activities if activity.type == "Ride" ]
+            user["ride_count"] = len(rides)
+            user["run_count"] = len(runs)
             # Handle reviews
             # review_query = db.session.query(Review).filter(
             #     Review.user_id == user["id"])
