@@ -37,7 +37,9 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route exact path="/users/search/:searchString">
-            <UserSearched />
+            <ProtectedRoute>
+              <UserSearched />
+            </ProtectedRoute>
           </Route>
           <Route exact path="/activities/:activityId/edit">
             <ProtectedRoute>
@@ -61,7 +63,9 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route exact path="/tracker/:distance/:duration/:coordinates">
-            <TrackerSummary></TrackerSummary>
+            <ProtectedRoute>
+              <TrackerSummary></TrackerSummary>
+            </ProtectedRoute>
           </Route>
         </Switch>
       )}
