@@ -9,8 +9,6 @@ from datetime import datetime
 activity_routes = Blueprint('activities', __name__)
 
 # GET ALL ACTIVITIES
-
-
 @activity_routes.route('/')
 @login_required
 def get_activities():
@@ -21,8 +19,9 @@ def get_activities():
         comments_length = len(activity.comments)
         likes_length = len(activity.liked_users)
         activity_dict = activity.to_dict()
-        activity_dict["owner_first_name"] = user.first_name
-        activity_dict["owner_last_name"] = user.last_name
+        owner = User.query.get(activity.owner_id)
+        activity_dict["owner_first_name"] = owner.first_name
+        activity_dict["owner_last_name"] = owner.last_name
         activity_dict["comments_length"] = comments_length
         activity_dict["likes_length"] = likes_length
         activity_dict["liked_users"] = []
@@ -42,11 +41,12 @@ def get_followed_activities():
     activities = []
     for user in user.following:
         for activity in user.activities:
+            owner = User.query.get(activity.owner_id)
             comments_length = len(activity.comments)
             likes_length = len(activity.liked_users)
             activity_dict = activity.to_dict()
-            activity_dict["owner_first_name"] = user.first_name
-            activity_dict["owner_last_name"] = user.last_name
+            activity_dict["owner_first_name"] = owner.first_name
+            activity_dict["owner_last_name"] = owner.last_name
             activity_dict["comments_length"] = comments_length
             activity_dict["likes_length"] = likes_length
             activity_dict["liked_users"] = []
@@ -65,13 +65,23 @@ def current_user_activities():
     user = User.query.get(user_id)
     activity_query = db.session.query(
         Activity).filter(Activity.owner_id == user_id)
-    activities = [activity.to_dict() for activity in activity_query.all()]
-
+    activities = activity_query.all()
+    activities_to_return = []
     for activity in activities:
-        activity["owner_first_name"] = user.first_name
-        activity["owner_last_name"] = user.last_name
+        owner = User.query.get(activity.owner_id)
+        comments_length = len(activity.comments)
+        likes_length = len(activity.liked_users)
+        activity_dict = activity.to_dict()
+        activity_dict["owner_first_name"] = owner.first_name
+        activity_dict["owner_last_name"] = owner.last_name
+        activity_dict["comments_length"] = comments_length
+        activity_dict["likes_length"] = likes_length
+        activity_dict["liked_users"] = []
+        for user in activity.liked_users:
+            activity_dict["liked_users"].append(user.to_dict())
+        activities_to_return.append(activity_dict)
 
-    return {'activities': {activity["id"]: activity for activity in activities}}
+    return {'activities': {activity_dict["id"]: activity_dict for activity_dict in activities_to_return}}
 
 # GET ACTIVITY DETAILS BY ID
 
