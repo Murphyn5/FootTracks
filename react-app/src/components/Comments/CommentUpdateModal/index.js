@@ -9,7 +9,7 @@ import OpenCommentsFromNoDeleteModalButton from "../../OpenCommentsFromNoDeleteM
 import CommentsModal from "../CommentsModal";
 
 
-function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId, ownerId }) {
+function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId, ownerId, activitiesType }) {
     const dispatch = useDispatch();
     const [body, setBody] = useState(commentBody)
     const [displayErrors, setDisplayErrors] = useState("Edit comment")
@@ -56,12 +56,26 @@ function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId,
                         buttonText={"Ok"}
                         commentId={commentId}
                         body={body}
-                        modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityId={activityId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
+                        modalComponent={<CommentsModal
+                            commentId={commentId}
+                            ownerId={ownerId}
+                            activityId={activityId}
+                            activityTitle={activityTitle}
+                            type={"comments"}
+                            activitiesType={activitiesType}
+                            ></CommentsModal>}
                     ></OpenCommentsFromUpdateModalButton>
                     &nbsp;&nbsp;
                     <OpenCommentsFromNoDeleteModalButton
                         buttonText={"Cancel"}
-                        modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityId={activityId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
+                        modalComponent={<CommentsModal
+                            commentId={commentId}
+                            ownerId={ownerId}
+                            activityId={activityId}
+                            activityTitle={activityTitle}
+                            type={"comments"}
+                            activitiesType={activitiesType}
+                            ></CommentsModal>}
                     ></OpenCommentsFromNoDeleteModalButton>
                 </div>
             </form>

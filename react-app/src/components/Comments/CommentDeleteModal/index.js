@@ -10,7 +10,7 @@ import { getAllFollowedActivitiesThunk } from "../../../store/activities";
 import CommentsModal from "../CommentsModal";
 
 
-function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId }) {
+function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId, activitiesType }) {
     const dispatch = useDispatch();
 
     const { closeModal } = useModal();
@@ -31,13 +31,27 @@ function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId }) {
                     <div>
                         <OpenCommentsFromNoDeleteModalButton
                             buttonText={"Cancel"}
-                            modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityId={activityId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
+                            modalComponent={<CommentsModal
+                                commentId={commentId}
+                                ownerId={ownerId}
+                                activityId={activityId}
+                                activityTitle={activityTitle}
+                                type={"comments"}
+                                activitiesType={activitiesType}
+                                ></CommentsModal>}
                         ></OpenCommentsFromNoDeleteModalButton>
                         &nbsp;&nbsp;
                         <OpenCommentsFromDeleteModalButton
                             buttonText={"Ok"}
                             commentId={commentId}
-                            modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityId={activityId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
+                            modalComponent={<CommentsModal
+                                commentId={commentId}
+                                ownerId={ownerId}
+                                activityId={activityId}
+                                activityTitle={activityTitle}
+                                type={"comments"}
+                                activitiesType={activitiesType}
+                                ></CommentsModal>}
                         ></OpenCommentsFromDeleteModalButton>
                     </div>
                     {/* <button type="submit" onClick={handleSubmit} className={"enabled"}>Yes (Delete Comment)</button>

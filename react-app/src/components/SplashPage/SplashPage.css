@@ -1,8 +1,20 @@
+.splash-page-wrapper {
+  max-width: 1248px;
+  margin: auto;
+}
+
 .splash-page-body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  max-width: 1248px;
   margin: auto;
+}
+
+.splash-page-title {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+  position: relative;
+  top: 25px;
 }
 
 .user-info-container {
@@ -13,3 +25,27 @@
   margin-right: auto;
   margin-top: 50px;
 }
+
+.splash-page-activity-select {
+  position: absolute;
+  /* width: 97px ; */
+  top: 95px;
+  height: 40px;
+  font-size: 17px;
+  border: none;
+  padding: 5px;
+  background-color: #f7f7fa;
+  transition-duration: 0.3s;
+  transition-property: background-color, box-shadow, background-position, background-size, border-color, color;
+  outline-color: #007FB6;
+  border-radius: 4px;
+}
+
+.splash-page-activity-select:hover {
+  background-color: white;
+  box-shadow: 2px 2px 10px rgb(191, 191, 191);
+}
+
+/* .splash-page-activity-option {
+  font-size: 17px;
+} */
