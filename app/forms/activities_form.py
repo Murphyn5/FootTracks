@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, DecimalField, FloatField
+from wtforms import StringField, IntegerField, DecimalField, FloatField, DateField, TimeField
 from wtforms.validators import DataRequired, Length, NumberRange, URL, Regexp, ValidationError
 
 class ActivityForm(FlaskForm):
@@ -10,3 +10,5 @@ class ActivityForm(FlaskForm):
     duration = IntegerField("Duration", validators=[DataRequired(), NumberRange(min=0, message="Duration must be greater than 0.")])
     calories = IntegerField("Calories", validators=[NumberRange(min=0, message="Calories must be greater than 0.")])
     elevation = IntegerField("Elevation", validators=[NumberRange(min=0, message="Elevation must be greater than 0.")])
+    date = DateField("Date")
+    time = TimeField("Time")

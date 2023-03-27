@@ -106,6 +106,8 @@ def create_new_activity():
     data = request.get_json()
     user_id = int(current_user.get_id())
     user = User.query.get(user_id)
+    dt = datetime.strptime(data['date']+'-'+data['time'], '%Y-%m-%d-%H:%M')
+    print('???????', dt)
     if form.validate_on_submit():
         new_activity = Activity(
             owner_id=user_id,
@@ -116,6 +118,8 @@ def create_new_activity():
             duration=data['duration'],
             calories=data['calories'],
             elevation=data['elevation'],
+            created_at=dt,
+            updated_at=dt
         )
         db.session.add(new_activity)
         db.session.commit()
