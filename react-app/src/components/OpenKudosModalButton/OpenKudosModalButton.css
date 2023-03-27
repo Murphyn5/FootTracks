@@ -18,3 +18,13 @@
 .comments-modal-button:hover {
     background-color: rgb(255, 255, 255);
 }
+
+.kudos-modal-link {
+    cursor: pointer;
+    color: #007FB6;
+    align-self: center;
+}
+
+.kudos-modal-link:hover{
+    text-decoration: underline;
+}

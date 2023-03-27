@@ -23,7 +23,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
     const [body, setBody] = useState("")
     const [displayErrors, setDisplayErrors] = useState("Add a comment")
     const [placeHolderColor, setPlaceHolderColor] = useState("")
-    const [kudosBoolean, setKudosBoolean] = useState("false")
+    const [kudosBoolean, setKudosBoolean] = useState(false)
     const [disabled, setDisabled] = useState("")
 
     useEffect(() => {

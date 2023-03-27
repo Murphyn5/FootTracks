@@ -3,15 +3,20 @@ import { useDispatch } from "react-redux";
 import './ActivityCard.css'
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import OpenCommentsModalButton from "../../OpenCommentsModalButton";
 import OpenKudosModalButton from "../../OpenKudosModalButton";
 import CommentsModal from "../../Comments/CommentsModal";
-
+import { postLikeThunk, deleteLikeThunk, loadAllLikes } from "../../../store/likes";
+import { getAllFollowedActivitiesThunk } from "../../../store/activities";
 
 const ActivityCard = ({ activity }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
+    const [kudosBoolean, setKudosBoolean] = useState(false)
+    const [disabled, setDisabled] = useState("")
+    const [liked, setLiked] = useState("")
 
     function formattedDate(d) {
         d = new Date(d)
@@ -24,6 +29,22 @@ const ActivityCard = ({ activity }) => {
     }
 
     const date = formattedDate(activity.created_at)
+
+    useEffect(() => {
+        const likedUserIds = activity.liked_users.map((likedUser) => {
+            return likedUser.id
+        })
+        if (!likedUserIds.includes(user.id)) {
+            setKudosBoolean(false)
+            setLiked("")
+        } else {
+            setKudosBoolean(true)
+            setLiked("liked")
+        }
+        if (activity.owner_id === user.id) {
+            setDisabled("disabled")
+        }
+    }, [activity.liked_users])
 
     if (!activity) {
         return null
@@ -62,6 +83,15 @@ const ActivityCard = ({ activity }) => {
 
     }
 
+    const kudosSubmit = async () => {
+        if (!kudosBoolean) {
+            await dispatch(postLikeThunk(activity.id))
+            await dispatch(getAllFollowedActivitiesThunk());
+        } else {
+            await dispatch(deleteLikeThunk(activity.id))
+            await dispatch(getAllFollowedActivitiesThunk());
+        }
+    }
 
 
     return (
@@ -115,19 +145,21 @@ const ActivityCard = ({ activity }) => {
 
             </div>
             <div className="activity-card-related-info-buttons-container">
-                <div>kudos</div>
+                <OpenKudosModalButton
+                    modalComponent={
+                        <CommentsModal
+                            activityTitle={activity.title}
+                            activityId={activity.id}
+                            initialLoad={true}
+                            type="kudos"
+                            ownerId={activity.owner_id}>
+                        </CommentsModal>}
+                    likesLength={activity.likes_length}
+                ></OpenKudosModalButton>
                 <div>
-                    <OpenKudosModalButton
-                        modalComponent={
-                            <CommentsModal
-                                activityTitle={activity.title}
-                                activityId={activity.id}
-                                initialLoad={true}
-                                type="kudos"
-                                ownerId={activity.owner_id}>
-                            </CommentsModal>}
-                        likesLength={activity.likes_length}
-                    ></OpenKudosModalButton>
+                    <button onClick={kudosSubmit} className={`kudos-button ${disabled}`}>
+                        <i className={`fa-regular fa-thumbs-up ${liked}`} disabled={disabled} style={{ position: "relative", top: "1px" }}></i>
+                    </button>
                     &nbsp;
                     <OpenCommentsModalButton
                         modalComponent={

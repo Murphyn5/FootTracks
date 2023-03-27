@@ -194,3 +194,21 @@
     justify-content: space-between;
     width: 180px;
 }
+
+
+
+.kudos-button {
+    background-color: #f0f0f5;
+    border: none;
+    padding: 6px 12px;
+    color: #494950;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: solid 1px #f0f0f5;
+    transition-property: background-color;
+    transition-duration: 1s;
+    cursor: pointer;
+}
+.liked {
+    color: #ff5353;
+}
