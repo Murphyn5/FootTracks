@@ -47,13 +47,20 @@ const ActivityCreate = () => {
     const [calories, setCalories] = useState("");
     const [distanceType, setDistanceType] = useState("miles")
     const [elevationType, setElevationType] = useState("feet")
+    const [distanceError, setDistanceError] = useState("")
+    const [durationError, setDurationError] = useState("")
+    const [elevationError, setElevationError] = useState("")
+    const [descriptionError, setDescriptionError] = useState("")
+    const [titleError, setTitleError] = useState("")
+
     // likely need to separate hours of ops M-Sun + inputs for hours
     // then format input data as string for hours of operations
-    const [displayErrors, setDisplayErrors] = useState([]);
-
-    console.log(time)
-
     const onSubmit = async (e) => {
+        setDistanceError("")
+        setElevationError("")
+        setDurationError("")
+        setTitleError("")
+        setDescriptionError("")
         let validationErrors = []
         e.preventDefault();
         let d
@@ -75,7 +82,7 @@ const ActivityCreate = () => {
         const newActivity = {
             title: title,
             type: type,
-            description: "hi",
+            description: description,
             distance: d,
             duration: (seconds + minutes * 60 + hours * 3600),
             elevation: ele,
@@ -105,10 +112,31 @@ const ActivityCreate = () => {
             else {
                 createdActivity.errors.forEach((error) => { validationErrors.push(error) })
                 console.log(validationErrors)
-                setDisplayErrors(validationErrors);
+                validationErrors = validationErrors.join("")
+                console.log(validationErrors)
+                if(validationErrors.includes('distance : This field is required.')){
+                    setDistanceError("Distance is required")
+                }
+                if(validationErrors.includes('duration : This field is required.')){
+                    setDurationError("Duration is required")
+                }
+                if(validationErrors.includes('elevation : Not a valid integer value.')){
+                    setElevationError("Elevation is required")
+                }
+                if(validationErrors.includes('title : This field is required.')){
+                    setTitleError("Title is required")
+                }
+                if(validationErrors.includes('title : Title must be less than 100 characters.')){
+                    setTitleError("Title must be less than 100 characters")
+                }
+                if(validationErrors.includes('description : Description must be less than 500 characters.')){
+                    setDescriptionError("Description must be less than 500 characters")
+                }
             }
         }
     };
+
+
 
     useEffect(() => {
 
@@ -172,6 +200,7 @@ const ActivityCreate = () => {
                                     <option value="miles">miles</option>
                                     <option value="kilometers">kilometers</option>
                                 </select>
+                                {distanceError ? <div className="error">{distanceError}</div> : <br></br>}
                             </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <div className="activity-create-duration">
@@ -206,8 +235,9 @@ const ActivityCreate = () => {
                                             onChange={(e) => setSeconds(e.target.value)}
                                         ></input>
                                     </div>
-                                </div>
 
+                                </div>
+                                {durationError ? <div className="error">{durationError}</div> : <br></br>}
                             </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <div className="activity-create-distance-container">
@@ -227,12 +257,11 @@ const ActivityCreate = () => {
                                     <option value="feet">feet</option>
                                     <option value="meters">meters</option>
                                 </select>
+                                {elevationError ? <div className="error">{elevationError}</div> : <br></br>}
                             </div>
 
                         </div>
-                        <br></br>
                         <hr className="hr"></hr>
-                        <br></br>
                         <br></br>
                         <div className="activity-create-type-date-container">
                             <div className="activity-create-type-container">
@@ -274,6 +303,7 @@ const ActivityCreate = () => {
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             ></input>
+                            {titleError ? <div className="error">{titleError}</div> : <br></br>}
                         </div>
                         <br></br>
                         <br></br>
@@ -282,10 +312,11 @@ const ActivityCreate = () => {
                             <textarea
                                 type="text"
                                 value={description}
+                                placeholder="How'd it go? Share more about your activity"
                                 onChange={(e) => setDescription(e.target.value)}
                             ></textarea>
+                            {descriptionError ? <div className="error">{descriptionError}</div> : <br></br>}
                         </div>
-
                         <br></br>
                         <br></br>
                         <br></br>

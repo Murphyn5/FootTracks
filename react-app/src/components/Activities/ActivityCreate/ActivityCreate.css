@@ -203,3 +203,7 @@
 .activity-create-submit-button:hover {
     background-color: #d03e3e;
 }
+
+.error {
+    color: red;
+}
