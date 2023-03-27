@@ -6,27 +6,48 @@ import "./ActivityUpdateModal.css";
 import { useModal } from "../../../context/Modal";
 
 
-const inputStyle = (value) => ({
-    borderColor: value ? "initial" : "red",
-    "borderRadius": "5px",
-    "borderStyle": "solid"
-});
-
 const ActivityUpdateModal = ({ activity }) => {
+    let initialDate = new Date();
+    let day = initialDate.getDate();
+    let month = initialDate.getMonth() + 1;
+    let year = initialDate.getFullYear();
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    let today = year + "-" + month + "-" + day;
+    function getCurrentTime() {
+        const date = new Date();
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+    }
+
+    let currentTime = getCurrentTime()
+    const { closeModal } = useModal();
+
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState("");
-    const [type, setType] = useState("");
+    const [type, setType] = useState("Run");
     const [description, setDescription] = useState("");
-    const [distance, setDistance] = useState("");
-    const [duration, setDuration] = useState("");
+    const [distance, setDistance] = useState("")
+    const [date, setDate] = useState(today);
+    const [time, setTime] = useState(currentTime)
+    const [seconds, setSeconds] = useState("");
+    const [minutes, setMinutes] = useState("");
+    const [hours, setHours] = useState("");
     const [elevation, setElevation] = useState("");
     const [calories, setCalories] = useState("");
-    // likely need to separate hours of ops M-Sun + inputs for hours
-    // then format input data as string for hours of operations
-    const [displayErrors, setDisplayErrors] = useState([]);
+    const [distanceType, setDistanceType] = useState("miles")
+    const [elevationType, setElevationType] = useState("feet")
+    const [distanceError, setDistanceError] = useState("")
+    const [durationError, setDurationError] = useState("")
+    const [elevationError, setElevationError] = useState("")
+    const [descriptionError, setDescriptionError] = useState("")
+    const [dateTimeError, setDateTimeError] = useState("")
+    const [titleError, setTitleError] = useState("")
 
-    const { closeModal } = useModal();
 
     useEffect(() => {
         const activityRestore = async () => {
@@ -34,132 +55,334 @@ const ActivityUpdateModal = ({ activity }) => {
             setType(activity.type)
             setDescription(activity.description)
             setDistance(Math.round(activity.distance * 100) / 100)
-            setDuration(activity.duration)
+            function hours() {
+                const hours = Math.floor(activity.duration / 3600)
+                return hours
+
+            }
+            function minutes() {
+                const minutes = Math.floor((activity.duration - (Math.floor(activity.duration / 3600) * 3600)) / 60)
+                return minutes
+
+            }
+
+            function seconds() {
+                const seconds = activity.duration - Math.floor(activity.duration / 3600) * 3600 - Math.floor((activity.duration - (Math.floor(activity.duration / 3600) * 3600)) / 60) * 60
+                return seconds
+
+            }
+
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getUTCDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+              }
+
+            function convertTimeString(timeString) {
+                const date = new Date(timeString);
+                const hours = date.getUTCHours().toString().padStart(2, '0');
+                const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+                return `${hours}:${minutes}`;
+            }
+            setDate(formatDate(activity.activity_date))
+            setTime(convertTimeString(activity.activity_date))
+            setHours(hours())
+            setMinutes(minutes())
+            setSeconds(seconds())
             setElevation(activity.elevation)
             setCalories(activity.calories)
+
         }
         activityRestore()
     }, [dispatch])
 
+    // likely need to separate hours of ops M-Sun + inputs for hours
+    // then format input data as string for hours of operations
     const onSubmit = async (e) => {
+        setDistanceError("")
+        setDateTimeError("")
+        setElevationError("")
+        setDurationError("")
+        setTitleError("")
+        setDescriptionError("")
         let validationErrors = []
         e.preventDefault();
+        let d
+        if (distanceType === "kilometers") {
+            d = distance * 0.621371
+        } else {
+            d = distance
+        }
+
+        let ele
+
+        if (elevationType === "meters") {
+            ele = elevation * 3.28084
+        } else {
+            ele = elevation
+        }
+        console.log((date)+"-"+(time))
         const newActivity = {
             title: title,
             type: type,
             description: description,
-            distance: distance,
-            duration: duration,
-            elevation: elevation,
-            calories: calories,
+            distance: d,
+            duration: (Number(seconds) + Number((minutes * 60)) + Number((hours * 3600))),
+            elevation: ele,
+            calories: 1,
+            date_time: (date)+" "+(time)+":00"
         };
+
+        console.log(date)
+        console.log(newActivity)
+
+
+        // helper fxn check image url ending
+
+
+
+
+
+
+
+
 
         if (validationErrors.length === 0) {
             let updatedActivity = await dispatch(editActivityThunk(newActivity, activity.id));
             if (!updatedActivity.errors) {
-                closeModal()
+                closeModal();
             }
             else {
                 updatedActivity.errors.forEach((error) => { validationErrors.push(error) })
-                setDisplayErrors(validationErrors);
+                console.log(validationErrors)
+                validationErrors = validationErrors.join("")
+                console.log(validationErrors)
+                if (validationErrors.includes('distance : This field is required.')) {
+                    setDistanceError("Distance is required")
+                }
+                if (validationErrors.includes('duration : This field is required.')) {
+                    setDurationError("Duration is required")
+                }
+                if (validationErrors.includes('elevation : Not a valid integer value.')) {
+                    setElevationError("Elevation is required")
+                }
+                if (validationErrors.includes('title : This field is required.')) {
+                    setTitleError("Title is required")
+                }
+                if (validationErrors.includes('title : Title must be less than 100 characters.')) {
+                    setTitleError("Title must be less than 100 characters")
+                }
+                if (validationErrors.includes('description : Description must be less than 500 characters.')) {
+                    setDescriptionError("Description must be less than 500 characters")
+                }
+                if (validationErrors.includes("date_time : Activity date can't be set beyond present date.")) {
+                    setDateTimeError("Invalid Date")
+                }
             }
         }
     };
 
-    if(!activity) {
-        return null
-    }
+
+
+    useEffect(() => {
+
+        function Title(timeString) {
+            const [hours, minutes] = timeString.split(':');
+            const time = new Date();
+            time.setHours(hours);
+            time.setMinutes(minutes);
+
+            if (time.getHours() < 12) {
+                return `Morning ${type}`;
+            } else if (time.getHours() < 18) {
+                return `Afternoon ${type}`;
+            } else {
+                return `Evening ${type}`;
+            }
+        }
+        if (title === ""
+            || title === "Morning Run"
+            || title === "Afternoon Run"
+            || title === "Evening Run"
+            || title === "Morning Ride"
+            || title === "Afternoon Ride"
+            || title === "Evening Ride"
+            || title === "Morning Walk"
+            || title === "Afternoon Walk"
+            || title === "Evening Walk"
+            || title === "Morning Hike"
+            || title === "Afternoon Hike"
+            || title === "Evening Hike"
+        ) {
+            setTitle(Title(currentTime))
+        }
+    }, [type])
+
 
 
     return (
-        <div className="activity-update-main-container">
-            <div className="activity-update-create-container">
+        <>
+            <div className="activity-update-container-background">
+                <div>
 
-                <form onSubmit={onSubmit} className="activity-update-form">
-                    <h1 className="form-title">Update Entry</h1>
-                    <span>
-                        We'll use this information to help you claim your Plate Pal page. Your
-                        activity-update will come up automatically if it is already listed.
-                    </span>
-                    <ul className="errors">{displayErrors.map((error, index) => (
-                        <li key={index}>{error}</li>
-                    ))}</ul>
-                    <input
-                        type="text"
-                        placeholder="Title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        className="activity-update-form-input"
-                        style={inputStyle(title)}
-                    />
-                    <input
-                        type="number"
-                        placeholder="Elevation"
-                        value={elevation}
-                        onChange={(e) => setElevation(e.target.value)}
-                        className="activity-update-form-input"
-                        style={inputStyle(elevation)}
-                        pattern="\d{3}-\d{3}-\d{4}"
-                        title="Phone number format: xxx-xxx-xxxx"
-                    ></input>
-                    <input
-                        type="number"
-                        placeholder="Calories"
-                        value={calories}
-                        onChange={(e) => setCalories(e.target.value)}
-                        className="activity-update-form-input"
-                        style={inputStyle(calories)}
-                    ></input>
-                    <span>
-                        Help customers find your product and service. You can
-                        always edit and add more later.{" "}
-                    </span>
-                    <select
-                        value={type}
-                        placeholder='Select a type'
-                        onChange={(e) => setType(e.target.value)}
-                        className="activity-update-form-input"
-                        style={inputStyle(type)}
-                    >
-                        <option value="walking">Walking</option>
-                        <option value="running">Running</option>
-                        <option value="cycling">Cycling</option>
-                        <option value="hiking">Hiking</option>
-                    </select>
-                    <input
-                        type="text"
-                        placeholder="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        className="activity-update-form-input"
-                        style={inputStyle(description)}
-                    ></input>
-                    <input
-                        type="number"
-                        placeholder="Distance"
-                        value={distance}
-                        onChange={(e) => setDistance(e.target.value)}
-                        className="activity-update-form-input"
-                        style={inputStyle(distance)}
-                    ></input>
-                    <input
-                        type="number"
-                        placeholder="Duration"
-                        value={duration}
-                        onChange={(e) => setDuration(e.target.value)}
-                        className="activity-update-form-input"
-                        style={inputStyle(duration)}
-                    ></input>
+                </div>
+                <div className="activity-update-container">
+                    <h1>Update Activity</h1>
+                    <form onSubmit={onSubmit} className="activity-update-form">
+                        <div className="activity-update-stats-container">
+                            <div className="activity-update-distance-container">
+                                <div> Distance </div>
+                                <input
+                                    type="decimal"
+                                    min="0"
+                                    value={distance}
+                                    onChange={(e) => setDistance(e.target.value)}
+                                    style={{ borderRight: "0" }}
+                                ></input>
+                                <select
+                                    value={distanceType}
+                                    onChange={(e) => setDistanceType(e.target.value)}
+                                >
+                                    <option value="miles">miles</option>
+                                    <option value="kilometers">kilometers</option>
+                                </select>
+                                {distanceError ? <div className="error">{distanceError}</div> : <br></br>}
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div className="activity-update-duration">
+                                <div > Duration </div>
+                                <div className="activity-update-duration-input-wrapper">
+                                    <div className="activity-update-duration-input-container" >
+                                        <abbr className="activity-update-duration-placeholder">hr</abbr>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            value={hours}
+                                            onChange={(e) => setHours(e.target.value)}
+                                            style={{ borderRight: "0" }}
+                                        ></input>
+                                    </div>
+                                    <div className="activity-update-duration-input-container" >
+                                        <abbr className="activity-update-duration-placeholder">min</abbr>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            value={minutes}
+                                            onChange={(e) => setMinutes(e.target.value)}
+                                            style={{ borderRight: "0" }}
+                                        ></input>
+                                    </div>
+                                    <div className="activity-update-duration-input-container">
+                                        <abbr className="activity-update-duration-placeholder">s</abbr>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            value={seconds}
+                                            onChange={(e) => setSeconds(e.target.value)}
+                                        ></input>
+                                    </div>
 
-                    <br></br>
+                                </div>
+                                {durationError ? <div className="error">{durationError}</div> : <br></br>}
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div className="activity-update-distance-container">
+                                <div> Elevation </div>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    value={elevation}
+                                    onChange={(e) => setElevation(e.target.value)}
+                                    style={{ borderRight: "0" }}
+                                ></input>
+                                <select
+                                    min="0"
+                                    value={elevationType}
+                                    onChange={(e) => setElevationType(e.target.value)}
+                                >
+                                    <option value="feet">feet</option>
+                                    <option value="meters">meters</option>
+                                </select>
+                                {elevationError ? <div className="error">{elevationError}</div> : <br></br>}
+                            </div>
 
-                    <div>
-                    </div>
-                    <button type="submit" className="submit-button">Update Activity</button>
-                </form>
+                        </div>
+                        <hr className="hr"></hr>
+                        <br></br>
+                        <div className="activity-update-type-date-container">
+                            <div className="activity-update-type-container">
+                                <div> Sport </div>
+                                <select
+                                    value={type}
+                                    onChange={(e) => setType(e.target.value)}
+                                >
+                                    <option value="Run">Run</option>
+                                    <option value="Ride">Ride</option>
+                                    <option value="Hike">Hike</option>
+                                    <option value="Walk">Walk</option>
+                                </select>
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div className="activity-update-distance-container">
+                                <div> Date & Time </div>
+                                <input
+                                    type="date"
+                                    min="0"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    style={{ borderRight: "0" }}
+                                ></input>
+                                <input
+                                    type="time"
+                                    value={time}
+                                    onChange={(e) => setTime(e.target.value)}
+                                >
+                                </input>
+                                {dateTimeError ? <div className="error">{dateTimeError}</div> : <br></br>}
+                            </div>
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <div className="activity-update-title-container">
+                            <div> Title </div>
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            ></input>
+                            {titleError ? <div className="error">{titleError}</div> : <br></br>}
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <div className="activity-update-description-container">
+                            <div> Description </div>
+                            <textarea
+                                type="text"
+                                value={description}
+                                placeholder="How'd it go? Share more about your activity"
+                                onChange={(e) => setDescription(e.target.value)}
+                            ></textarea>
+                            {descriptionError ? <div className="error">{descriptionError}</div> : <br></br>}
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <hr className="hr"></hr>
+                        <br></br>
+                        <button type="submit" className="activity-update-submit-button">Update</button>
+                    </form>
 
+                </div>
+                <div>
+
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -24,7 +24,7 @@ function Splashpage() {
 
 
   activities?.sort(
-    (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
+    (a, b) => Date.parse(b.activity_date) - Date.parse(a.activity_date)
   );
 
     return (

@@ -6,14 +6,16 @@ from datetime import datetime
 # Adds a demo user, you can add other users here if you want
 def seed_activities():
 
-    activity1 = Activity(owner_id=1, title='Morning Run',
+    activity1 = Activity(owner_id=1,
+                         title='Morning Run',
                          description='Ran around the park',
                          type='Run',
                          distance=3.2,
                          duration=1800,
                          calories=300,
                          elevation=50)
-    activity2 = Activity(owner_id=2, title='Afternoon Hike',
+    activity2 = Activity(owner_id=2,
+                         title='Afternoon Hike',
                          description='Hiked up the mountain',
                          type='Hike',
                          distance=5.5,

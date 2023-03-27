@@ -12,12 +12,12 @@ const ActivityManageIndexItem = ({ activity, count }) => {
     function formattedDate(d) {
         d = new Date(d)
         let month = String(d.getMonth() + 1);
-        let day = String(d.getDate());
+        let day = String(d.getUTCDate());
         const year = String(d.getFullYear());
         return `${month}/${day}/${year}`;
     }
 
-    const date = formattedDate(activity.created_at)
+    const date = formattedDate(activity.activity_date)
 
     if (!activity) {
         return null
@@ -53,10 +53,10 @@ const ActivityManageIndexItem = ({ activity, count }) => {
             <div>
                 {activity.elevation}
             </div>
-
+{/*
             <div>
                 {activity.calories}
-            </div>
+            </div> */}
 
             <OpenModalButton
                 buttonText={"Delete"}

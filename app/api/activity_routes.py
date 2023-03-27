@@ -104,9 +104,10 @@ def create_new_activity():
     form = ActivityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = request.get_json()
+    print('?????????', data)
     user_id = int(current_user.get_id())
     user = User.query.get(user_id)
-    dt = datetime.strptime(data['date']+'-'+data['time'], '%Y-%m-%d-%H:%M')
+    dt = datetime.strptime(data['date_time'], '%Y-%m-%d %H:%M:%S')
     print('???????', dt)
     if form.validate_on_submit():
         new_activity = Activity(
@@ -118,8 +119,9 @@ def create_new_activity():
             duration=data['duration'],
             calories=data['calories'],
             elevation=data['elevation'],
-            created_at=dt,
-            updated_at=dt
+            activity_date=dt,
+            updated_at=datetime.utcnow(),
+            created_at=datetime.utcnow()
         )
         db.session.add(new_activity)
         db.session.commit()
@@ -257,22 +259,33 @@ def update_activity(id):
         }, 404
     user_id = int(current_user.get_id())
     user = User.query.get(user_id)
-
     data = request.get_json()
+    print("HELLLLO", data)
+    dt = datetime.strptime(data['date_time'], '%Y-%m-%d %H:%M:%S')
+    print("HIIIIIII", dt)
+    form = ActivityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if int(current_user.get_id()) == activity.owner_id:
-        activity.description = data['description']
-        activity.title = data['title']
-        activity.type = data['type']
-        activity.distance = data['distance']
-        activity.duration = data['duration']
-        activity.calories = data['calories']
-        activity.elevation = data['elevation']
-        db.session.commit()
-        activity = activity.to_dict()
-        activity["owner_first_name"] = user.first_name
-        activity["owner_last_name"] = user.last_name
-
-        return activity
+        if form.validate_on_submit():
+            activity.title=data['title']
+            activity.type=data['type']
+            activity.description=data['description']
+            activity.distance=data['distance']
+            activity.duration=data['duration']
+            activity.calories=data['calories']
+            activity.elevation=data['elevation']
+            activity.activity_date=dt
+            activity.updated_at=datetime.utcnow()
+            activity_dict = activity.to_dict()
+            activity_dict['owner_first_name'] = user.first_name
+            activity_dict['owner_last_name'] = user.last_name
+            db.session.commit()
+            return activity_dict, 200
+        if form.errors:
+            return {
+                "message": "Validation error",
+                "statusCode": 400,
+                'errors': validation_errors_to_error_messages(form.errors)}, 400
 
     else:
         return {

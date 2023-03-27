@@ -1,124 +1,210 @@
-.activity-update-main-container {
+.activity-update-container-background {
+
+    height: calc(100% - 81px);
+    width: 1200px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.activity-update-container {
+    width: 1037px;
+}
+
+.activity-update-stats-container {
     display: flex;
-    justify-content: center;
+}
+
+.activity-update-distance-container {
+
+    height: 57px;
+    width: 237px;
+    box-sizing: border-box;
     align-items: center;
-  }
 
-  .errors {
-    color: red;
-  }
+}
 
-  /* Business card */
-  .activity-update-card {
-    background-color: #ffffff;
-    width: 207px;
-    padding-bottom: 18px;
-    padding-top: 22px;
-    min-height: 169px;
-    border-radius: 0%;
-  }
+.activity-update-distance-container input{
+    height: 34px;
+    width: 50%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+}
 
-  .activity-update-form {
-    background-color: #fff;
-    width: 600px;
+.activity-update-distance-container input:focus {
+    border: solid 1px #007FB6;
+}
+
+
+.activity-update-distance-container select{
+    height: 34px;
+    width: 50%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-update-distance-container select:focus {
+    border: solid 1px #007FB6;
+}
+
+.activity-update-duration-input-wrapper{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* grid-template-columns: 1fr; */
-    place-items: center;
-    line-height: 1.5;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
-    padding: 24px 31px 17px 27px;
-    margin-bottom: 20px;
-  }
+}
 
-  .activity-update-form h2 {
-    font-size: 1.2rem;
-    color: #1A2250;
-  }
-
-  .activity-update-form p {
-    font-size: 14px;
-    color: #3B4169;
-    margin: 10px 0;
-  }
-
-  .activity-update-form input[type="text"],
-  .activity-update-form input[type="email"],
-  .activity-update-form input[type="number"],
-
-  .activity-update-form select,
-  .activity-update-form button {
-    width: 100%;
-    border: none;
-    padding: 14px;
-    border-radius: 3px;
-  }
-
-
-
-  .activity-update-form input[type="text"],
-  .activity-update-form input[type="email"],
-  .activity-update-form input[type="number"],
-  .day-hours input[type="time"],
-  .activity-update-form select {
-    border-radius: 3px;
-    border: 2px solid #DADDEC;
-    margin: 5px 0 10px;
-    font-size: 1rem;
-    color: #656880;
-  }
-
-  /* .autocomplete-container {
-    width: 100% !important;
-    margin: auto;
+.activity-update-duration-input-container {
     position: relative;
-    right: 15px;
-  } */
-
-  .activity-update-form select {
-    width: 631px;
-  }
-
-  .activity-update-form button {
-    display: block;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 5px 20px #89caff94;
-    transition: box-shadow 0.3s ease-in-out;
-  }
-
-  .activity-update-form button:hover {
-    box-shadow: none;
-  }
-
-  .activity-update-form span {
-    display: block;
-    text-align: center;
-    margin: 10px 0 10px 0;
-    color: #BABDCB;
-    font-size: 12px;
-  }
-
-  .activity-update-form .price-radios label {
-    display: inline-block;
-
-  }
-
-  .image-preview {
-    border-radius: 5px;
-  }
-
-  .price-radios {
-    width: 90%;
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .activity-update-form-price-container {
-    width: 100%;
+    height: 34px;
+    width: 74px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    flex-direction: column;
-  }
+    margin-top: 10px;
+}
+
+
+.activity-update-duration input {
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    outline: none;
+    width: 74px;
+    height: 34px;
+    padding-left: 20px;
+    padding-right: 35px;
+    border: none;
+    border: solid 1px rgb(223, 223, 232);
+    -moz-appearance: textfield;
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-update-duration input:focus {
+    border: solid 1px #007FB6;
+}
+
+.activity-update-duration input::-webkit-outer-spin-button,
+.activity-update-duration input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.activity-update-duration-placeholder {
+    position: absolute;
+    font-size: 12px;
+    top: 11px;
+    left: 40px;
+    color: rgb(223, 223, 232);
+}
+
+.hr {
+    border: solid 1px rgb(223, 223, 232);
+    border-bottom: 0;
+}
+
+.activity-update-type-date-container{
+    width: 485px;
+    display: flex;
+}
+
+.activity-update-type-container input:focus {
+    border: solid 1px #007FB6;
+}
+
+
+.activity-update-type-container select{
+    height: 34px;
+    width: 237px;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-update-type-container select:focus {
+    border: solid 1px #007FB6;
+}
+
+.activity-update-title-container {
+
+    height: 57px;
+    width: 485px;
+    box-sizing: border-box;
+    align-items: center;
+
+}
+
+.activity-update-title-container input{
+    height: 34px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-update-title-container input:focus {
+    border: solid 1px #007FB6;
+}
+
+
+.activity-update-description-container {
+
+    height: 57px;
+    width: 485px;
+    box-sizing: border-box;
+    align-items: center;
+
+}
+
+.activity-update-description-container textarea{
+    height: 108px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+    resize: vertical;
+}
+
+.activity-update-description-container textarea:focus {
+    border: solid 1px #007FB6;
+}
+
+.activity-update-submit-button{
+    height: 100%;
+    padding: 12px 24px;
+    box-sizing: border-box;
+    text-align: center;
+    border: solid 1px #f0f0f5;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.activity-update-submit-button:hover {
+    background-color: #d03e3e;
+}
+
+.error {
+    color: red;
+}
