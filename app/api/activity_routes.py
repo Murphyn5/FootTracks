@@ -15,20 +15,23 @@ activity_routes = Blueprint('activities', __name__)
 @login_required
 def get_activities():
     activities = Activity.query.all()
-    activities = [activity.to_dict() for activity in activities]
+    activities_to_return = []
 
     for activity in activities:
-        comment_query = db.session.query(
-            Comment).filter(Comment.activity_id == activity["id"])
-        comments = [comment.to_dict() for comment in comment_query.all()]
-        user = User.query.get(activity['owner_id'])
-        activity["owner_first_name"] = user.first_name
-        activity["owner_last_name"] = user.last_name
-        activity["comments_length"] = len(comments)
-        activityObj = Activity.query.get(activity["id"])
-        activity["likes_length"] = len(activityObj.liked_users)
+        comments_length = len(activity.comments)
+        likes_length = len(activity.liked_users)
+        activity_dict = activity.to_dict()
+        activity_dict["owner_first_name"] = user.first_name
+        activity_dict["owner_last_name"] = user.last_name
+        activity_dict["comments_length"] = comments_length
+        activity_dict["likes_length"] = likes_length
+        activity_dict["liked_users"] = []
+        for user in activity.liked_users:
+            activity_dict["liked_users"].append(user.to_dict())
+        activities_to_return.append(activity_dict)
 
-    return {'activities': {activity["id"]: activity for activity in activities}}
+    return {'activities': {activity_dict["id"]: activity_dict for activity_dict in activities_to_return}}
+
 
 # GET ALL ACTIVITIES FOR FOLLOWED USERS
 @activity_routes.route('/following')
@@ -41,14 +44,17 @@ def get_followed_activities():
         for activity in user.activities:
             comments_length = len(activity.comments)
             likes_length = len(activity.liked_users)
-            activity = activity.to_dict()
-            activity["owner_first_name"] = user.first_name
-            activity["owner_last_name"] = user.last_name
-            activity["comments_length"] = comments_length
-            activity["likes_length"] = likes_length
-            activities.append(activity)
+            activity_dict = activity.to_dict()
+            activity_dict["owner_first_name"] = user.first_name
+            activity_dict["owner_last_name"] = user.last_name
+            activity_dict["comments_length"] = comments_length
+            activity_dict["likes_length"] = likes_length
+            activity_dict["liked_users"] = []
+            for user in activity.liked_users:
+                activity_dict["liked_users"].append(user.to_dict())
+            activities.append(activity_dict)
 
-    return {'activities': {activity["id"]: activity for activity in activities}}
+    return {'activities': {activity_dict["id"]: activity_dict for activity_dict in activities}}
 
 
 # GET ALL ACTIVITIES BY CURRENT USER
@@ -267,15 +273,15 @@ def update_activity(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if int(current_user.get_id()) == activity.owner_id:
         if form.validate_on_submit():
-            activity.title=data['title']
-            activity.type=data['type']
-            activity.description=data['description']
-            activity.distance=data['distance']
-            activity.duration=data['duration']
-            activity.calories=data['calories']
-            activity.elevation=data['elevation']
-            activity.activity_date=dt
-            activity.updated_at=datetime.utcnow()
+            activity.title = data['title']
+            activity.type = data['type']
+            activity.description = data['description']
+            activity.distance = data['distance']
+            activity.duration = data['duration']
+            activity.calories = data['calories']
+            activity.elevation = data['elevation']
+            activity.activity_date = dt
+            activity.updated_at = datetime.utcnow()
             activity_dict = activity.to_dict()
             activity_dict['owner_first_name'] = user.first_name
             activity_dict['owner_last_name'] = user.last_name

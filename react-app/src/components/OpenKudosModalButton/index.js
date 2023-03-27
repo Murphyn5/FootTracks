@@ -18,10 +18,13 @@ function OpenKudosModalButton({
   };
 
   return (
-    <button className='comments-modal-button'  onClick={onClick}>
-      <i className="fa-regular fa-thumbs-up" style={{position:"relative",top:"1px"}}></i> {likesLength === 0 ? null : likesLength}
-    </ button>
+    <span className={"kudos-modal-link"} onClick={onClick}>
+      {likesLength === 0 ? null : `${likesLength} kudos`}
+    </ span>
   );
 }
 
 export default OpenKudosModalButton;
+
+
+{/* <i className="fa-regular fa-thumbs-up" style={{position:"relative",top:"1px"}}></i>  */}
