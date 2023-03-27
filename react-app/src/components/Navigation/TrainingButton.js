@@ -44,7 +44,7 @@ function TrainingButton
       </button>
       <ul className={ulClassName} ref={ulRef}>
         <div className="user-drop-down-menu">
-          <Link to="activities/current">
+          <Link to="/activities/current">
             <button onClick={closeMenu}>My Activities</button>
           </Link>
         </div>

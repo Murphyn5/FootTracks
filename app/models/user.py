@@ -121,6 +121,7 @@ class Activity(db.Model, UserMixin):
     duration = db.Column(db.Integer, nullable=False)
     calories = db.Column(db.Integer)
     elevation = db.Column(db.Integer)
+    activity_date=db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, nullable=False,
@@ -144,6 +145,7 @@ class Activity(db.Model, UserMixin):
             'distance': self.distance,
             'calories': self.calories,
             'elevation': self.elevation,
+            'activity_date' : self.activity_date,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }

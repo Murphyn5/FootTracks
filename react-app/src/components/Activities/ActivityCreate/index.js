@@ -51,6 +51,7 @@ const ActivityCreate = () => {
     const [durationError, setDurationError] = useState("")
     const [elevationError, setElevationError] = useState("")
     const [descriptionError, setDescriptionError] = useState("")
+    const [dateTimeError, setDateTimeError] = useState("")
     const [titleError, setTitleError] = useState("")
 
     // likely need to separate hours of ops M-Sun + inputs for hours
@@ -60,6 +61,7 @@ const ActivityCreate = () => {
         setElevationError("")
         setDurationError("")
         setTitleError("")
+        setDateTimeError("")
         setDescriptionError("")
         let validationErrors = []
         e.preventDefault();
@@ -84,11 +86,10 @@ const ActivityCreate = () => {
             type: type,
             description: description,
             distance: d,
-            duration: (seconds + minutes * 60 + hours * 3600),
+            duration: (Number(seconds) + Number((minutes * 60)) + Number((hours * 3600))),
             elevation: ele,
             calories: 1,
-            date: date,
-            time: time
+            date_time: (date)+" "+(time)+":00"
         };
 
 
@@ -131,6 +132,9 @@ const ActivityCreate = () => {
                 }
                 if(validationErrors.includes('description : Description must be less than 500 characters.')){
                     setDescriptionError("Description must be less than 500 characters")
+                }
+                if (validationErrors.includes("date_time : Activity date can't be set beyond present date.")) {
+                    setDateTimeError("Invalid Date")
                 }
             }
         }
@@ -292,6 +296,7 @@ const ActivityCreate = () => {
                                     onChange={(e) => setTime(e.target.value)}
                                 >
                                 </input>
+                                {dateTimeError ? <div className="error">{dateTimeError}</div> : <br></br>}
                             </div>
                         </div>
                         <br></br>

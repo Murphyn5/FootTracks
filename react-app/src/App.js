@@ -10,7 +10,6 @@ import Tracker from "./components/Tracker";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Splashpage from "./components/SplashPage";
 import ActivityCreate from "./components/Activities/ActivityCreate";
-import ActivityUpdate from "./components/Activities/ActivityUpdate";
 import ActivitiesManageIndex from "./components/Activities/ActivityManageIndex";
 import UserSearched from "./components/Users/UserSearched";
 
@@ -39,11 +38,6 @@ function App() {
           <Route exact path="/users/search/:searchString">
             <ProtectedRoute>
               <UserSearched />
-            </ProtectedRoute>
-          </Route>
-          <Route exact path="/activities/:activityId/edit">
-            <ProtectedRoute>
-              <ActivityUpdate></ActivityUpdate>
             </ProtectedRoute>
           </Route>
           <Route exact path="/activities/current">
