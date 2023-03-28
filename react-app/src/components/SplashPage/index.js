@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import "./SplashPage.css";
+import img from './/header_image-39d887c771c7094d2adeb4fe67589f471f70bb3fc26e66b69a7e4edf29f90ce6.jpeg'
 import { getAllFollowedActivitiesThunk, loadAllActivites, getCurrentActivitiesThunk, getLatestActivityAction } from "../../store/activities";
 import ActivityCard from "../Activities/ActivityCard";
 
 function Splashpage() {
     const dispatch = useDispatch();
+    const history = useHistory()
     const sessionUser = useSelector((state) => state.session.user);
     let activities = useSelector(loadAllActivites)
     const latestActivity = useSelector((state) => state.activities.latestActivity)
@@ -60,6 +62,18 @@ function Splashpage() {
 
     // }
 
+    const redirectToTracker = () => {
+        history.push("/tracker")
+    }
+
+    const showAlert = () => {
+        alert("Feature Coming Soon");
+    }
+
+    const findFriends = () => {
+        history.push("/search")
+    }
+
     return (
         <div className="splash-page-wrapper">
             <br></br>
@@ -77,7 +91,7 @@ function Splashpage() {
                             <div className="splash-page-descriptor">Following</div>
                             <div>{sessionUser.following_length}</div>
                         </div>
-                        <div className="splash-page-user-info-stat" style={{borderLeft:"solid 1px rgb(223, 223, 232)",borderRight:"solid 1px rgb(223, 223, 232)"}}>
+                        <div className="splash-page-user-info-stat" style={{ borderLeft: "solid 1px rgb(223, 223, 232)", borderRight: "solid 1px rgb(223, 223, 232)" }}>
                             <div className="splash-page-descriptor">Followers</div>
                             <div>{sessionUser.followers_length}</div>
                         </div>
@@ -86,31 +100,126 @@ function Splashpage() {
                             <div>{sessionUser.activities_length}</div>
                         </div>
                     </div>
-                    <br></br>
-                    <hr style={{borderTop:"#6d6d78", width:"100%"}}></hr>
-                    <div className="splash-page-latest-activity-container">
-                        <div className="splash-page-descriptor">Latest Activity</div>
-                        <div><strong>{latestActivity.title}</strong> &bull; {formattedDate(latestActivity.activity_date)} </div>
-                    </div>
+
+                    {console.log(Object.values(latestActivity)[0])}
+                    {Object.values(latestActivity)[0] ?
+                        <>
+                            <br></br>
+                            <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
+                            <div className="splash-page-latest-activity-container">
+                                <div className="splash-page-descriptor">Latest Activity</div>
+                                <div><strong>{latestActivity.title}</strong> &bull; {formattedDate(latestActivity.activity_date)} </div>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <br></br>
+                            <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
+                            <div className="splash-page-latest-activity-container-no-activity" onClick={redirectToTracker}>
+                                <div style={{ color: "#6d6d78", lineHeight: "30px", padding: "5px" }}><span style={{ color: "#ff5353" }}>Add an Activity.</span> Learn how to record or upload an activity to FootTracks.</div>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </>
+
+                    }
+
 
                 </div>
                 <div className="activities-container">
-                    <select className="splash-page-activity-select"
-                        value={type}
-                        onChange={(e) => setType(e.target.value)}
-                    >
-                        <option className="splash-page-activity-option" value="Following">Following</option>
-                        <option className="splash-page-activity-option" value="My Activities">My Activities</option>
-                    </select>
-                    {activities.map((activity) => {
-                        return (
-                            <ActivityCard
-                                activity={activity}
-                                key={activity.id}
-                                activitiesType={type}
-                            />
-                        );
-                    })}
+                    {
+                        sessionUser.following_length > 0 ?
+                            <select className="splash-page-activity-select"
+                                value={type}
+                                onChange={(e) => setType(e.target.value)}
+                            >
+                                <option className="splash-page-activity-option" value="Following">Following</option>
+                                <option className="splash-page-activity-option" value="My Activities">My Activities</option>
+                            </select>
+                            :
+                            null
+                    }
+                    {
+                        sessionUser.following_length > 0 ? (
+                            activities.length > 0 ?
+                                activities.map((activity) => {
+                                    return (
+                                        <ActivityCard
+                                            activity={activity}
+                                            key={activity.id}
+                                            activitiesType={type}
+                                        />
+                                    );
+                                })
+                                :
+                                <>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <div className="no-activity-card">
+                                        <div>
+                                            No more recent activity available.
+                                        </div>
+                                        <div>
+                                            To see your full activity history, visit your Profile or Training Calendar.
+                                        </div>
+                                    </div>
+                                    <div className="no-activity-card">
+                                        <div>
+                                            No posts yet.
+                                        </div>
+                                    </div>
+                                </>
+                        )
+                            :
+
+                            <>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div className="getting-started-card">
+                                    <img src={img}></img>
+                                    <div className="getting-started-card-body">
+                                        <h3 style={{ fontSize: "28px", fontWeight: "400", margin: "5px 0px 15px 0px" }}>Getting Started</h3>
+                                        <div>We’ve listed a couple of steps to help you get set up on FootTracks.</div>
+                                        <br></br>
+                                        <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
+                                        <br></br>
+                                        <div className="getting-started-card-body-container">
+                                            <i style={{ fontSize: "64px", color: "rgb(0,0,0,.8)" }} className="fa-regular fa-compass"></i>
+                                            <div>
+                                                <div style={{ fontWeight: "bold" }}>Record your first activity</div>
+                                                <br></br>
+                                                <div style={{paddingRight:"30px"}}>
+                                                    Set up your GPS device and seamlessly upload your workouts right to FootTracks. No device? No problem – record and connect anytime, anywhere with our mobile app.
+                                                </div>
+                                                <br></br>
+                                                <button onClick={showAlert} className="getting-started-connect-device-button">
+                                                    Connect device
+                                                </button>
+                                                <br></br>
+                                                <br></br>
+                                                <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
+                                            </div>
+                                        </div>
+                                        <br></br>
+                                        <div className="getting-started-card-body-container">
+                                            <i style={{ fontSize: "45px", color: "rgb(0,0,0,.8)" }} className="fa-solid fa-user-group"></i>
+                                            <div>
+                                                <div style={{ fontWeight: "bold" }}>See what your friends are doing</div>
+                                                <br></br>
+                                                <div style={{paddingRight:"30px"}}>
+                                                Find your friends on Strava or invite them to join you. Cheer them on, discover new workouts and start training with the athletes you already know.
+                                                </div>
+                                                <br></br>
+                                                <button onClick={findFriends} className="getting-started-connect-device-button">
+                                                    Find Friends
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                    }
                 </div>
             </div>
         </div>

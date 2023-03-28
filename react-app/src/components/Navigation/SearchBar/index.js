@@ -12,7 +12,7 @@ const SearchBar = () => {
     e.preventDefault();
     if (searchString.length === 0) {
       setSearchString("");
-      return history.push(`/users/search/empty`);
+      return history.push(`/users/search/`);
     } else {
       setSearchString("");
       return history.push(`/users/search/${searchString}`);

@@ -38,32 +38,35 @@ function ProfileButton({ user }) {
 
   return (
     <>
-     <li className={"nav-right-profile-container" + (showMenu ? " show-border" : "")}>
-      <button onClick={openMenu} className="profile-button" style={{width:"80%"}}>
-        <i className="fas fa-user-circle" style={{fontSize:"30px"}}/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="fa-solid fa-angle-down" style={{fontSize:"20px"}}></i>
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <div className="user-drop-down-menu">
+      <li className={"nav-right-profile-container" + (showMenu ? " show-border" : "")}>
+        <button onClick={openMenu} className="profile-button" style={{ width: "80%" }}>
+          <i className="fas fa-user-circle" style={{ fontSize: "30px" }} />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fa-solid fa-angle-down" style={{ fontSize: "20px" }}></i>
+        </button>
+        <ul className={ulClassName} ref={ulRef}>
+          {user ? (
+            <div className="user-drop-down-menu">
+              <div
+                onClick={handleLogout}
+                style={{ cursor: "pointer" }}
+                className="user-drop-down-menu-button"
+              >
+                  Log Out
+              </div>
+            </div>
+          ) : (
+            <>
+              <Link to="/login">
+                <button onClick={closeMenu} >Log In</button>
+              </Link>
 
-            <button className="button-logout" onClick={handleLogout}>
-              Log Out
-            </button>
-          </div>
-        ) : (
-          <>
-            <Link to="/login">
-              <button onClick={closeMenu}>Log In</button>
-            </Link>
-
-            <Link to="/signup">
-              <button onClick={closeMenu}>Sign Up</button>
-            </Link>
-          </>
-        )}
-      </ul>
+              <Link to="/signup">
+                <button onClick={closeMenu}>Sign Up</button>
+              </Link>
+            </>
+          )}
+        </ul>
       </li>
     </>
   );
