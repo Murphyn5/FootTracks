@@ -38,15 +38,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} className="profile-button">
-        <i className="fas fa-user-circle" />
+     <li className={"nav-right-profile-container" + (showMenu ? " show-border" : "")}>
+      <button onClick={openMenu} className="profile-button" style={{width:"80%"}}>
+        <i className="fas fa-user-circle" style={{fontSize:"30px"}}/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-solid fa-angle-down" style={{fontSize:"20px"}}></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <div className="user-drop-down-menu">
-            <li className="user-drop-down-name">
-              {user.first_name} {`${user.last_name[0]}.`}
-            </li>
+
             <button className="button-logout" onClick={handleLogout}>
               Log Out
             </button>
@@ -63,6 +64,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
+      </li>
     </>
   );
 }

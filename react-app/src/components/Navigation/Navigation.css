@@ -5,16 +5,6 @@
 /* border and cushion for options that pop up */
 
 
-.profile-dropdown {
-  position: absolute;
-  border: 1px solid rgba(0, 0, 0, 0.244);
-  border-top: none;
-  text-align: left;
-  padding: 10px 15px 10px 15px;
-  right: 90px;
-  margin-top: 27px;
-  background-color: white;
-}
 
 .training-dropdown {
   position: absolute;
@@ -29,7 +19,7 @@
 
 
 
-.profile-dropdown > hr {
+.profile-dropdown>hr {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -75,9 +65,29 @@
   text-align: left;
   right: 40px;
   top: 80px;
-  padding-inline-start: 0 ;
+  padding-inline-start: 0;
   background-color: white;
   z-index: -1;
+}
+
+.nav-right-profile-container {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+}
+
+.profile-dropdown {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.244);
+  text-align: left;
+  padding: 10px 15px 10px 15px;
+  right: 90px;
+  top: 80px;
+  background-color: white;
+  z-index: -1;
+  width: 120px;
 }
 
 .profile-button {
@@ -87,14 +97,11 @@
   border: 1px solid black;
   padding: 5px;
   border: none;
-  color: #ff5353;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
   cursor: pointer;
   background-color: white;
-  font-size: 30px;
 }
 
 
@@ -112,7 +119,7 @@
   flex-direction: column;
 }
 
-.user-drop-down-menu-button{
+.user-drop-down-menu-button {
   height: 50px;
   display: flex;
   align-items: center;
@@ -123,7 +130,7 @@
   color: #6d6d78;
 }
 
-.user-drop-down-menu-button:hover{
+.user-drop-down-menu-button:hover {
   background-color: rgb(240, 240, 240);
 }
 
