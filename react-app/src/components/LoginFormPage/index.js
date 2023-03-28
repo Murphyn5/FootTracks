@@ -3,6 +3,9 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect } from "react-router-dom";
 import "./LoginForm.css";
+import { useEffect } from "react";
+import background from "../../assets/LoginBackRoundLeft.webp";
+import background2 from "../../assets/LoginBackRoundRight.webp";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -30,10 +33,11 @@ function LoginFormPage() {
   };
 
   return (
-    <div>
+    <div className="login-page-wrapper">
+      <div className="background-image" style={{backgroundImage:`url(${background2})`}}></div>
       <form className="login-page-container" onSubmit={handleSubmit}>
         <br></br>
-        <h3>Log in to Plate Pal</h3>
+        <h3>Log in to FootTracks</h3>
         <br></br>
         <ul className="login-form-errors">
           {errors.map((error, idx) => (
@@ -75,7 +79,10 @@ function LoginFormPage() {
         >
           Continue with Demo User
         </button>
+        <br></br>
+        <br></br>
       </form>
+      <div className="background-image" style={{backgroundImage:`url(${background})`}}></div>
     </div>
   );
 }

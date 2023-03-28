@@ -101,7 +101,6 @@ function Splashpage() {
                         </div>
                     </div>
 
-                    {console.log(Object.values(latestActivity)[0])}
                     {Object.values(latestActivity)[0] ?
                         <>
                             <br></br>

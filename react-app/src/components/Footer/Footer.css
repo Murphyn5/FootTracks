@@ -1,0 +1,25 @@
+.main-footer {
+    background-color: #f7f7fa;
+    height: max-content;
+    width: 100%;
+    min-height: calc((100% - 80px) * .2);
+    box-sizing: border-box;
+    border-top: 1px solid rgba(128, 128, 128, 0.171);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-footer-container{
+    height: 200px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-footer-icon{
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(0,0,0,.8)
+}

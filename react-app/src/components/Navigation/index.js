@@ -22,6 +22,7 @@ function Navigation({ isLoaded }) {
 							<img className="logo-image" src={logo} alt="logo"></img>
 						</NavLink>
 					</li>
+					&nbsp;&nbsp;
 					{isLoaded && sessionUser ? (
 						<>
 							<SearchBar></SearchBar>
@@ -36,7 +37,7 @@ function Navigation({ isLoaded }) {
 
 						<ProfileButton className="profile-button" user={sessionUser} />
 
-						
+
 
 						<ActivityButton className="activity-button" user={sessionUser} />
 

@@ -176,6 +176,9 @@ const ActivityCreate = () => {
         ) {
             setTitle(Title(currentTime))
         }
+
+
+
     }, [type])
 
 

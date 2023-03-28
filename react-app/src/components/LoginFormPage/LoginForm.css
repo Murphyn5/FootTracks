@@ -1,26 +1,40 @@
+.login-page-wrapper{
+  height: 625px;
+  display: grid;
+  grid-template-columns: 1fr 400px 1fr;
+  margin: auto;
+}
+
+
 .login-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
 
-  .login-page-container > input {
+}
+
+.background-image{
+background-size: cover;
+
+}
+
+.login-page-container>input {
     width: 235px;
     height: 25px;
     margin: 5px 0px;
     padding: 0px 5px;
-  }
+}
 
-  .login-form-button {
+.login-form-button {
     width: 250px;
     height: 35px;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
+}
 
-  .demo-user-button {
+.demo-user-button {
     width: 250px;
     height: 35px;
     border: none;
@@ -29,18 +43,18 @@
     border-radius: 5px;
     margin: 10px;
     cursor: pointer;
-  }
+}
 
-  .new-platepal-container {
+.new-platepal-container {
     margin-top: 10px;
     font-size: 12px;
-  }
+}
 
-  .new-platepal-sign-up {
+.new-platepal-sign-up {
     color: #0073bb;
     text-decoration: none;
-  }
+}
 
-  .login-form-errors{
+.login-form-errors {
     color: red;
-  }
+}

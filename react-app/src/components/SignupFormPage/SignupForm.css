@@ -1,3 +1,8 @@
+.sign-up-page-wrapper{
+    min-height: calc((100% - 80px) * .8);
+  }
+
+
 .sign-up-page-container {
     display: flex;
     flex-direction: column;

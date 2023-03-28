@@ -90,6 +90,7 @@ export const getUserFollowingThunk = () => async (dispatch) => {
 /* ----- INITIAL STATE ----- */
 const initialState = {
     users: {},
+    filteredusers: {},
     following: {}
 };
 
