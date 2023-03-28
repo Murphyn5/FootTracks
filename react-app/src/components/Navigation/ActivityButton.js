@@ -40,9 +40,6 @@ function ActivityButton
   return (
     <>
       <li className={"nav-right-activity-container" + (showMenu ? " show-border" : "")}>
-        {/* <button onClick={openMenu} className="activity-button">
-          <i className="fa-solid fa-circle-plus"></i>
-        </button> */}
         {showMenu ?
         <i class="fa-solid fa-circle-plus activity-button" style={{fontSize:"30px"}} onClick={openMenu}></i>
         :

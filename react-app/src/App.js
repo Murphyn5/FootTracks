@@ -40,6 +40,11 @@ function App() {
               <UserSearched />
             </ProtectedRoute>
           </Route>
+          <Route exact path="/users/search/">
+            <ProtectedRoute>
+              <UserSearched />
+            </ProtectedRoute>
+          </Route>
           <Route exact path="/activities/current">
             <ProtectedRoute>
               <ActivitiesManageIndex></ActivitiesManageIndex>
