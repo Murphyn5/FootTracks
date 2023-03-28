@@ -63,6 +63,7 @@ export const deleteActivityThunk = (activityId) => async (dispatch) => {
   });
   if (res.ok) {
     dispatch(deleteActivityAction(activityId));
+    dispatch(getLatestActivityAction({}))
   }
 };
 
@@ -167,7 +168,9 @@ const activityReducer = (state = initialState, action) => {
       newState.activities = action.activities.activities;
       return newState;
     case GET_LATEST_ACTIVTY:
-      newState.latestActivity = action.activity;
+      if (action.activity) {
+        newState.latestActivity = action.activity;
+      }
       return newState;
     case POST_ACTIVITY:
       newState.singleActivity = action.activity;
