@@ -1,12 +1,14 @@
 .activities-manage-container-background {
     background-color: white;
-    height: calc(100% - 81px);
+    min-height: calc((100% - 80px) * .8);
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .activities-manage-container {
     width: 1216px;
     margin: auto;
+    overflow-y: auto;
 }
 
 .activities-manage-headers{

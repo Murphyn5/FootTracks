@@ -12,6 +12,8 @@ import Splashpage from "./components/SplashPage";
 import ActivityCreate from "./components/Activities/ActivityCreate";
 import ActivitiesManageIndex from "./components/Activities/ActivityManageIndex";
 import UserSearched from "./components/Users/UserSearched";
+import Footer from "./components/Footer";
+import LoginSignupFooter from "./components/LoginSignupFooter";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,33 +30,41 @@ function App() {
           <Route exact path="/">
             <ProtectedRoute>
               <Splashpage></Splashpage>
+              <Footer></Footer>
             </ProtectedRoute>
           </Route>
           <Route exact path="/activities/new">
             <ProtectedRoute>
               <ActivityCreate></ActivityCreate>
+              <Footer></Footer>
             </ProtectedRoute>
           </Route>
           <Route exact path="/users/search/:searchString">
             <ProtectedRoute>
               <UserSearched />
+              <Footer></Footer>
             </ProtectedRoute>
           </Route>
           <Route exact path="/users/search/">
             <ProtectedRoute>
               <UserSearched />
+              <Footer></Footer>
             </ProtectedRoute>
           </Route>
           <Route exact path="/activities/current">
             <ProtectedRoute>
               <ActivitiesManageIndex></ActivitiesManageIndex>
+              <Footer></Footer>
             </ProtectedRoute>
           </Route>
           <Route path="/login" >
             <LoginFormPage />
+            <LoginSignupFooter></LoginSignupFooter>
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+            <Footer></Footer>
+            <LoginSignupFooter></LoginSignupFooter>
           </Route>
           <Route exact path="/tracker">
             <ProtectedRoute>
@@ -64,6 +74,7 @@ function App() {
           <Route exact path="/tracker/:distance/:duration/:coordinates/:elevation">
             <ProtectedRoute>
               <TrackerSummary></TrackerSummary>
+              <Footer></Footer>
             </ProtectedRoute>
           </Route>
         </Switch>

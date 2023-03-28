@@ -284,7 +284,6 @@ function Tracker() {
         document.querySelector("#tracker")
             .addEventListener("GEO_EVENT", updateMap);
 
-        document.getElementById("toggle").onclick = toggle
 
     }, [history]);
 

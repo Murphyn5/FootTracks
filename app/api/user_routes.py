@@ -93,11 +93,6 @@ def user_unfollow(id):
 def user_search():
     if request.args:
         search_query = request.args['query']
-        print("LKSDFMSKLDM0", search_query)
-        print("LKSDFMSKLDM0", search_query)
-        print("LKSDFMSKLDM0", search_query)
-        print("LKSDFMSKLDM0", search_query)
-        print("LKSDFMSKLDM0", search_query)
         user_id = int(current_user.get_id())
         session_user = User.query.get(user_id)
         users = [user.to_dict() for user in User.query.all() if user.id != session_user.id]

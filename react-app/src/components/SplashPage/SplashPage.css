@@ -1,6 +1,7 @@
 .splash-page-wrapper {
   max-width: 1248px;
   margin: auto;
+  min-height: calc((100% - 80px) * .8);
 }
 
 .splash-page-body {
@@ -41,6 +42,7 @@
   width: 280px;
   height: fit-content;
   background-color: white;
+  border-radius: 4px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;

@@ -1,9 +1,10 @@
 .activity-create-container-background {
     background-color: white;
-    height: calc(100% - 81px);
+    min-height: calc((100% - 80px) * .8);
     padding: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    box-sizing: border-box;
 }
 
 .activity-create-container {
