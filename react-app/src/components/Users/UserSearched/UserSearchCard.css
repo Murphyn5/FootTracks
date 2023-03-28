@@ -73,6 +73,10 @@
   cursor: pointer;
 }
 
+.users-search-follow-submit-container:hover {
+  background-color: #d03e3e;
+}
+
 .users-search-unfollow-submit-container {
   height: 100%;
   padding: 12px 24px;
@@ -99,7 +103,7 @@
   box-sizing: border-box;
   text-align: center;
   border: solid 1px rgb(223, 223, 232);
-  background-color: #ff5353;
+  background-color: #d03e3e;
   border-radius: 4px;
   font-size: 14px;
   color: white;
