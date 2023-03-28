@@ -33,10 +33,10 @@ function Navigation({ isLoaded }) {
 				</div>
 				{isLoaded && sessionUser ? (
 					<div className="nav-right-container">
-						<li className="nav-right-login">
-							<ProfileButton className="profile-button" user={sessionUser} />
-						</li>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+						<ProfileButton className="profile-button" user={sessionUser} />
+
+						
 
 						<ActivityButton className="activity-button" user={sessionUser} />
 
