@@ -3,6 +3,7 @@ import "./UserSearchCard.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { loadUserFollowing, followUserThunk, unfollowUserThunk } from "../../../store/users";
+import { authenticate } from "../../../store/session";
 
 const UserSearchCard = ({ user, count }) => {
   const dispatch = useDispatch()
@@ -29,10 +30,12 @@ const UserSearchCard = ({ user, count }) => {
 
   const followSubmit = async () => {
     await dispatch(followUserThunk(user.id))
+    await dispatch(authenticate())
   }
 
   const unFollowSubmit = async () => {
     await dispatch(unfollowUserThunk(user.id))
+    await dispatch(authenticate())
   }
 
 

@@ -5,6 +5,7 @@ import { useModal } from "../../../context/Modal";
 import "./ActivityDeleteModal.css";
 import { deleteActivityThunk } from "../../../store/activities";
 import { getCurrentActivitiesThunk } from "../../../store/activities";
+import { authenticate } from "../../../store/session";
 
 function ActivityDeleteModal({ activityId }) {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function ActivityDeleteModal({ activityId }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await dispatch(deleteActivityThunk(activityId))
+    await dispatch(authenticate())
     closeModal()
   };
 

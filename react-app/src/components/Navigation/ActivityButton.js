@@ -5,7 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import { Link } from "react-router-dom";
 
 function ActivityButton
-({ user }) {
+  ({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -39,22 +39,49 @@ function ActivityButton
 
   return (
     <>
-      <button onClick={openMenu} className="activity-button">
-      <i className="fa-solid fa-circle-plus"></i>
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-      <div className="user-drop-down-menu">
-            <Link to="/tracker">
-              <button onClick={closeMenu}>Record an Activity</button>
+      <li className={"nav-right-activity-container" + (showMenu ? " show-border" : "")}>
+        <button onClick={openMenu} className="activity-button">
+          <i className="fa-solid fa-circle-plus"></i>
+        </button>
+        <ul className={ulClassName} ref={ulRef}>
+          <div className="user-drop-down-menu">
+            <Link to="/tracker" style={{textDecoration:"none"}}>
+              <div
+                onClick={closeMenu}
+                style={{ cursor: "pointer" }}
+                className="user-drop-down-menu-button"
+              >
+                <i class="fa-solid fa-angles-up"></i>
+                &nbsp;
+                Record an Activity
+              </div>
             </Link>
-            <Link to="/activities/new">
-              <button onClick={closeMenu}>Manual Upload</button>
+            <Link to="/activities/new" style={{textDecoration:"none"}}>
+              <div
+                onClick={closeMenu}
+                style={{ cursor: "pointer" }}
+                className="user-drop-down-menu-button"
+              >
+                <i class="fa-solid fa-chart-line"></i>
+                &nbsp; 
+                Manual Upload
+              </div>
+            </Link>
+            <Link to="/activities/current" style={{textDecoration:"none"}}>
+              <div
+                onClick={closeMenu}
+                style={{ cursor: "pointer" }}
+                className="user-drop-down-menu-button"
+              >
+                My Activities
+              </div>
             </Link>
           </div>
-      </ul>
+        </ul>
+      </li>
     </>
   );
 }
 
 export default ActivityButton
-;
+  ;

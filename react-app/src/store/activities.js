@@ -1,8 +1,7 @@
 // import { getActivityCommentsThunk } from "./comments";
-
 /* ----- CONSTANTS ----- */
 const GET_CURRENT_ACTIVITIES = "activities/GET_CURRENT_ACTIVITIES";
-const GET_SINGLE_ACTIVITY = "activities/GET_SINGLE_ACTIVITY";
+const GET_LATEST_ACTIVTY = "activities/GET_LATEST_ACTIVTY";
 const POST_ACTIVITY = "activities/POST_ACTIVITY";
 const DELETE_ACTIVITY = "activities/DELETE_ACTIVITY";
 const EDIT_ACTIVITY = "activities/EDIT_ACTIVITY";
@@ -19,9 +18,9 @@ const getActivitiesAction = (activities) => {
   };
 };
 
-const getSingleActivityAction = (activity) => {
+export const getLatestActivityAction = (activity) => {
   return {
-    type: GET_SINGLE_ACTIVITY,
+    type: GET_LATEST_ACTIVTY,
     activity,
   };
 };
@@ -68,14 +67,14 @@ export const deleteActivityThunk = (activityId) => async (dispatch) => {
 };
 
 // Display single activity details
-export const getSingleActivityThunk = (id) => async (dispatch) => {
-  const res = await fetch(`/api/activities/${id}`);
-  if (res.ok) {
-    const activity = await res.json();
-    dispatch(getSingleActivityAction(activity));
-    return activity;
-  }
-};
+// export const getSingleActivityThunk = (id) => async (dispatch) => {
+//   const res = await fetch(`/api/activities/${id}`);
+//   if (res.ok) {
+//     const activity = await res.json();
+//     dispatch(getLatestActivityAction(activity));
+//     return activity;
+//   }
+// };
 
 //get all activities
 export const getAllActivitiesThunk = () => async (dispatch) => {
@@ -92,8 +91,8 @@ export const getAllFollowedActivitiesThunk = () => async (dispatch) => {
   if (res.ok) {
     const activities = await res.json();
     dispatch(getActivitiesAction(activities));
-  }
-};
+  };
+}
 
 // Display current user activities
 export const getCurrentActivitiesThunk = () => async (dispatch) => {
@@ -101,6 +100,12 @@ export const getCurrentActivitiesThunk = () => async (dispatch) => {
   if (res.ok) {
     const activities = await res.json();
     dispatch(getCurrentActivitiesAction(activities));
+
+    const sorted = Object.values(activities.activities).sort(
+      (a, b) => Date.parse(b.activity_date) - Date.parse(a.activity_date)
+    );
+
+    dispatch(getLatestActivityAction(sorted[0]))
   }
 };
 
@@ -119,7 +124,7 @@ export const postActivityThunk = (newActivity) => async (dispatch) => {
     const data = await res.json();
     return data;
   } else {
-    return {"errors": ["server : A server error occurred. Please try again."]};
+    return { "errors": ["server : A server error occurred. Please try again."] };
   }
 };
 
@@ -143,7 +148,7 @@ export const editActivityThunk =
         return data;
       }
     } else {
-      return {"errors": ["server : A server error occurred. Please try again."]};
+      return { "errors": ["server : A server error occurred. Please try again."] };
     }
   };
 
@@ -151,7 +156,7 @@ export const editActivityThunk =
 /* ----- INITIAL STATE ----- */
 const initialState = {
   activities: {},
-  singleActivity: {}
+  latestActivity: {}
 };
 
 /* ----- REDUCER ----- */
@@ -161,8 +166,8 @@ const activityReducer = (state = initialState, action) => {
     case GET_CURRENT_ACTIVITIES:
       newState.activities = action.activities.activities;
       return newState;
-    case GET_SINGLE_ACTIVITY:
-      newState.singleActivity = action.activity;
+    case GET_LATEST_ACTIVTY:
+      newState.latestActivity = action.activity;
       return newState;
     case POST_ACTIVITY:
       newState.singleActivity = action.activity;
