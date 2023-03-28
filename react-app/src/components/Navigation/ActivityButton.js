@@ -40,12 +40,20 @@ function ActivityButton
   return (
     <>
       <li className={"nav-right-activity-container" + (showMenu ? " show-border" : "")}>
-        <button onClick={openMenu} className="activity-button">
+        {/* <button onClick={openMenu} className="activity-button">
           <i className="fa-solid fa-circle-plus"></i>
-        </button>
+        </button> */}
+        {showMenu ?
+        <i class="fa-solid fa-circle-plus activity-button" style={{fontSize:"30px"}} onClick={openMenu}></i>
+        :
+        <span className="fa-stack activity-button" onClick={openMenu}>
+          <i class="fa-regular fa-circle fa-stack-2x"></i>
+          <i className="fa-solid fa-plus" ></i>
+        </span>}
+
         <ul className={ulClassName} ref={ulRef}>
           <div className="user-drop-down-menu">
-            <Link to="/tracker" style={{textDecoration:"none"}}>
+            <Link to="/tracker" style={{ textDecoration: "none" }}>
               <div
                 onClick={closeMenu}
                 style={{ cursor: "pointer" }}
@@ -56,18 +64,18 @@ function ActivityButton
                 Record an Activity
               </div>
             </Link>
-            <Link to="/activities/new" style={{textDecoration:"none"}}>
+            <Link to="/activities/new" style={{ textDecoration: "none" }}>
               <div
                 onClick={closeMenu}
                 style={{ cursor: "pointer" }}
                 className="user-drop-down-menu-button"
               >
                 <i class="fa-solid fa-chart-line"></i>
-                &nbsp; 
+                &nbsp;
                 Manual Upload
               </div>
             </Link>
-            <Link to="/activities/current" style={{textDecoration:"none"}}>
+            <Link to="/activities/current" style={{ textDecoration: "none" }}>
               <div
                 onClick={closeMenu}
                 style={{ cursor: "pointer" }}
