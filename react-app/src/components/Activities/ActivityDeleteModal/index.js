@@ -5,6 +5,7 @@ import { useModal } from "../../../context/Modal";
 import "./ActivityDeleteModal.css";
 import { deleteActivityThunk } from "../../../store/activities";
 import { getCurrentActivitiesThunk } from "../../../store/activities";
+import { authenticate } from "../../../store/session";
 
 function ActivityDeleteModal({ activityId }) {
   const dispatch = useDispatch();
@@ -14,19 +15,30 @@ function ActivityDeleteModal({ activityId }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await dispatch(deleteActivityThunk(activityId))
+    await dispatch(authenticate())
+    closeModal()
+  };
+
+  const handleCancel = async (e) => {
+    e.preventDefault()
     closeModal()
   };
 
   return (
     <>
-      <div className="activity-delete-container">
-        <form className={"actvity-delete"} onSubmit={handleSubmit}>
-          <h2 className="actvity-delete-title">Confirm Delete</h2>
+      <div className="comment-delete-container">
+        <form className={"comment-delete-form"} onSubmit={handleSubmit}>
           <span>
-            Are you sure you want to delete this Activity?
+            Are you sure you want to delete this activity? You can not undo this action.
           </span>
-          <button type="submit" onClick={handleSubmit} className={"enabled"}>Yes (Delete Activity)</button>
-          <button type="submit" onClick={closeModal} className={"accent"}>No (Keep Activity)</button>
+          <div>
+            <button  className={"activity-delete-form-cancel-delete-button"} onClick={handleCancel}>
+              Cancel
+            </button>
+            <button className={"activity-delete-form-delete-button"} onClick={handleSubmit}>
+              Ok
+            </button>
+          </div>
         </form>
       </div>
     </>

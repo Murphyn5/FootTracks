@@ -10,7 +10,7 @@ import CommentsModal from "../../Comments/CommentsModal";
 import { postLikeThunk, deleteLikeThunk, loadAllLikes } from "../../../store/likes";
 import { getAllFollowedActivitiesThunk } from "../../../store/activities";
 
-const ActivityCard = ({ activity }) => {
+const ActivityCard = ({ activity, activitiesType }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
@@ -152,13 +152,15 @@ const ActivityCard = ({ activity }) => {
                             activityId={activity.id}
                             initialLoad={true}
                             type="kudos"
-                            ownerId={activity.owner_id}>
+                            ownerId={activity.owner_id}
+                            activitiesType={activitiesType}
+                            >
                         </CommentsModal>}
                     likesLength={activity.likes_length}
                 ></OpenKudosModalButton>
                 <div>
-                    <button onClick={kudosSubmit} className={`kudos-button ${disabled}`}>
-                        <i className={`fa-regular fa-thumbs-up ${liked}`} disabled={disabled} style={{ position: "relative", top: "1px" }}></i>
+                    <button onClick={kudosSubmit} disabled={disabled} className={`kudos-button ${disabled}`}>
+                        <i className={`fa-regular fa-thumbs-up ${liked}`} style={{ position: "relative", top: "1px" }}></i>
                     </button>
                     &nbsp;
                     <OpenCommentsModalButton
@@ -168,7 +170,9 @@ const ActivityCard = ({ activity }) => {
                                 activityId={activity.id}
                                 initialLoad={true}
                                 type="comments"
-                                ownerId={activity.owner_id}>
+                                ownerId={activity.owner_id}
+                                activitiesType={activitiesType}
+                                >
                             </CommentsModal>}
                         commentsLength={activity.comments_length}
                     >
@@ -181,140 +185,3 @@ const ActivityCard = ({ activity }) => {
 };
 
 export default ActivityCard;
-
-    //   const handleImageClick = async (e) => {
-    //     const images = {}
-    //     review.images.forEach(review => {
-    //       images[review.id] = review;
-    //     });
-    //     await dispatch(getImagesAction({ "images": images }))
-    //   }
-
-    // const handleAddImageRedirect = () => {
-    //     history.push(`/reviews/${review.id}/images/new`)
-    // }
-
-    // const addPhotoRender = () => {
-    //     if (user) {
-    //       if (user.id === review.owner_id) {
-    //         return (
-    //           <OpenImageModalButton
-    //             buttonText={"image"}
-    //             modalComponent={<CreateImageFormModal review_id={review.id} />}
-    //           ></OpenImageModalButton>
-    //         )
-    //       }
-    //     }
-    //   }
-
-
-    //   const imagesLinkRender = () => {
-    //     if (review.images_length > 1) {
-    //       return (
-    //         <div className="review-card-images-link-container">
-    //           <img src={camera.default}></img>
-    //           <div className="review-card-images-link-text">{review.images_length} images</div>
-    //         </div>
-    //       )
-    //     }
-
-    //     else if (review.images_length === 1) {
-    //       return (
-    //         <Link to={`/reviews/${review.id}/images`}>
-    //           <div className="review-card-images-link-container">
-    //             <img src={camera.default}></img>
-    //             <div className="review-card-images-link-text">{review.images_length} image</div>
-    //           </div>
-    //         </Link>
-    //       )
-    //     }
-    //   }
-    //   let gridColumns
-    //   let imageHeight
-    //   if (review.images[0]) {
-    //     gridColumns = "1fr 1fr"
-    //     imageHeight = "400px"
-    //   }
-    //   if (review.images[1]) {
-    //     gridColumns = "1fr 1fr"
-    //     imageHeight = "400px"
-    //   }
-    //   if (review.images[2]) {
-    //     gridColumns = "1fr 1fr 1fr 1fr"
-    //     imageHeight = "200px"
-    //   }
-
-    //   if (review.images[3]) {
-    //     gridColumns = "1fr 1fr 1fr 1fr"
-    //     imageHeight = "200px"
-    //   }
-
-    //   const imageOneRender = () => {
-    //     if (review.images[0]) {
-    //       return (
-    //         <Link to={`/reviews/${review.id}/images`}>
-    //           <div style={{ "height": `${imageHeight}`, "backgroundImage": `url("${review.images[0].url}")` }}></div>
-    //         </Link>
-    //       )
-    //     }
-    //     return (
-    //       <div></div>
-    //     )
-    //   }
-
-
-    //   const imageTwoRender = () => {
-    //     if (review.images[1]) {
-    //       return (
-    //         <Link to={`/reviews/${review.id}/images`}>
-    //           <div style={{ "height": `${imageHeight}`, "background-image": `url("${review.images[1].url}")` }}></div>
-    //         </Link>
-    //       )
-    //     }
-    //     return (
-    //       <div></div>
-    //     )
-    //   }
-
-    //   const imageThreeRender = () => {
-    //     if (review.images[2]) {
-    //       return (
-    //         <Link to={`/reviews/${review.id}/images`}>
-    //           <div style={{ "height": `${imageHeight}`, "background-image": `url("${review.images[2].url}")` }}></div>
-    //         </Link>
-    //       )
-    //     }
-    //     return (
-    //       <div></div>
-    //     )
-    //   }
-
-    //   const imageFourRender = () => {
-    //     if (review.images[3]) {
-    //       return (
-    //         <Link to={`/reviews/${review.id}/images`}>
-    //           <div style={{ "height": `${imageHeight}`, "background-image": `url("${review.images[3].url}")` }}></div>
-    //         </Link>
-    //       )
-    //     }
-    //     return (
-    //       <div></div>
-    //     )
-    //   }
-
-
-    //   const imagesRender = () => {
-    //     if (review.images.length > 0) {
-    //       return (
-    //         <>
-    //           <div className="review-card-images-container" style={{ "gridTemplateColumns": `${gridColumns}` }} >
-    //             {imageOneRender()}
-    //             {imageTwoRender()}
-    //             {imageThreeRender()}
-    //             {imageFourRender()}
-    //             <br></br>
-    //           </div>
-    //         </>
-    //       )
-    //     }
-    //   }

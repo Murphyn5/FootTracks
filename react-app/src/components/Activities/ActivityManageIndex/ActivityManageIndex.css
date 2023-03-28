@@ -8,3 +8,9 @@
     width: 1216px;
     margin: auto;
 }
+
+.activities-manage-headers{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { postActivityThunk } from "../../../store/activities";
+import { authenticate } from "../../../store/session";
 import "./ActivityCreate.css";
 
 
@@ -108,6 +109,7 @@ const ActivityCreate = () => {
         if (validationErrors.length === 0) {
             let createdActivity = await dispatch(postActivityThunk(newActivity));
             if (!createdActivity.errors) {
+                await dispatch(authenticate())
                 history.push(`/`);
             }
             else {

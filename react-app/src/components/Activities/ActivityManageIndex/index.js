@@ -32,6 +32,15 @@ function ActivitiesManageIndex() {
                 <div className="activities-manage-container">
                     <h1>My Activities</h1>
                     <div style={{ lineHeight: "22px", fontWeight: "400", fontSize: "22px" }}>{activities.length} Activities</div>
+                    <br></br>
+                    <div className="activities-manage-headers">
+                        <div>Sport</div>
+                        <div>Date</div>
+                        <div>Title</div>
+                        <div>Duration</div>
+                        <div>Distance</div>
+                        <div>Elevation</div>
+                    </div>
                     <hr style={{ marginBottom: "0", borderBottom: "0" }}></hr>
                     {activities.map((activity) => {
                         count++

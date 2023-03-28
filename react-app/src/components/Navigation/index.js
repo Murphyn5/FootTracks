@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useHistory } from 'react-router-dom';
@@ -23,11 +24,7 @@ function Navigation({ isLoaded }) {
 					</li>
 					{isLoaded && sessionUser ? (
 						<>
-						<SearchBar></SearchBar>
-						&nbsp;&nbsp;
-						<li className="nav-right-login">
-							<TrainingButton className="profile-button" user={sessionUser} />
-						</li>
+							<SearchBar></SearchBar>
 						</>
 
 					) : (
@@ -39,9 +36,10 @@ function Navigation({ isLoaded }) {
 						<li className="nav-right-login">
 							<ProfileButton className="profile-button" user={sessionUser} />
 						</li>
-						<li className="nav-right-login">
-							<ActivityButton className="profile-button" user={sessionUser} />
-						</li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+						<ActivityButton className="activity-button" user={sessionUser} />
+
 					</div>
 				) : (
 					<div className="login-signup-css">

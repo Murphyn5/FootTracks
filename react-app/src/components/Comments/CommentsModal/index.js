@@ -6,12 +6,12 @@ import { useEffect } from "react";
 import "./CommentsModal.css";
 import { getActivityCommentsThunk, loadAllComments } from "../../../store/comments";
 import { getActivityLikesThunk, loadAllLikes, postLikeThunk, deleteLikeThunk } from "../../../store/likes";
-import { getAllFollowedActivitiesThunk } from "../../../store/activities";
+import { getAllFollowedActivitiesThunk, getCurrentActivitiesThunk } from "../../../store/activities";
 import CommentCard from "../CommentCard";
 import KudosCard from "../KudosCard";
 import { postCommentThunk } from "../../../store/comments";
 
-function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }) {
+function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId, activitiesType }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const comments = useSelector(loadAllComments)
@@ -35,7 +35,12 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
             commentAndLikesRestore()
         } else {
             const activityRestore = async () => {
-                await dispatch(getAllFollowedActivitiesThunk())
+                if (activitiesType === "Following") {
+                    await dispatch(getAllFollowedActivitiesThunk())
+                }
+                else if (activitiesType === "My Activities") {
+                    await dispatch(getCurrentActivitiesThunk());
+                }
             }
             activityRestore()
         }
@@ -100,7 +105,12 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
                 setBody("")
                 setDisplayErrors("Add a comment")
                 setPlaceHolderColor("")
-                await dispatch(getAllFollowedActivitiesThunk())
+                if (activitiesType === "Following") {
+                    await dispatch(getAllFollowedActivitiesThunk())
+                }
+                else if (activitiesType === "My Activities") {
+                    await dispatch(getCurrentActivitiesThunk());
+                }
             }
             else {
                 createdComment.errors.forEach((error) => { validationErrors.push(error) })
@@ -115,10 +125,20 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
     const kudosSubmit = async () => {
         if (!kudosBoolean) {
             await dispatch(postLikeThunk(activityId))
-            await dispatch(getAllFollowedActivitiesThunk());
+            if (activitiesType === "Following") {
+                await dispatch(getAllFollowedActivitiesThunk());
+            }
+            else if (activitiesType === "My Activities") {
+                await dispatch(getCurrentActivitiesThunk());
+            }
         } else {
             await dispatch(deleteLikeThunk(activityId))
-            await dispatch(getAllFollowedActivitiesThunk());
+            if (activitiesType === "Following") {
+                await dispatch(getAllFollowedActivitiesThunk());
+            }
+            else if (activitiesType === "My Activities") {
+                await dispatch(getCurrentActivitiesThunk());
+            }
         }
     }
 
@@ -142,7 +162,9 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId }
                                     key={comment.id}
                                     activityTitle={activityTitle}
                                     activityId={activityId}
-                                    ownerId={ownerId}>
+                                    ownerId={ownerId}
+                                    activitiesType={activitiesType}
+                                >
                                 </CommentCard>
                             )
                         })}

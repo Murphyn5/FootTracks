@@ -295,6 +295,11 @@ def update_activity(id):
             activity_dict = activity.to_dict()
             activity_dict['owner_first_name'] = user.first_name
             activity_dict['owner_last_name'] = user.last_name
+            activity_dict["liked_users"] = []
+            activity_dict["likes_length"] = len(activity.liked_users)
+            for user in activity.liked_users:
+                activity_dict["liked_users"].append(user.to_dict())
+
             db.session.commit()
             return activity_dict, 200
         if form.errors:

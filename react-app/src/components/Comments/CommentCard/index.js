@@ -11,7 +11,7 @@ import CommentUpdateModal from "../CommentUpdateModal";
 import { useState } from "react";
 
 
-const CommentCard = ({ comment, activityTitle, activityId, ownerId }) => {
+const CommentCard = ({ comment, activityTitle, activityId, ownerId, activitiesType }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
@@ -48,7 +48,13 @@ const CommentCard = ({ comment, activityTitle, activityId, ownerId }) => {
             return (
                 <OpenModalButton
                     buttonText={"Delete"}
-                    modalComponent={<CommentDeleteModal activityTitle={activityTitle} activityId={activityId} ownerId={ownerId} commentId={comment.id}></CommentDeleteModal>}
+                    modalComponent={<CommentDeleteModal
+                        activityTitle={activityTitle}
+                        activityId={activityId}
+                        ownerId={ownerId}
+                        commentId={comment.id}
+                        activitiesType={activitiesType}
+                        ></CommentDeleteModal>}
                 >
                 </OpenModalButton>
             )
@@ -59,7 +65,14 @@ const CommentCard = ({ comment, activityTitle, activityId, ownerId }) => {
             return (
                 <OpenModalButton
                     buttonText={"Edit"}
-                    modalComponent={<CommentUpdateModal commentBody={comment.body} activityTitle={activityTitle} activityId={activityId} ownerId={ownerId} commentId={comment.id}></CommentUpdateModal>}
+                    modalComponent={<CommentUpdateModal
+                        commentBody={comment.body}
+                        activityTitle={activityTitle}
+                        activityId={activityId}
+                        ownerId={ownerId}
+                        commentId={comment.id}
+                        activitiesType={activitiesType}
+                        ></CommentUpdateModal>}
                     >
 
                 </OpenModalButton>

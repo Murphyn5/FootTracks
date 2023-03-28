@@ -24,7 +24,11 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        current_user_dict = current_user.to_dict()
+        current_user_dict["activities_length"] = len(current_user.activities)
+        current_user_dict["followers_length"] = len(current_user.followers)
+        current_user_dict["following_length"] = len(current_user.following)
+        return current_user_dict
     return {'errors': ['Unauthorized']}
 
 
@@ -41,7 +45,11 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
-        return user.to_dict()
+        current_user_dict = user.to_dict()
+        current_user_dict["activities_length"] = len(user.activities)
+        current_user_dict["followers_length"] = len(user.followers)
+        current_user_dict["following_length"] = len(user.following)
+        return current_user_dict
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -70,7 +78,11 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return user.to_dict()
+        current_user_dict = user.to_dict()
+        current_user_dict["activities_length"] = len(user.activities)
+        current_user_dict["followers_length"] = len(user.followers)
+        current_user_dict["following_length"] = len(user.following)
+        return current_user_dict
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
