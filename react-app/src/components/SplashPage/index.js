@@ -63,7 +63,7 @@ function Splashpage() {
     // }
 
     const redirectToTracker = () => {
-        history.push("/tracker")
+        history.push("/activities/new")
     }
 
     const showAlert = () => {
@@ -71,7 +71,7 @@ function Splashpage() {
     }
 
     const findFriends = () => {
-        history.push("/search")
+        history.push(`/users/search/`)
     }
 
     return (
