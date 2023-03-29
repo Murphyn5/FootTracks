@@ -16,6 +16,7 @@ class ActivityForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired(), Length(min=0, max=100, message="Title must be less than 100 characters.")])
     type = StringField("Type", validators=[DataRequired()])
     description = StringField("Description", validators=[Length(max=500, message="Description must be less than 500 characters.")])
+    coordinates = StringField("Coordinates", validators=[Length(max=100000, message="Coordinates must be less than 100000 characters.")])
     distance = FloatField("Distance", validators=[DataRequired(), NumberRange(min=0, max=1000000, message="Distance must be between 0 and 1000000.")])
     duration = IntegerField("Duration", validators=[DataRequired(), NumberRange(min=0, max=1000000, message="Duration must be between 0 and 1000000.")])
     calories = IntegerField("Calories", validators=[NumberRange(min=0, max=1000000, message="Calories must be between 0 and 1000000.")])

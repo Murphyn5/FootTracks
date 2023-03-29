@@ -70,7 +70,7 @@ function App() {
               <Tracker></Tracker>
             </ProtectedRoute>
           </Route>
-          <Route exact path="/tracker/:trackerdistance/:trackerduration/:trackercoordinates/:trackerelevation">
+          <Route exact path="/tracker/summary">
             <ProtectedRoute>
               <TrackerSummary></TrackerSummary>
               <Footer></Footer>

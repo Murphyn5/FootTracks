@@ -3,7 +3,22 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Tracker.css";
+import { useTracker } from "../../context/TrackerContext";
+
 function Tracker() {
+
+    const {
+        trackerDistance,
+        setTrackerDistance,
+        trackerDuration,
+        setTrackerDuration,
+        trackerCoordinates,
+        setTrackerCoordinates,
+        trackerElevation,
+        setTrackerElevation } = useTracker()
+
+
+
     const history = useHistory()
     // const [altitudes, setAltitudes] = useState([])
     // const [altitudeGain, setAltitudeGain] = useState(0)
@@ -113,8 +128,8 @@ function Tracker() {
             }
             const altitude = await getElevation()
             altitudes.push(altitude)
-            if(altitudes.length > 1){
-                if(altitudes[-1] > altitudes[-2]){
+            if (altitudes.length > 1) {
+                if (altitudes[-1] > altitudes[-2]) {
                     altitudeGain += altitudes[-1] - altitudes[-2]
                 }
             }
@@ -232,7 +247,9 @@ function Tracker() {
 
             if (document.querySelector("#tracker")) {
                 document.querySelector("#tracker").dispatchEvent(geoEvent);
-                document.getElementById("toggle").disabled = false
+                if (document.getElementById("toggle")) {
+                    document.getElementById("toggle").disabled = false
+                }
             }
         }
         let startTime
@@ -243,6 +260,7 @@ function Tracker() {
                 isStart = true;
                 startTracking();
                 startTime = Date.now();
+                console.log(startTime)
                 document.getElementById("toggle").disabled = true
             } else {
                 const eventRemove = async () => {
@@ -252,12 +270,19 @@ function Tracker() {
                 eventRemove()
 
 
+
                 isStart = !isStart;
                 endTime = Date.now()
 
+                console.log(endTime)
+                console.log(endTime - startTime)
 
+                setTrackerDistance(accumulatedDistance * 0.621371)
+                setTrackerElevation(altitudeGain)
+                setTrackerCoordinates(coordinates.join(";"))
+                setTrackerDuration((endTime - startTime)/1000)
 
-                history.push(`/tracker/${accumulatedDistance}/${(endTime - startTime) / 1000}/${coordinates.join(";")}/${altitudeGain}`)
+                history.push(`/tracker/summary`)
 
             }
         }

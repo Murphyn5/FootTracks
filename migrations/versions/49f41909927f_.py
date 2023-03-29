@@ -47,6 +47,7 @@ def upgrade():
     sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('distance', sa.Float(precision=1, asdecimal=True), nullable=False),
     sa.Column('duration', sa.Integer(), nullable=False),
+    sa.Column('coordinates', sa.String(length=100000), nullable=True),
     sa.Column('calories', sa.Integer(), nullable=True),
     sa.Column('elevation', sa.Integer(), nullable=True),
     sa.Column('activity_date', sa.DateTime(), nullable=False),
