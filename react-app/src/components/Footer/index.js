@@ -22,7 +22,7 @@ const Footer = () => {
 
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="https://discordapp.com/users/646099988429930502.">
-                            <i class="fa-brands fa-discord main-footer-icon"></i>
+                            <i className="fa-brands fa-discord main-footer-icon"></i>
                         </a>
 
                     </div>

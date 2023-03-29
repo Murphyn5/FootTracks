@@ -116,7 +116,7 @@ function Splashpage() {
                             <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
                             <div className="splash-page-latest-activity-container-no-activity" onClick={redirectToTracker}>
                                 <div style={{ color: "#6d6d78", lineHeight: "30px", padding: "5px" }}><span style={{ color: "#ff5353" }}>Add an Activity.</span> Learn how to record or upload an activity to FootTracks.</div>
-                                <i class="fa-solid fa-chevron-right"></i>
+                                <i className="fa-solid fa-chevron-right"></i>
                             </div>
                         </>
 

@@ -36,7 +36,7 @@ function Tracker() {
         const L = window.L
         const mapbox = window.mapboxgl
 
-
+        console.log(L)
 
         const LONDON_CENTRE_LAT_LNG = [51.505, -0.09];
         const HIGH_ACCURACY = true;
