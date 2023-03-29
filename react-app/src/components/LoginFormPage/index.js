@@ -66,7 +66,7 @@ function LoginFormPage() {
         />
         {loginError ? <div className="error">{loginError}</div> : <br></br>}
         <div className="new-platepal-container">
-          New to Plate Pal?{" "}
+          New to FootTracks?{" "}
           <Link className="new-platepal-sign-up" to="/signup">
             Sign up
           </Link>
