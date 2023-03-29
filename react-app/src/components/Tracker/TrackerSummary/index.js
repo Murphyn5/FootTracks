@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { postActivityThunk, getSingleActivityThunk, editActivityThunk } from "../../../store/activities";
 import "./ActivitySummary.css";
-
-
+import { authenticate } from "../../../store/session";
 
 const ActivitySummary = ({ activity }) => {
 
@@ -123,6 +122,7 @@ const ActivitySummary = ({ activity }) => {
       ele = elevation
     }
     console.log((date) + "-" + (time))
+
     const newActivity = {
       title: title,
       type: type,
@@ -151,7 +151,8 @@ const ActivitySummary = ({ activity }) => {
     if (validationErrors.length === 0) {
       let summarydActivity = await dispatch(postActivityThunk(newActivity));
       if (!summarydActivity.errors) {
-
+        await dispatch(authenticate())
+        history.push(`/`);
       }
       else {
         summarydActivity.errors.forEach((error) => { validationErrors.push(error) })
