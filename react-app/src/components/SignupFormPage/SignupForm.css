@@ -1,5 +1,5 @@
 .sign-up-page-wrapper{
-    min-height: calc((100% - 80px) * .8);
+    height: 625px;
   }
 
 
@@ -7,6 +7,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 249px;
+    margin: auto;
   }
 
   .sign-up-page-container > input {
@@ -21,6 +23,18 @@
     height: 25px;
     margin: 5px 0px;
     padding: 0px 5px;
+  }
+
+  .sign-up-page-names > select {
+    width: 124.5px;
+    height: 29px;
+    padding: 0px
+  }
+
+  .sign-up-page-names-labels{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
   }
 
   .signup-form-button {
