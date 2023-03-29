@@ -54,7 +54,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_picture = db.Column(db.String(255))
-    gender = db.Column(db.String(10), nullable=False)
+    gender = db.Column(db.String(20), nullable=False)
     birthday = db.Column(db.Date, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow())

@@ -13,14 +13,17 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [loginError, setLoginError] = useState("")
 
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoginError("")
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data.errors);
+      console.log(data)
+      setLoginError("Invalid Login")
     }
   };
 
@@ -28,22 +31,23 @@ function LoginFormPage() {
     e.preventDefault();
     const data = await dispatch(login("marnie@aa.io", "password"));
     if (data) {
-      setErrors(data);
+      setLoginError("Invalid Login")
     }
-  };
 
+  };
+  console.log(loginError)
   return (
     <div className="login-page-wrapper">
-      <div className="background-image" style={{backgroundImage:`url(${background2})`}}></div>
+      <div className="background-image" style={{ backgroundImage: `url(${background2})` }}></div>
       <form className="login-page-container" onSubmit={handleSubmit}>
         <br></br>
-        <h3>Log in to FootTracks</h3>
-        <br></br>
-        <ul className="login-form-errors">
+        <h1>Log In</h1>
+
+        {/* <ul className="login-form-errors">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
-        </ul>
+        </ul> */}
 
         <input
           type="text"
@@ -52,7 +56,7 @@ function LoginFormPage() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-
+        <br></br>
         <input
           type="password"
           value={password}
@@ -60,7 +64,7 @@ function LoginFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-
+        {loginError ? <div className="error">{loginError}</div> : <br></br>}
         <div className="new-platepal-container">
           New to Plate Pal?{" "}
           <Link className="new-platepal-sign-up" to="/signup">
@@ -69,7 +73,10 @@ function LoginFormPage() {
         </div>
 
         <br></br>
-        <button className="login-form-button" type="submit">
+        <button
+          className="login-form-button"
+          type="submit"
+        >
           Log In
         </button>
         <button
@@ -82,7 +89,7 @@ function LoginFormPage() {
         <br></br>
         <br></br>
       </form>
-      <div className="background-image" style={{backgroundImage:`url(${background})`}}></div>
+      <div className="background-image" style={{ backgroundImage: `url(${background})` }}></div>
     </div>
   );
 }

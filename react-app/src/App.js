@@ -63,7 +63,6 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-            <Footer></Footer>
             <LoginSignupFooter></LoginSignupFooter>
           </Route>
           <Route exact path="/tracker">

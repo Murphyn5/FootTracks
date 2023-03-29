@@ -84,8 +84,6 @@ def current_user_activities():
     return {'activities': {activity_dict["id"]: activity_dict for activity_dict in activities_to_return}}
 
 # GET ACTIVITY DETAILS BY ID
-
-
 @activity_routes.route('/<int:id>')
 def get_activity_details(id):
     # Single activity
@@ -152,8 +150,6 @@ def create_new_activity():
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # GET COMMENTS BY ACTIVITY ID
-
-
 @activity_routes.route('/<int:id>/comments')
 @login_required
 def get_comments_by_activity_id(id):
@@ -169,8 +165,6 @@ def get_comments_by_activity_id(id):
     return {"comments": {comment['id']: comment for comment in activity_comments}}
 
 # CREATE NEW COMMENT FOR AN  ACTIVITY
-
-
 @activity_routes.route('/<int:id>/comments', methods=["POST"])
 @login_required
 def create_new_comment(id):
@@ -204,8 +198,6 @@ def create_new_comment(id):
             'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # GET LIKED USERS BY ACTIVITY ID
-
-
 @activity_routes.route('/<int:id>/likes')
 @login_required
 def get_likes_by_activity_id(id):
@@ -219,8 +211,6 @@ def get_likes_by_activity_id(id):
     return {"liked_users": {user.id: user.to_dict() for user in activity.liked_users}}
 
 # CREATE A NEW LIKE FOR AN  ACTIVITY
-
-
 @activity_routes.route('/<int:id>/likes', methods=["POST"])
 @login_required
 def create_new_like(id):
@@ -243,8 +233,6 @@ def create_new_like(id):
     return user.to_dict(), 201
 
 # DELETE A NEW LIKE FOR AN ACTIVITY
-
-
 @activity_routes.route('/<int:id>/likes', methods=["DELETE"])
 @login_required
 def delete_like(id):
