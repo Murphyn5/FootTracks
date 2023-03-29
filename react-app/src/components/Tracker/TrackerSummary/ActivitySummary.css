@@ -1,0 +1,210 @@
+.activity-summary-container-background {
+    background-color: white;
+    min-height: calc((100% - 80px) * .8);
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-sizing: border-box;
+}
+
+.activity-summary-container {
+    width: 1037px;
+}
+
+.activity-summary-stats-container {
+    display: flex;
+}
+
+.activity-summary-distance-container {
+
+    height: 57px;
+    width: 237px;
+    box-sizing: border-box;
+    align-items: center;
+
+}
+
+.activity-summary-distance-container input{
+    height: 34px;
+    width: 50%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-summary-distance-container input:focus {
+    border: solid 1px #007FB6;
+}
+
+
+.activity-summary-distance-container select{
+    height: 34px;
+    width: 50%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-summary-distance-container select:focus {
+    border: solid 1px #007FB6;
+}
+
+.activity-summary-duration-input-wrapper{
+    display: flex;
+}
+
+.activity-summary-duration-input-container {
+    position: relative;
+    height: 34px;
+    width: 74px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+.activity-summary-duration input {
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    outline: none;
+    width: 74px;
+    height: 34px;
+    padding-left: 20px;
+    padding-right: 35px;
+    border: none;
+    border: solid 1px rgb(223, 223, 232);
+    -moz-appearance: textfield;
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-summary-duration input:focus {
+    border: solid 1px #007FB6;
+}
+
+.activity-summary-duration input::-webkit-outer-spin-button,
+.activity-summary-duration input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.activity-summary-duration-placeholder {
+    position: absolute;
+    font-size: 12px;
+    top: 11px;
+    left: 40px;
+    color: rgb(223, 223, 232);
+}
+
+.hr {
+    border: solid 1px rgb(223, 223, 232);
+    border-bottom: 0;
+}
+
+.activity-summary-type-date-container{
+    width: 485px;
+    display: flex;
+}
+
+.activity-summary-type-container input:focus {
+    border: solid 1px #007FB6;
+}
+
+
+.activity-summary-type-container select{
+    height: 34px;
+    width: 237px;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-summary-type-container select:focus {
+    border: solid 1px #007FB6;
+}
+
+.activity-summary-title-container {
+
+    height: 57px;
+    width: 485px;
+    box-sizing: border-box;
+    align-items: center;
+
+}
+
+.activity-summary-title-container input{
+    height: 34px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+}
+
+.activity-summary-title-container input:focus {
+    border: solid 1px #007FB6;
+}
+
+
+.activity-summary-description-container {
+
+    height: 57px;
+    width: 485px;
+    box-sizing: border-box;
+    align-items: center;
+
+}
+
+.activity-summary-description-container textarea{
+    height: 108px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px rgb(223, 223, 232);
+    transition-duration: .5s;
+    transition-property: border;
+    resize: vertical;
+}
+
+.activity-summary-description-container textarea:focus {
+    border: solid 1px #007FB6;
+}
+
+.activity-summary-submit-button{
+    height: 100%;
+    padding: 12px 24px;
+    box-sizing: border-box;
+    text-align: center;
+    border: solid 1px #f0f0f5;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.activity-summary-submit-button:hover {
+    background-color: #d03e3e;
+}
+
+.error {
+    color: red;
+}
