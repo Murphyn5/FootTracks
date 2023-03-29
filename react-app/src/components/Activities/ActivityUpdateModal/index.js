@@ -47,7 +47,7 @@ const ActivityUpdateModal = ({ activity }) => {
     const [descriptionError, setDescriptionError] = useState("")
     const [dateTimeError, setDateTimeError] = useState("")
     const [titleError, setTitleError] = useState("")
-
+    const [ disabled, setDisabled ] = useState(false)
 
     useEffect(() => {
         const activityRestore = async () => {
@@ -94,6 +94,10 @@ const ActivityUpdateModal = ({ activity }) => {
             setElevation(activity.elevation)
             setCalories(activity.calories)
 
+        }
+
+        if(activity.coordinates){
+            setDisabled(true)
         }
         activityRestore()
     }, [dispatch])
@@ -238,11 +242,13 @@ const ActivityUpdateModal = ({ activity }) => {
                                     type="decimal"
                                     min="0"
                                     value={distance}
+                                    disabled={disabled}
                                     onChange={(e) => setDistance(e.target.value)}
                                     style={{ borderRight: "0" }}
                                 ></input>
                                 <select
                                     value={distanceType}
+                                    disabled={disabled}
                                     onChange={(e) => setDistanceType(e.target.value)}
                                 >
                                     <option value="miles">miles</option>
@@ -260,6 +266,7 @@ const ActivityUpdateModal = ({ activity }) => {
                                             type="number"
                                             min="0"
                                             value={hours}
+                                            disabled={disabled}
                                             onChange={(e) => setHours(e.target.value)}
                                             style={{ borderRight: "0" }}
                                         ></input>
@@ -270,6 +277,7 @@ const ActivityUpdateModal = ({ activity }) => {
                                             type="number"
                                             min="0"
                                             value={minutes}
+                                            disabled={disabled}
                                             onChange={(e) => setMinutes(e.target.value)}
                                             style={{ borderRight: "0" }}
                                         ></input>
@@ -280,6 +288,7 @@ const ActivityUpdateModal = ({ activity }) => {
                                             type="number"
                                             min="0"
                                             value={seconds}
+                                            disabled={disabled}
                                             onChange={(e) => setSeconds(e.target.value)}
                                         ></input>
                                     </div>
@@ -294,12 +303,14 @@ const ActivityUpdateModal = ({ activity }) => {
                                     type="number"
                                     min="0"
                                     value={elevation}
+                                    disabled={disabled}
                                     onChange={(e) => setElevation(e.target.value)}
                                     style={{ borderRight: "0" }}
                                 ></input>
                                 <select
                                     min="0"
                                     value={elevationType}
+                                    disabled={disabled}
                                     onChange={(e) => setElevationType(e.target.value)}
                                 >
                                     <option value="feet">feet</option>

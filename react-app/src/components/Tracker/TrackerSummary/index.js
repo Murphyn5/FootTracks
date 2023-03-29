@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import { postActivityThunk, getSingleActivityThunk, editActivityThunk } from "../../../store/activities";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { postActivityThunk } from "../../../store/activities";
 import "./ActivitySummary.css";
 import { authenticate } from "../../../store/session";
+import { useTracker } from "../../../context/TrackerContext";
 
-const ActivitySummary = ({ activity }) => {
+const ActivitySummary = ({ }) => {
 
+  const {
+    trackerDistance,
+    setTrackerDistance,
+    trackerDuration,
+    setTrackerDuration,
+    trackerCoordinates,
+    setTrackerCoordinates,
+    trackerElevation,
+    setTrackerElevation } = useTracker()
 
-  const { trackerdistance, trackerduration, trackercoordinates, trackerelevation } = useParams()
+    console.log(trackerDuration)
+
   let initialDate = new Date();
   let day = initialDate.getDate();
   let month = initialDate.getMonth() + 1;
@@ -27,18 +38,35 @@ const ActivitySummary = ({ activity }) => {
 
   let currentTime = getCurrentTime()
 
+  function getHours() {
+    const hours = Math.floor(trackerDuration / 3600)
+    return hours
+
+  }
+  function getMinutes() {
+    const minutes = Math.floor((trackerDuration - (Math.floor(trackerDuration / 3600) * 3600)) / 60)
+    return minutes
+
+  }
+
+  function getSeconds() {
+    const seconds = Math.round(trackerDuration - Math.floor(trackerDuration / 3600) * 3600 - Math.floor((trackerDuration - (Math.floor(trackerDuration / 3600) * 3600)) / 60) * 60)
+    return seconds
+
+  }
+
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState("");
   const [type, setType] = useState("Run");
   const [description, setDescription] = useState("");
-  const [distance, setDistance] = useState("")
+  const [distance, setDistance] = useState(Math.round(trackerDistance * 0.621371 * 100) / 100)
   const [date, setDate] = useState(today);
   const [time, setTime] = useState(currentTime)
-  const [seconds, setSeconds] = useState("");
-  const [minutes, setMinutes] = useState("");
-  const [hours, setHours] = useState("");
-  const [elevation, setElevation] = useState("");
+  const [seconds, setSeconds] = useState(getSeconds());
+  const [minutes, setMinutes] = useState(getMinutes());
+  const [hours, setHours] = useState(getHours());
+  const [elevation, setElevation] = useState(trackerElevation * 3.28084);
   const [calories, setCalories] = useState("");
   const [distanceType, setDistanceType] = useState("miles")
   const [elevationType, setElevationType] = useState("feet")
@@ -51,50 +79,78 @@ const ActivitySummary = ({ activity }) => {
 
 
   useEffect(() => {
-    const activityRestore = async () => {
 
-      // setType(activity.type)
-      setElevation(trackerelevation * 3.28084)
-      setDistance(Math.round(trackerdistance * 0.621371 * 100) / 100)
-      function hours() {
-        const hours = Math.floor(trackerduration / 3600)
-        return hours
 
-      }
-      function minutes() {
-        const minutes = Math.floor((trackerduration - (Math.floor(trackerduration / 3600) * 3600)) / 60)
-        return minutes
+    const L = window.L
 
-      }
+    console.log(L)
 
-      function seconds() {
-        const seconds = Math.round(trackerduration - Math.floor(trackerduration / 3600) * 3600 - Math.floor((trackerduration - (Math.floor(trackerduration / 3600) * 3600)) / 60) * 60)
-        return seconds
+    let LONDON_CENTRE_LAT_LNG
 
-      }
-
-      function formatDate(dateString) {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getUTCDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-      }
-
-      function convertTimeString(timeString) {
-        const date = new Date(timeString);
-        const hours = date.getUTCHours().toString().padStart(2, '0');
-        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-        return `${hours}:${minutes}`;
-      }
-
-      setHours(hours())
-      setMinutes(minutes())
-      setSeconds(seconds())
-
+    if(trackerCoordinates){
+      LONDON_CENTRE_LAT_LNG = trackerCoordinates.split(";").map((string) => {
+        return [Number(string.split(",")[0]), Number(string.split(",")[1])]
+      })[0];
+    } else{
+      LONDON_CENTRE_LAT_LNG = [51.505, -0.09];
     }
-    activityRestore()
-  }, [dispatch])
+
+    const HIGH_ACCURACY = true;
+    const LOW_ACCURACY = false;
+    const MAX_CACHE_AGE_MILLISECOND = 30000;
+    const MAX_NEW_POSITION_MILLISECOND = 5000;
+
+
+
+    let map = L.map("tracker").setView(LONDON_CENTRE_LAT_LNG, 13);
+
+
+    const trackOptions = {
+      enableHighAccuracy: HIGH_ACCURACY,
+      maximumAge: MAX_CACHE_AGE_MILLISECOND,
+      timeout: MAX_NEW_POSITION_MILLISECOND,
+    };
+
+    L.tileLayer(
+      "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+      {
+        attribution:
+          'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        // maxZoom: 18,
+        id: "mapbox/streets-v11",
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken:
+          "pk.eyJ1IjoibTQxaGlnaHdheSIsImEiOiJja295ZjQya2wwaTkxMnFtY203Z21wNjhzIn0.uF1S6TqlDfW7wmQ17Kp4NQ",
+      }
+    ).addTo(map);
+
+    console.log(window)
+
+    // L.polyline("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+    //   {
+
+    //   }).addTo(map)
+
+    if (trackerCoordinates) {
+      console.log(trackerCoordinates.split(";").map((string) => {
+        return [string]
+      }))
+
+      const latlngs = trackerCoordinates.split(";").map((string) => {
+        return [Number(string.split(",")[0]), Number(string.split(",")[1])]
+      })
+
+      const polyline = L.polyline(latlngs, { color: 'red' })
+
+      console.log(polyline)
+      polyline.addTo(map)
+      map.fitBounds(polyline.getBounds());
+    }
+
+
+  }, [history]);
+
 
   // likely need to separate hours of ops M-Sun + inputs for hours
   // then format input data as string for hours of operations
@@ -123,6 +179,8 @@ const ActivitySummary = ({ activity }) => {
     }
     console.log((date) + "-" + (time))
 
+
+
     const newActivity = {
       title: title,
       type: type,
@@ -131,31 +189,25 @@ const ActivitySummary = ({ activity }) => {
       duration: (Number(seconds) + Number((minutes * 60)) + Number((hours * 3600))),
       elevation: ele,
       calories: 1,
+      coordinates: trackerCoordinates,
       date_time: (date) + " " + (time) + ":00"
     };
 
     console.log(date)
     console.log(newActivity)
 
-
-    // helper fxn check image url ending
-
-
-
-
-
-
-
-
-
     if (validationErrors.length === 0) {
-      let summarydActivity = await dispatch(postActivityThunk(newActivity));
-      if (!summarydActivity.errors) {
+      let summaryActivity = await dispatch(postActivityThunk(newActivity));
+      if (!summaryActivity.errors) {
         await dispatch(authenticate())
+        setTrackerCoordinates("")
+        setTrackerDistance(0)
+        setTrackerDuration(0)
+        setTrackerElevation(0)
         history.push(`/`);
       }
       else {
-        summarydActivity.errors.forEach((error) => { validationErrors.push(error) })
+        summaryActivity.errors.forEach((error) => { validationErrors.push(error) })
         console.log(validationErrors)
         validationErrors = validationErrors.join("")
         console.log(validationErrors)
@@ -219,7 +271,6 @@ const ActivitySummary = ({ activity }) => {
       setTitle(Title(currentTime))
     }
   }, [type])
-
 
 
   return (
@@ -390,7 +441,23 @@ const ActivitySummary = ({ activity }) => {
         <div>
 
         </div>
+
+        <div id="tracker" style={{ width: "500px", height: "500px" }}></div>
+
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     </>
   );
 };

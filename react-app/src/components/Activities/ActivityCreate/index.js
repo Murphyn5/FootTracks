@@ -87,6 +87,7 @@ const ActivityCreate = () => {
             type: type,
             description: description,
             distance: d,
+            coordinates: null,
             duration: (Number(seconds) + Number((minutes * 60)) + Number((hours * 3600))),
             elevation: ele,
             calories: 1,

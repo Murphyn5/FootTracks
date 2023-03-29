@@ -122,7 +122,6 @@ def create_new_activity():
     user_id = int(current_user.get_id())
     user = User.query.get(user_id)
     dt = datetime.strptime(data['date_time'], '%Y-%m-%d %H:%M:%S')
-    print('???????', dt)
     if form.validate_on_submit():
         new_activity = Activity(
             owner_id=user_id,
@@ -131,6 +130,7 @@ def create_new_activity():
             description=data['description'],
             distance=data['distance'],
             duration=data['duration'],
+            coordinates= data['coordinates'],
             calories=data['calories'],
             elevation=data['elevation'],
             activity_date=dt,

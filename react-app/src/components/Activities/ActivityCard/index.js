@@ -9,8 +9,10 @@ import OpenKudosModalButton from "../../OpenKudosModalButton";
 import CommentsModal from "../../Comments/CommentsModal";
 import { postLikeThunk, deleteLikeThunk, loadAllLikes } from "../../../store/likes";
 import { getAllFollowedActivitiesThunk } from "../../../store/activities";
+import { useTracker } from "../../../context/TrackerContext";
 
 const ActivityCard = ({ activity, activitiesType }) => {
+
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
@@ -29,6 +31,91 @@ const ActivityCard = ({ activity, activitiesType }) => {
     }
 
     const date = formattedDate(activity.created_at)
+
+
+
+    useEffect(() => {
+
+
+        const L = window.L
+
+        console.log(L)
+
+        let LONDON_CENTRE_LAT_LNG
+
+        if (activity.coordinates) {
+            LONDON_CENTRE_LAT_LNG = activity.coordinates.split(";").map((string) => {
+                return [Number(string.split(",")[0]), Number(string.split(",")[1])]
+            })[0];
+        } else {
+            LONDON_CENTRE_LAT_LNG = [51.505, -0.09];
+        }
+
+        const HIGH_ACCURACY = true;
+        const LOW_ACCURACY = false;
+        const MAX_CACHE_AGE_MILLISECOND = 30000;
+        const MAX_NEW_POSITION_MILLISECOND = 5000;
+
+        console.log(activity.coordinates)
+        if(activity.coordinates){
+            let map = L.map(`tracker${activity.id}`).setView(LONDON_CENTRE_LAT_LNG, 13);
+
+
+            const trackOptions = {
+                enableHighAccuracy: HIGH_ACCURACY,
+                maximumAge: MAX_CACHE_AGE_MILLISECOND,
+                timeout: MAX_NEW_POSITION_MILLISECOND,
+            };
+
+            L.tileLayer(
+                "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+                {
+                    attribution:
+                        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    // maxZoom: 18,
+                    id: "mapbox/streets-v11",
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    accessToken:
+                        "pk.eyJ1IjoibTQxaGlnaHdheSIsImEiOiJja295ZjQya2wwaTkxMnFtY203Z21wNjhzIn0.uF1S6TqlDfW7wmQ17Kp4NQ",
+                }
+            ).addTo(map);
+
+            console.log(window)
+            console.log(activity.coordinates.split(";").map((string) => {
+                return [string]
+            }))
+
+            const latlngs = activity.coordinates.split(";").map((string) => {
+                return [Number(string.split(",")[0]), Number(string.split(",")[1])]
+            })
+
+            console.log(latlngs)
+
+            const polyline = L.polyline(latlngs, { color: 'red' })
+
+            console.log(polyline)
+            polyline.addTo(map)
+            map.fitBounds(polyline.getBounds());
+
+        }
+
+
+
+    }, [history]);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     useEffect(() => {
         const likedUserIds = activity.liked_users.map((likedUser) => {
@@ -144,6 +231,13 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
 
             </div>
+
+            {activity.coordinates ? <><br></br><div id={`tracker${activity.id}`} style={{ width: "548px", height: "218px", borderRadius:"4px", margin:"auto", zIndex:"0" }}></div></>
+                : <></>
+            }
+
+            <br></br>
+
             <div className="activity-card-related-info-buttons-container">
                 <OpenKudosModalButton
                     modalComponent={
@@ -154,7 +248,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
                             type="kudos"
                             ownerId={activity.owner_id}
                             activitiesType={activitiesType}
-                            >
+                        >
                         </CommentsModal>}
                     likesLength={activity.likes_length}
                 ></OpenKudosModalButton>
@@ -172,7 +266,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
                                 type="comments"
                                 ownerId={activity.owner_id}
                                 activitiesType={activitiesType}
-                                >
+                            >
                             </CommentsModal>}
                         commentsLength={activity.comments_length}
                     >
