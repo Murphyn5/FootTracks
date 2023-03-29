@@ -154,7 +154,7 @@ function SignupFormPage() {
           Sign Up
         </button>
         <div className="new-platepal-container">
-          Already on Plate Pal?{" "}
+          Already on FootTracks?{" "}
           <Link className="new-platepal-log-in" to="/login" style={{color:"white"}}>
             Log in
           </Link>
