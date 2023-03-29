@@ -41,10 +41,10 @@ function ActivityButton
     <>
       <li className={"nav-right-activity-container" + (showMenu ? " show-border" : "")}>
         {showMenu ?
-        <i class="fa-solid fa-circle-plus activity-button" style={{fontSize:"30px"}} onClick={openMenu}></i>
+        <i className="fa-solid fa-circle-plus activity-button" style={{fontSize:"30px"}} onClick={openMenu}></i>
         :
         <span className="fa-stack activity-button" onClick={openMenu}>
-          <i class="fa-regular fa-circle fa-stack-2x"></i>
+          <i className="fa-regular fa-circle fa-stack-2x"></i>
           <i className="fa-solid fa-plus" ></i>
         </span>}
 
@@ -56,7 +56,7 @@ function ActivityButton
                 style={{ cursor: "pointer" }}
                 className="user-drop-down-menu-button"
               >
-                <i class="fa-solid fa-angles-up"></i>
+                <i className="fa-solid fa-angles-up"></i>
                 &nbsp;
                 Record an Activity
               </div>
@@ -67,7 +67,7 @@ function ActivityButton
                 style={{ cursor: "pointer" }}
                 className="user-drop-down-menu-button"
               >
-                <i class="fa-solid fa-chart-line"></i>
+                <i className="fa-solid fa-chart-line"></i>
                 &nbsp;
                 Manual Upload
               </div>

@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
         <button onClick={openMenu} className="profile-button" style={{ width: "80%" }}>
           <i className="fas fa-user-circle" style={{ fontSize: "30px" }} />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <i class="fa-solid fa-angle-down" style={{ fontSize: "20px" }}></i>
+          <i className="fa-solid fa-angle-down" style={{ fontSize: "20px" }}></i>
         </button>
         <ul className={ulClassName} ref={ulRef}>
           {user ? (
