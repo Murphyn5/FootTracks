@@ -4,6 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
 import { useEffect } from "react";
+import background from "../../assets/SignUp.png";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -58,10 +59,9 @@ function SignupFormPage() {
   };
 
   return (
-    <div className="sign-up-page-wrapper">
+    <div className="sign-up-page-wrapper" style={{backgroundImage:`url(${background})`}}>
       <form className="sign-up-page-container" onSubmit={handleSubmit}>
-        <br></br>
-        <h3 style={{ textAlign: "center", fontSize: "32px" }}>Join FootTracks today, it's Free.</h3>
+        <h3 style={{ textAlign: "center", fontSize: "32px",marginTop:"0" }}>Join FootTracks today, it's Free.</h3>
         <div className="sign-up-page-names-labels">
           <div>
             First Name:
@@ -88,8 +88,8 @@ function SignupFormPage() {
           />
         </div>
         <div className="sign-up-page-names-labels">
-          {firstNameError ? <div><div className="error">{firstNameError}</div><br></br></div> : <div></div>}
-          {lastNameError ? <div><div className="error">{lastNameError}</div><br></br></div> : null}
+          {firstNameError ? <div><div className="signup-form-errors">{firstNameError}</div><br></br></div> : <div></div>}
+          {lastNameError ? <div><div className="signup-form-errors">{lastNameError}</div><br></br></div> : null}
         </div>
         <div className="sign-up-page-names-labels">
           <div>
@@ -102,7 +102,7 @@ function SignupFormPage() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        {emailError ? <><div className="error">{emailError}</div><br></br></> : null}
+        {emailError ? <><div className="signup-form-errors">{emailError}</div><br></br></> : null}
 
         <div className="sign-up-page-names-labels">
           <div>
@@ -149,13 +149,13 @@ function SignupFormPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-        {passwordError ? <><div className="error">{passwordError}</div><br></br></> : <><br></br><br></br></>}
+        {passwordError ? <><div className="signup-form-errors">{passwordError}</div><br></br></> : <><br></br><br></br></>}
         <button className="signup-form-button" type="submit">
           Sign Up
         </button>
         <div className="new-platepal-container">
           Already on Plate Pal?{" "}
-          <Link className="new-platepal-log-in" to="/login">
+          <Link className="new-platepal-log-in" to="/login" style={{color:"white"}}>
             Log in
           </Link>
         </div>
