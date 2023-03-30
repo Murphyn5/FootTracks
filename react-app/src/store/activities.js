@@ -181,7 +181,7 @@ const activityReducer = (state = initialState, action) => {
       }
       return newState;
     case DECREASE_COMMENTS_LENGTH:
-      console.log("????????????????????")
+
       newState.activities[action.activityId].comments_length -= 1
       return newState
     case POST_ACTIVITY:

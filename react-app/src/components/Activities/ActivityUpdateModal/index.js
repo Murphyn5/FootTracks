@@ -127,7 +127,7 @@ const ActivityUpdateModal = ({ activity }) => {
         } else {
             ele = elevation
         }
-        console.log((date)+"-"+(time))
+
         const newActivity = {
             title: title,
             type: type,
@@ -139,8 +139,7 @@ const ActivityUpdateModal = ({ activity }) => {
             date_time: (date)+" "+(time)+":00"
         };
 
-        console.log(date)
-        console.log(newActivity)
+
 
 
         // helper fxn check image url ending
@@ -160,9 +159,9 @@ const ActivityUpdateModal = ({ activity }) => {
             }
             else {
                 updatedActivity.errors.forEach((error) => { validationErrors.push(error) })
-                console.log(validationErrors)
+
                 validationErrors = validationErrors.join("")
-                console.log(validationErrors)
+
                 if (validationErrors.includes('distance : This field is required.')) {
                     setDistanceError("Distance is required")
                 }

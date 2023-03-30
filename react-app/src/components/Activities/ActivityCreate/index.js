@@ -115,9 +115,9 @@ const ActivityCreate = () => {
             }
             else {
                 createdActivity.errors.forEach((error) => { validationErrors.push(error) })
-                console.log(validationErrors)
+
                 validationErrors = validationErrors.join("")
-                console.log(validationErrors)
+
                 if(validationErrors.includes('distance : This field is required.')){
                     setDistanceError("Distance is required")
                 }

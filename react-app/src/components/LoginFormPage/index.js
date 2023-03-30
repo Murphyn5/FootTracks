@@ -22,7 +22,7 @@ function LoginFormPage() {
     setLoginError("")
     const data = await dispatch(login(email, password));
     if (data) {
-      console.log(data)
+
       setLoginError("Invalid Login")
     }
   };
@@ -35,7 +35,7 @@ function LoginFormPage() {
     }
 
   };
-  console.log(loginError)
+
   return (
     <div className="login-page-wrapper">
       <div className="background-image" style={{ backgroundImage: `url(${background2})` }}></div>
