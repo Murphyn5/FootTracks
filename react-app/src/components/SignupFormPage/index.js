@@ -21,6 +21,7 @@ function SignupFormPage() {
   const [passwordError, setPasswordError] = useState("")
   const [firstNameError, setFirstNameError] = useState("")
   const [lastNameError, setLastNameError] = useState("")
+  const [birthdayError, setBirthdayError] = useState("")
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -29,6 +30,7 @@ function SignupFormPage() {
     setEmailError("")
     setFirstNameError("")
     setLastNameError("")
+    setBirthdayError("")
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(
@@ -49,7 +51,9 @@ function SignupFormPage() {
         if (validationErrors.includes('Password must be at least 6 characters long.')) {
           setPasswordError("6 character minimum")
         }
-
+        if (validationErrors.includes("Birthday can't be set beyond present date.")) {
+          setBirthdayError("Invalid Date")
+        }
       }
     } else {
       setPasswordError(
@@ -59,9 +63,9 @@ function SignupFormPage() {
   };
 
   return (
-    <div className="sign-up-page-wrapper" style={{backgroundImage:`url(${background})`}}>
+    <div className="sign-up-page-wrapper" style={{ backgroundImage: `url(${background})` }}>
       <form className="sign-up-page-container" onSubmit={handleSubmit}>
-        <h3 style={{ textAlign: "center", fontSize: "32px",marginTop:"0" }}>Join FootTracks today, it's Free.</h3>
+        <h3 style={{ textAlign: "center", fontSize: "32px", marginTop: "0" }}>Join FootTracks today, it's Free.</h3>
         <div className="sign-up-page-names-labels">
           <div>
             First Name:
@@ -133,6 +137,7 @@ function SignupFormPage() {
             onChange={(e) => setBirthday(e.target.value)}
             required
           />
+          {birthdayError ? <><div className="signup-form-date-errors"><div></div><div>{birthdayError}</div></div><br></br></> : null}
         </div>
 
         <input
@@ -155,7 +160,7 @@ function SignupFormPage() {
         </button>
         <div className="new-platepal-container">
           Already on FootTracks?{" "}
-          <Link className="new-platepal-log-in" to="/login" style={{color:"white"}}>
+          <Link className="new-platepal-log-in" to="/login" style={{ color: "white" }}>
             Log in
           </Link>
         </div>
