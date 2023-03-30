@@ -160,24 +160,31 @@ const ActivityUpdateModal = ({ activity }) => {
             else {
                 updatedActivity.errors.forEach((error) => { validationErrors.push(error) })
 
+
                 validationErrors = validationErrors.join("")
 
-                if (validationErrors.includes('distance : This field is required.')) {
+                if(validationErrors.includes('distance : This field is required.')){
                     setDistanceError("Distance is required")
                 }
-                if (validationErrors.includes('duration : This field is required.')) {
+                if(validationErrors.includes('duration : This field is required.')){
                     setDurationError("Duration is required")
                 }
-                if (validationErrors.includes('elevation : Not a valid integer value.')) {
-                    setElevationError("Elevation is required")
+                if(validationErrors.includes('duration : Duration must be between 0 and 1000000.')){
+                    setDurationError("Max duration: 277 hours")
                 }
-                if (validationErrors.includes('title : This field is required.')) {
+                if(validationErrors.includes('elevation : Elevation must be between 0 and 1000000.')){
+                    setElevationError("Max elevation: 1000000 ft")
+                }
+                if(validationErrors.includes('distance : Distance must be between 0 and 1000000.')){
+                    setDistanceError("Max distance: 1000000 mi")
+                }
+                if(validationErrors.includes('title : This field is required.')){
                     setTitleError("Title is required")
                 }
-                if (validationErrors.includes('title : Title must be less than 100 characters.')) {
+                if(validationErrors.includes('title : Title must be less than 100 characters.')){
                     setTitleError("Title must be less than 100 characters")
                 }
-                if (validationErrors.includes('description : Description must be less than 500 characters.')) {
+                if(validationErrors.includes('description : Description must be less than 500 characters.')){
                     setDescriptionError("Description must be less than 500 characters")
                 }
                 if (validationErrors.includes("date_time : Activity date can't be set beyond present date.")) {

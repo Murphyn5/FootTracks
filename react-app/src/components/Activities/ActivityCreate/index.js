@@ -81,6 +81,9 @@ const ActivityCreate = () => {
             ele = elevation
         }
 
+        if (ele === ""){
+            ele = 0
+        }
 
         const newActivity = {
             title: title,
@@ -124,8 +127,14 @@ const ActivityCreate = () => {
                 if(validationErrors.includes('duration : This field is required.')){
                     setDurationError("Duration is required")
                 }
-                if(validationErrors.includes('elevation : Not a valid integer value.')){
-                    setElevationError("Elevation is required")
+                if(validationErrors.includes('duration : Duration must be between 0 and 1000000.')){
+                    setDurationError("Max duration: 277 hours")
+                }
+                if(validationErrors.includes('elevation : Elevation must be between 0 and 1000000.')){
+                    setElevationError("Max elevation: 1000000 ft")
+                }
+                if(validationErrors.includes('distance : Distance must be between 0 and 1000000.')){
+                    setDistanceError("Max distance: 1000000 mi")
                 }
                 if(validationErrors.includes('title : This field is required.')){
                     setTitleError("Title is required")
