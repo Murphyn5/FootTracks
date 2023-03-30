@@ -39,7 +39,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
         const L = window.L
 
-        console.log(L)
+
 
         let LONDON_CENTRE_LAT_LNG
 
@@ -56,7 +56,6 @@ const ActivityCard = ({ activity, activitiesType }) => {
         const MAX_CACHE_AGE_MILLISECOND = 30000;
         const MAX_NEW_POSITION_MILLISECOND = 5000;
 
-        console.log(activity.coordinates)
         if(activity.coordinates){
             let map = L.map(`tracker${activity.id}`).setView(LONDON_CENTRE_LAT_LNG, 13);
 
@@ -81,20 +80,15 @@ const ActivityCard = ({ activity, activitiesType }) => {
                 }
             ).addTo(map);
 
-            console.log(window)
-            console.log(activity.coordinates.split(";").map((string) => {
-                return [string]
-            }))
 
             const latlngs = activity.coordinates.split(";").map((string) => {
                 return [Number(string.split(",")[0]), Number(string.split(",")[1])]
             })
 
-            console.log(latlngs)
 
             const polyline = L.polyline(latlngs, { color: 'red' })
 
-            console.log(polyline)
+    
             polyline.addTo(map)
             map.fitBounds(polyline.getBounds());
 

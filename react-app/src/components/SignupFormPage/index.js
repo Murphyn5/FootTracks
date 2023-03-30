@@ -35,7 +35,7 @@ function SignupFormPage() {
         signUp(firstName, lastName, email, gender, birthday, password)
       );
       if (data) {
-        console.log(data)
+
         const validationErrors = data.join(",")
         if (validationErrors.includes('first_name : First name must be less than 24 characters.')) {
           setFirstNameError("max length 24")

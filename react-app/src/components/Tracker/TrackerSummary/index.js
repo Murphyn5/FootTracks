@@ -18,7 +18,6 @@ const ActivitySummary = ({ }) => {
     trackerElevation,
     setTrackerElevation } = useTracker()
 
-  console.log(trackerDuration)
 
   let initialDate = new Date();
   let day = initialDate.getDate();
@@ -83,8 +82,6 @@ const ActivitySummary = ({ }) => {
 
     const L = window.L
 
-    console.log(L)
-
     let LONDON_CENTRE_LAT_LNG
 
     if (trackerCoordinates) {
@@ -125,7 +122,6 @@ const ActivitySummary = ({ }) => {
       }
     ).addTo(map);
 
-    console.log(window)
 
     // L.polyline("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
     //   {
@@ -133,9 +129,7 @@ const ActivitySummary = ({ }) => {
     //   }).addTo(map)
 
     if (trackerCoordinates) {
-      console.log(trackerCoordinates.split(";").map((string) => {
-        return [string]
-      }))
+
 
       const latlngs = trackerCoordinates.split(";").map((string) => {
         return [Number(string.split(",")[0]), Number(string.split(",")[1])]
@@ -143,7 +137,6 @@ const ActivitySummary = ({ }) => {
 
       const polyline = L.polyline(latlngs, { color: 'red' })
 
-      console.log(polyline)
       polyline.addTo(map)
       map.fitBounds(polyline.getBounds());
     }
@@ -177,7 +170,7 @@ const ActivitySummary = ({ }) => {
     } else {
       ele = elevation
     }
-    console.log((date) + "-" + (time))
+
 
 
 
@@ -193,8 +186,6 @@ const ActivitySummary = ({ }) => {
       date_time: (date) + " " + (time) + ":00"
     };
 
-    console.log(date)
-    console.log(newActivity)
 
     if (validationErrors.length === 0) {
       let summaryActivity = await dispatch(postActivityThunk(newActivity));
@@ -208,9 +199,9 @@ const ActivitySummary = ({ }) => {
       }
       else {
         summaryActivity.errors.forEach((error) => { validationErrors.push(error) })
-        console.log(validationErrors)
+
         validationErrors = validationErrors.join("")
-        console.log(validationErrors)
+
         if (validationErrors.includes('distance : This field is required.')) {
           setDistanceError("Distance is required")
         }

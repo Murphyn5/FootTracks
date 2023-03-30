@@ -45,7 +45,6 @@ export const getUsersSearchThunk = (searchString) => async (dispatch) => {
     if (res.ok) {
         const searchResults = await res.json();
         dispatch(getUsersSearchAction(searchResults));
-        console.log(searchResults)
         return searchResults;
     }
 };

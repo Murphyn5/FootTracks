@@ -25,7 +25,7 @@ function Tracker() {
 
 
     useEffect(() => {
-        console.log(window)
+
         function distance(lat1, lon1, lat2, lon2, unit) {
             if ((lat1 == lat2) && (lon1 == lon2)) {
                 return 0;
@@ -51,7 +51,7 @@ function Tracker() {
         const L = window.L
         const mapbox = window.mapboxgl
 
-        console.log(L)
+
 
         const LONDON_CENTRE_LAT_LNG = [51.505, -0.09];
         const HIGH_ACCURACY = true;
@@ -118,10 +118,10 @@ function Tracker() {
                 const data = await query.json();
                 // Get all the returned features.
                 const allFeatures = data.features;
-                // console.log(allFeatures);
+
                 // For each returned feature, add elevation data to the elevations array.
                 const elevations = allFeatures.map((feature) => feature.properties.ele);
-                // console.log(elevations);
+
                 // In the elevations array, find the largest value.
                 const highestElevation = Math.max(...elevations);
                 return highestElevation
@@ -139,7 +139,6 @@ function Tracker() {
 
         const updateMap = (event) => {
 
-            console.log(event)
             const { latitude, longitude, timestamp, accuracy, altitudeAccuracy, heading, speed } = event.detail;
             asyncElevation(latitude, longitude)
 
@@ -260,7 +259,6 @@ function Tracker() {
                 isStart = true;
                 startTracking();
                 startTime = Date.now();
-                console.log(startTime)
                 document.getElementById("toggle").disabled = true
             } else {
                 const eventRemove = async () => {
@@ -273,9 +271,6 @@ function Tracker() {
 
                 isStart = !isStart;
                 endTime = Date.now()
-
-                console.log(endTime)
-                console.log(endTime - startTime)
 
                 setTrackerDistance(accumulatedDistance * 0.621371)
                 setTrackerElevation(altitudeGain)
