@@ -6,6 +6,7 @@ const POST_ACTIVITY = "activities/POST_ACTIVITY";
 const DELETE_ACTIVITY = "activities/DELETE_ACTIVITY";
 const EDIT_ACTIVITY = "activities/EDIT_ACTIVITY";
 const GET_ACTIVITIES = "activities/GET_ACTIVITIES";
+const DECREASE_COMMENTS_LENGTH = "activities/DECREASE_COMMENTS_LENGTH";
 
 /* ----- Selector ----- */
 export const loadAllActivites = (state) => Object.values(state.activities.activities)
@@ -24,6 +25,13 @@ export const getLatestActivityAction = (activity) => {
     activity,
   };
 };
+
+export const decreaseCommentsLengthAction = (activityId) => {
+  return {
+    type: DECREASE_COMMENTS_LENGTH,
+    activityId,
+  }
+}
 
 
 const getCurrentActivitiesAction = (activities) => {
@@ -172,6 +180,10 @@ const activityReducer = (state = initialState, action) => {
         newState.latestActivity = action.activity;
       }
       return newState;
+    case DECREASE_COMMENTS_LENGTH:
+      console.log("????????????????????")
+      newState.activities[action.activityId].comments_length -= 1
+      return newState
     case POST_ACTIVITY:
       newState.singleActivity = action.activity;
       return newState;

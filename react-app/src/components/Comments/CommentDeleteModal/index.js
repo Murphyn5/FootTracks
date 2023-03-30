@@ -6,7 +6,7 @@ import "./CommentDeleteModal.css";
 import { deleteCommentThunk } from "../../../store/comments";
 import OpenCommentsFromDeleteModalButton from "../../OpenCommentsFromDeleteModalButton";
 import OpenCommentsFromNoDeleteModalButton from "../../OpenCommentsFromNoDeleteModalButton";
-import { getAllFollowedActivitiesThunk, getCurrentActivitiesThunk } from "../../../store/activities";
+import { getAllFollowedActivitiesThunk, getCurrentActivitiesThunk, decreaseCommentsLengthAction } from "../../../store/activities";
 import CommentsModal from "../CommentsModal";
 
 
@@ -18,13 +18,7 @@ function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId, act
     const handleSubmit = async (e) => {
         e.preventDefault()
         await dispatch(deleteCommentThunk(commentId))
-        if (activitiesType === "Following") {
-            await dispatch(getAllFollowedActivitiesThunk());
-        }
-        else if (activitiesType === "My Activities") {
-            await dispatch(getCurrentActivitiesThunk());
-        }
-
+        await dispatch(decreaseCommentsLengthAction(activityId))
         closeModal()
     };
 
@@ -51,6 +45,7 @@ function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId, act
                         <OpenCommentsFromDeleteModalButton
                             buttonText={"Ok"}
                             commentId={commentId}
+                            activityId={activityId}
                             modalComponent={<CommentsModal
                                 commentId={commentId}
                                 ownerId={ownerId}
