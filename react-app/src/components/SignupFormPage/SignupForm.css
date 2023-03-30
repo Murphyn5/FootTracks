@@ -60,3 +60,9 @@
     .signup-form-errors {
       color: #ff5353;
   }
+
+  .signup-form-date-errors {
+    color: #ff5353;
+    display: grid;
+    grid-template-columns: 1fr 1fr
+}
