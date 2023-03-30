@@ -18,7 +18,7 @@ const ActivitySummary = ({ }) => {
     trackerElevation,
     setTrackerElevation } = useTracker()
 
-    console.log(trackerDuration)
+  console.log(trackerDuration)
 
   let initialDate = new Date();
   let day = initialDate.getDate();
@@ -87,11 +87,11 @@ const ActivitySummary = ({ }) => {
 
     let LONDON_CENTRE_LAT_LNG
 
-    if(trackerCoordinates){
+    if (trackerCoordinates) {
       LONDON_CENTRE_LAT_LNG = trackerCoordinates.split(";").map((string) => {
         return [Number(string.split(",")[0]), Number(string.split(",")[1])]
       })[0];
-    } else{
+    } else {
       LONDON_CENTRE_LAT_LNG = [51.505, -0.09];
     }
 
@@ -102,7 +102,7 @@ const ActivitySummary = ({ }) => {
 
 
 
-    let map = L.map("tracker").setView(LONDON_CENTRE_LAT_LNG, 13);
+    let map = L.map("summaryTracker").setView(LONDON_CENTRE_LAT_LNG, 13);
 
 
     const trackOptions = {
@@ -369,39 +369,43 @@ const ActivitySummary = ({ }) => {
             </div>
             <hr className="hr"></hr>
             <br></br>
-            <div className="activity-summary-type-date-container">
-              <div className="activity-summary-type-container">
-                <div> Sport </div>
-                <select
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}
-                >
-                  <option value="Run">Run</option>
-                  <option value="Ride">Ride</option>
-                  <option value="Hike">Hike</option>
-                  <option value="Walk">Walk</option>
-                </select>
+            <div className="activity-summary-lower-container">
+              <div className="activity-summary-type-date-container">
+                <div className="activity-summary-type-container">
+                  <div> Sport </div>
+                  <select
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="Run">Run</option>
+                    <option value="Ride">Ride</option>
+                    <option value="Hike">Hike</option>
+                    <option value="Walk">Walk</option>
+                  </select>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div className="activity-summary-distance-container">
+                  <div> Date & Time </div>
+                  <input
+                    type="date"
+                    min="0"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    disabled={true}
+                    style={{ borderRight: "0" }}
+                  ></input>
+                  <input
+                    type="time"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                    disabled={true}
+                  >
+                  </input>
+                  {dateTimeError ? <div className="error">{dateTimeError}</div> : <br></br>}
+                </div>
               </div>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div className="activity-summary-distance-container">
-                <div> Date & Time </div>
-                <input
-                  type="date"
-                  min="0"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  disabled={true}
-                  style={{ borderRight: "0" }}
-                ></input>
-                <input
-                  type="time"
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
-                  disabled={true}
-                >
-                </input>
-                {dateTimeError ? <div className="error">{dateTimeError}</div> : <br></br>}
-              </div>
+
+            <div id="summaryTracker" style={{ width: "500px", height: "218px", borderRadius:"4px", margin:"auto", zIndex:"0" }}></div>
             </div>
             <br></br>
             <br></br>
@@ -426,6 +430,8 @@ const ActivitySummary = ({ }) => {
               ></textarea>
               {descriptionError ? <div className="error">{descriptionError}</div> : <br></br>}
             </div>
+
+
             <br></br>
             <br></br>
             <br></br>
@@ -442,7 +448,6 @@ const ActivitySummary = ({ }) => {
 
         </div>
 
-        <div id="tracker" style={{ width: "500px", height: "500px" }}></div>
 
       </div>
 
