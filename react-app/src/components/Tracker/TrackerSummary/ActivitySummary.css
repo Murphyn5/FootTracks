@@ -109,6 +109,11 @@
     border-bottom: 0;
 }
 
+.activity-summary-lower-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .activity-summary-type-date-container{
     width: 485px;
     display: flex;
