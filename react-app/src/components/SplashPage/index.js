@@ -5,7 +5,8 @@ import "./SplashPage.css";
 import img from './/header_image-39d887c771c7094d2adeb4fe67589f471f70bb3fc26e66b69a7e4edf29f90ce6.jpeg'
 import { getAllFollowedActivitiesThunk, loadAllActivites, getCurrentActivitiesThunk, getLatestActivityAction } from "../../store/activities";
 import ActivityCard from "../Activities/ActivityCard";
-import ProfileImageUpload from "./ProfileImageUpload";
+import ProfileImageModal from "./ProfileImageModal";
+import OpenProfileImageModalButton from "../OpenProfileImageModalButton";
 
 function Splashpage() {
     const dispatch = useDispatch();
@@ -89,6 +90,9 @@ function Splashpage() {
                         <i className="fas fa-user-circle splash-page-user-info-icon" />
 
                     }
+                    <OpenProfileImageModalButton
+                    modalComponent={<ProfileImageModal userId={sessionUser.id}></ProfileImageModal>}
+                    ></OpenProfileImageModalButton>
                     <br></br>
                     <br></br>
                     <h2>
@@ -129,9 +133,6 @@ function Splashpage() {
                         </>
 
                     }
-
-                    <ProfileImageUpload userId={sessionUser.id}></ProfileImageUpload>
-
                 </div>
                 <div className="activities-container">
                     {
