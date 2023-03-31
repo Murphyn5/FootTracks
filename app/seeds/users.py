@@ -10,7 +10,6 @@ def seed_users():
     User(first_name='Marnie', last_name='Smith', email='marnie@aa.io', password='password', gender='female', profile_picture="https://nm-aws-pern-demo.s3.us-west-2.amazonaws.com/fb9791c81a064178a7cb47e71d10bb65.png", birthday=date(1995, 5, 5)),
     User(first_name='Bobbie', last_name='Smith', email='bobbie@aa.io', password='password', gender='male', profile_picture="https://nm-aws-pern-demo.s3.us-west-2.amazonaws.com/3359003228bf403889ef173492370bec.png", birthday=date(1980, 12, 31))
     ]
-
     db.session.add_all(users)
     db. session.commit()
 
