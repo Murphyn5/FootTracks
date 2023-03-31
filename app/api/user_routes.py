@@ -2,6 +2,10 @@ from flask import Blueprint, jsonify, request
 from app.models import Activity, db, Comment, User
 from flask_login import login_required, current_user
 from app.models import User
+from app.forms.profile_image_form import ImageForm
+from app.api.aws_helpers import (
+    upload_file_to_s3, get_unique_filename)
+
 
 user_routes = Blueprint('users', __name__)
 
@@ -130,3 +134,38 @@ def user_search():
         return {'users': {user["id"]: user for user in users}}
 
     return {'users': {}}
+
+## ADD A PROFILE PICTURE
+@user_routes.route('/<int:id>/profile', methods=["POST"])
+@login_required
+def upload_image(id):
+    form = ImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        print("???????", form.data)
+        image = form.data["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print(upload)
+        print(upload)
+        print(upload)
+        if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+            # return render_template("post_form.html", form=form, errors=[upload])
+            print("HIIJIJIIJIHJI", upload)
+            return "failed"
+
+        url = upload["url"]
+        session_user = User.query.get(int(current_user.get_id()))
+        session_user.profile_picture = url
+        db.session.commit()
+        return { "url" : url}
+
+    if form.errors:
+        print(form.errors)
+        # return render_template("post_form.html", form=form, errors=form.errors)
+
+    # return render_template("post_form.html", form=form, errors=None)

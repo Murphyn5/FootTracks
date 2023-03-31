@@ -88,7 +88,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
             const polyline = L.polyline(latlngs, { color: 'red' })
 
-    
+
             polyline.addTo(map)
             map.fitBounds(polyline.getBounds());
 
@@ -181,7 +181,12 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
                 <div className="activity-card-owner-container">
                     <div className="activity-card-owner-image">
+                    {activity.owner_profile_picture ?
+                        <img  src={activity.owner_profile_picture}></img>
+                        :
                         <i className="fas fa-user-circle" />
+
+                    }
                     </div>
                     <div className="activity-card-owner-information">
                         <div className="activity-card-owner-name">{`${activity.owner_first_name} ${activity.owner_last_name[0]}.`}</div>

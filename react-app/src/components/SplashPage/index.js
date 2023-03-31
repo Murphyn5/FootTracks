@@ -5,6 +5,7 @@ import "./SplashPage.css";
 import img from './/header_image-39d887c771c7094d2adeb4fe67589f471f70bb3fc26e66b69a7e4edf29f90ce6.jpeg'
 import { getAllFollowedActivitiesThunk, loadAllActivites, getCurrentActivitiesThunk, getLatestActivityAction } from "../../store/activities";
 import ActivityCard from "../Activities/ActivityCard";
+import ProfileImageUpload from "./ProfileImageUpload";
 
 function Splashpage() {
     const dispatch = useDispatch();
@@ -79,10 +80,17 @@ function Splashpage() {
             <br></br>
             <div className="splash-page-title">
                 <div></div>
-                {/* <select className="splash-page-activity-select" style={{width:"100%"}}>hi</select> */}
             </div>
             <div className="splash-page-body">
                 <div className="splash-page-user-info-container ">
+                    {sessionUser.profile_picture ?
+                        <img className="splash-page-user-info-icon" src={sessionUser.profile_picture}></img>
+                        :
+                        <i className="fas fa-user-circle splash-page-user-info-icon" />
+
+                    }
+                    <br></br>
+                    <br></br>
                     <h2>
                         {`${sessionUser.first_name} ${sessionUser.last_name}`}
                     </h2>
@@ -122,6 +130,7 @@ function Splashpage() {
 
                     }
 
+                    <ProfileImageUpload userId={sessionUser.id}></ProfileImageUpload>
 
                 </div>
                 <div className="activities-container">
@@ -188,7 +197,7 @@ function Splashpage() {
                                             <div>
                                                 <div style={{ fontWeight: "bold" }}>Record your first activity</div>
                                                 <br></br>
-                                                <div style={{paddingRight:"30px"}}>
+                                                <div style={{ paddingRight: "30px" }}>
                                                     Set up your GPS device and seamlessly upload your workouts right to FootTracks. No device? No problem – record and connect anytime, anywhere with our mobile app.
                                                 </div>
                                                 <br></br>
@@ -206,8 +215,8 @@ function Splashpage() {
                                             <div>
                                                 <div style={{ fontWeight: "bold" }}>See what your friends are doing</div>
                                                 <br></br>
-                                                <div style={{paddingRight:"30px"}}>
-                                                Find your friends on Strava or invite them to join you. Cheer them on, discover new workouts and start training with the athletes you already know.
+                                                <div style={{ paddingRight: "30px" }}>
+                                                    Find your friends on Strava or invite them to join you. Cheer them on, discover new workouts and start training with the athletes you already know.
                                                 </div>
                                                 <br></br>
                                                 <button onClick={findFriends} className="getting-started-connect-device-button">

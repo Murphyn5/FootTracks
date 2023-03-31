@@ -46,9 +46,20 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.splash-page-user-info-icon{
+  font-size: 70px;
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  top: -35px;
+  box-shadow: 0px 0px 15px rgb(194, 194, 194);
+  border-radius: 50%;
 }
 
 .splash-page-user-info-stats{

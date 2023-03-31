@@ -49,7 +49,7 @@ function Tracker() {
         }
 
         const L = window.L
-        const mapbox = window.mapboxgl
+   
 
 
 

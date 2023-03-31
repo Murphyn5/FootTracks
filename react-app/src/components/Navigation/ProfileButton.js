@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-
+  const sessionUser = useSelector((state) => state.session.user);
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -40,7 +41,13 @@ function ProfileButton({ user }) {
     <>
       <li className={"nav-right-profile-container" + (showMenu ? " show-border" : "")}>
         <button onClick={openMenu} className="profile-button" style={{ width: "80%" }}>
-          <i className="fas fa-user-circle" style={{ fontSize: "30px" }} />
+          {sessionUser.profile_picture ?
+            <img className="profile-button-image" src={sessionUser.profile_picture}></img>
+            :
+            <i className="fas fa-user-circle" style={{ fontSize: "32px" }} />
+
+          }
+
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <i className="fa-solid fa-angle-down" style={{ fontSize: "20px" }}></i>
         </button>
@@ -52,7 +59,7 @@ function ProfileButton({ user }) {
                 style={{ cursor: "pointer" }}
                 className="user-drop-down-menu-button"
               >
-                  Log Out
+                Log Out
               </div>
             </div>
           ) : (
