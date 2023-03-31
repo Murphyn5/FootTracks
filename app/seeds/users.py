@@ -6,9 +6,9 @@ from datetime import date
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     users = [
-    User(first_name='John', last_name='Doe', email='john.doe@example.com', password='password', profile_picture='https://example.com/profile.jpg', gender='male', birthday=date(1990, 1, 1)),
-    User(first_name='Marnie', last_name='Smith', email='marnie@aa.io', password='password', profile_picture='https://example.com/profile.jpg', gender='female', birthday=date(1995, 5, 5)),
-    User(first_name='Bobbie', last_name='Smith', email='bobbie@aa.io', password='password', profile_picture='https://example.com/profile.jpg', gender='male', birthday=date(1980, 12, 31))
+    User(first_name='John', last_name='Doe', email='john.doe@example.com', password='password', gender='male', birthday=date(1990, 1, 1)),
+    User(first_name='Marnie', last_name='Smith', email='marnie@aa.io', password='password', gender='female', birthday=date(1995, 5, 5)),
+    User(first_name='Bobbie', last_name='Smith', email='bobbie@aa.io', password='password', gender='male', birthday=date(1980, 12, 31))
     ]
 
     db.session.add_all(users)

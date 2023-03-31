@@ -35,6 +35,14 @@
     font-size: 40px;
 }
 
+.activity-card-owner-container img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 15px rgb(221, 221, 221);
+}
+
+
 .activity-card-type-title-container{
     display: grid;
     grid-template-columns: 40px 1fr;

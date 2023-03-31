@@ -22,6 +22,7 @@ def get_activities():
         owner = User.query.get(activity.owner_id)
         activity_dict["owner_first_name"] = owner.first_name
         activity_dict["owner_last_name"] = owner.last_name
+        activity_dict["owner_profile_picture"] = owner.profile_picture
         activity_dict["comments_length"] = comments_length
         activity_dict["likes_length"] = likes_length
         activity_dict["liked_users"] = []
@@ -47,6 +48,7 @@ def get_followed_activities():
             activity_dict = activity.to_dict()
             activity_dict["owner_first_name"] = owner.first_name
             activity_dict["owner_last_name"] = owner.last_name
+            activity_dict["owner_profile_picture"] = owner.profile_picture
             activity_dict["comments_length"] = comments_length
             activity_dict["likes_length"] = likes_length
             activity_dict["liked_users"] = []
@@ -74,6 +76,7 @@ def current_user_activities():
         activity_dict = activity.to_dict()
         activity_dict["owner_first_name"] = owner.first_name
         activity_dict["owner_last_name"] = owner.last_name
+        activity_dict["owner_profile_picture"] = owner.profile_picture
         activity_dict["comments_length"] = comments_length
         activity_dict["likes_length"] = likes_length
         activity_dict["liked_users"] = []
@@ -264,9 +267,7 @@ def update_activity(id):
     user_id = int(current_user.get_id())
     user = User.query.get(user_id)
     data = request.get_json()
-    print("HELLLLO", data)
     dt = datetime.strptime(data['date_time'], '%Y-%m-%d %H:%M:%S')
-    print("HIIIIIII", dt)
     form = ActivityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if int(current_user.get_id()) == activity.owner_id:
