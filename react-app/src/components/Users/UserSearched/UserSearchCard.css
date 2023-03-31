@@ -25,6 +25,12 @@
     font-size: 70px;
 }
 
+.users-search-item-owner-container img{
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+
 .users-search-item-owner-information{
   display: flex;
   flex-direction: column;

@@ -8,7 +8,7 @@ import { authenticate } from "../../../store/session";
 const UserSearchCard = ({ user, count }) => {
   const dispatch = useDispatch()
   const following = useSelector(loadUserFollowing)
-  const [ followingBoolean, setFollowingBoolean ] = useState( false )
+  const [followingBoolean, setFollowingBoolean] = useState(false)
 
   useEffect(() => {
     const followingIds = following.map((followedUser) => {
@@ -40,7 +40,7 @@ const UserSearchCard = ({ user, count }) => {
 
 
   const followButtonRender = () => {
-    if(followingBoolean) {
+    if (followingBoolean) {
       return (
         <button onClick={unFollowSubmit} className={`users-search-unfollow-submit-container`}></button>
       )
@@ -54,9 +54,16 @@ const UserSearchCard = ({ user, count }) => {
   return (
     <div className={`users-search-item ${rowColor}`}>
       <div className="users-search-item-owner-container">
+
         <div className="users-search-item-owner-image">
-          <i className="fas fa-user-circle" />
+          {user.profile_picture ?
+            <img src={user.profile_picture}></img>
+            :
+            <i className="fas fa-user-circle" />
+
+          }
         </div>
+
         <div className="users-search-item-owner-information">
           <div className="users-search-item-owner-name">
             <div>

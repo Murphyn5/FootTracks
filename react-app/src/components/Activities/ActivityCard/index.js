@@ -30,7 +30,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
         return `${days[dayOfWeek]} ${month}/${day}/${year}`;
     }
 
-    const date = formattedDate(activity.created_at)
+    const date = formattedDate(activity.activity_date)
 
 
 
