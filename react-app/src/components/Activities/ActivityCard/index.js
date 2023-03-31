@@ -56,7 +56,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
         const MAX_CACHE_AGE_MILLISECOND = 30000;
         const MAX_NEW_POSITION_MILLISECOND = 5000;
 
-        if(activity.coordinates){
+        if (activity.coordinates) {
             let map = L.map(`tracker${activity.id}`).setView(LONDON_CENTRE_LAT_LNG, 13);
 
 
@@ -181,12 +181,12 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
                 <div className="activity-card-owner-container">
                     <div className="activity-card-owner-image">
-                    {activity.owner_profile_picture ?
-                        <img  src={activity.owner_profile_picture}></img>
-                        :
-                        <i className="fas fa-user-circle" />
+                        {activity.owner_profile_picture ?
+                            <img src={activity.owner_profile_picture}></img>
+                            :
+                            <i className="fas fa-user-circle" />
 
-                    }
+                        }
                     </div>
                     <div className="activity-card-owner-information">
                         <div className="activity-card-owner-name">{`${activity.owner_first_name} ${activity.owner_last_name[0]}.`}</div>
@@ -231,7 +231,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
             </div>
 
-            {activity.coordinates ? <><br></br><div id={`tracker${activity.id}`} style={{ width: "548px", height: "218px", borderRadius:"4px", margin:"auto", zIndex:"0" }}></div></>
+            {activity.coordinates ? <><br></br><div id={`tracker${activity.id}`} style={{ width: "548px", height: "218px", borderRadius: "4px", margin: "auto", zIndex: "0" }}></div></>
                 : <></>
             }
 
