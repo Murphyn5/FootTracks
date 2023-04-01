@@ -27,14 +27,6 @@ function Splashpage() {
     }
 
     useEffect(() => {
-        const activityRestore = async () => {
-            await dispatch(getCurrentActivitiesThunk())
-            await dispatch(getAllFollowedActivitiesThunk());
-        };
-        activityRestore();
-    }, [dispatch]);
-
-    useEffect(() => {
         if (type === "My Activities") {
             dispatch(getCurrentActivitiesThunk())
         }
@@ -43,13 +35,6 @@ function Splashpage() {
             dispatch(getAllFollowedActivitiesThunk())
         }
     }, [type])
-
-    // useEffect(() => {
-    //     activities?.sort(
-    //         (a, b) => Date.parse(b.activity_date) - Date.parse(a.activity_date)
-    //     );
-    //     dispatch(getLatestActivityAction(activities[0]))
-    // }, [activities])
 
     if (!activities || !sessionUser || !latestActivity) {
         return null

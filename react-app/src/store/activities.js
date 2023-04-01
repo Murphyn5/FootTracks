@@ -100,6 +100,7 @@ export const getAllFollowedActivitiesThunk = () => async (dispatch) => {
   if (res.ok) {
     const activities = await res.json();
     dispatch(getActivitiesAction(activities));
+    dispatch(getLatestActivityThunk())
   };
 }
 
@@ -110,6 +111,18 @@ export const getCurrentActivitiesThunk = () => async (dispatch) => {
     const activities = await res.json();
     dispatch(getCurrentActivitiesAction(activities));
 
+    const sorted = Object.values(activities.activities).sort(
+      (a, b) => Date.parse(b.activity_date) - Date.parse(a.activity_date)
+    );
+
+    dispatch(getLatestActivityAction(sorted[0]))
+  }
+};
+
+export const getLatestActivityThunk = () => async (dispatch) => {
+  const res = await fetch(`/api/activities/current`);
+  if (res.ok) {
+    const activities = await res.json();
     const sorted = Object.values(activities.activities).sort(
       (a, b) => Date.parse(b.activity_date) - Date.parse(a.activity_date)
     );
