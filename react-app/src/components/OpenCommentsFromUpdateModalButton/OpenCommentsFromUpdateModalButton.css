@@ -22,6 +22,7 @@
 .disabled {
     background-color: #ffffff;
     color: #dfdfe8;
+    cursor: default;
 }
 
 .disabled:hover {
