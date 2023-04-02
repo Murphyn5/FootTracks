@@ -246,6 +246,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
                             initialLoad={true}
                             type="kudos"
                             ownerId={activity.owner_id}
+                            ownerProfilePicture={activity.owner_profile_picture}
                             activitiesType={activitiesType}
                         >
                         </CommentsModal>}
@@ -264,6 +265,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
                                 initialLoad={true}
                                 type="comments"
                                 ownerId={activity.owner_id}
+                                ownerProfilePicture={activity.owner_profile_picture}
                                 activitiesType={activitiesType}
                             >
                             </CommentsModal>}

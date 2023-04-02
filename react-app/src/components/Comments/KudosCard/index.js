@@ -25,7 +25,12 @@ const KudosCard = ({ likedUser, activityTitle, activityId, ownerId }) => {
             <div className="kudos-card-content">
                 <div className="kudos-card-owner-container">
                     <div className="kudos-card-owner-image">
-                        <i className="fas fa-user-circle" />
+                        {likedUser.profile_picture ?
+                            <img src={likedUser.profile_picture}></img>
+                            :
+                            <i className="fas fa-user-circle" />
+
+                        }
                     </div>
                     <div className="kudos-card-owner-information">
                         <div className="kudos-card-owner-name">

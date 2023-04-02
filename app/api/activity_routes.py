@@ -187,6 +187,7 @@ def get_comments_by_activity_id(id):
         owner = owner.to_dict()
         comment['owner_first_name'] = owner["first_name"]
         comment['owner_last_name'] = owner["last_name"]
+        comment['owner_profile_picture'] = owner["profile_picture"]
 
     return {"comments": {comment['id']: comment for comment in activity_comments}}
 
@@ -216,6 +217,7 @@ def create_new_comment(id):
         new_comment = new_comment.to_dict()
         new_comment['owner_first_name'] = user.first_name
         new_comment['owner_last_name'] = user.last_name
+        new_comment['owner_profile_picture'] = user.profile_picture
         return new_comment
     if form.errors:
         return {

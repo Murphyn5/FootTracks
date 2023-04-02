@@ -27,7 +27,7 @@ def update_comment(id):
         comment = comment.to_dict()
         comment["owner_first_name"] = user.first_name
         comment["owner_last_name"] = user.last_name
-
+        comment['owner_profile_picture'] = user.profile_picture
         return comment
 
     else:

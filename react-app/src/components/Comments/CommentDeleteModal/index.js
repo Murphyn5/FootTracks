@@ -10,7 +10,7 @@ import { getAllFollowedActivitiesThunk, getCurrentActivitiesThunk, decreaseComme
 import CommentsModal from "../CommentsModal";
 
 
-function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId, activitiesType }) {
+function CommentDeleteModal({ ownerProfilePicture, commentId, activityTitle, activityId, ownerId, activitiesType }) {
     const dispatch = useDispatch();
 
     const { closeModal } = useModal();
@@ -36,6 +36,7 @@ function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId, act
                                 commentId={commentId}
                                 ownerId={ownerId}
                                 activityId={activityId}
+                                ownerProfilePicture={ownerProfilePicture}
                                 activityTitle={activityTitle}
                                 type={"comments"}
                                 activitiesType={activitiesType}
@@ -50,6 +51,7 @@ function CommentDeleteModal({ commentId, activityTitle, activityId, ownerId, act
                                 commentId={commentId}
                                 ownerId={ownerId}
                                 activityId={activityId}
+                                ownerProfilePicture={ownerProfilePicture}
                                 activityTitle={activityTitle}
                                 type={"comments"}
                                 activitiesType={activitiesType}

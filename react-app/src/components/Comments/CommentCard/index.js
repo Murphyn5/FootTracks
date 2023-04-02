@@ -11,7 +11,7 @@ import CommentUpdateModal from "../CommentUpdateModal";
 import { useState } from "react";
 
 
-const CommentCard = ({ comment, activityTitle, activityId, ownerId, activitiesType }) => {
+const CommentCard = ({ ownerProfilePicture, comment, activityTitle, activityId, ownerId, activitiesType }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
@@ -52,9 +52,10 @@ const CommentCard = ({ comment, activityTitle, activityId, ownerId, activitiesTy
                         activityTitle={activityTitle}
                         activityId={activityId}
                         ownerId={ownerId}
+                        ownerProfilePicture={ownerProfilePicture}
                         commentId={comment.id}
                         activitiesType={activitiesType}
-                        ></CommentDeleteModal>}
+                    ></CommentDeleteModal>}
                 >
                 </OpenModalButton>
             )
@@ -68,12 +69,13 @@ const CommentCard = ({ comment, activityTitle, activityId, ownerId, activitiesTy
                     modalComponent={<CommentUpdateModal
                         commentBody={comment.body}
                         activityTitle={activityTitle}
+                        ownerProfilePicture={ownerProfilePicture}
                         activityId={activityId}
                         ownerId={ownerId}
                         commentId={comment.id}
                         activitiesType={activitiesType}
-                        ></CommentUpdateModal>}
-                    >
+                    ></CommentUpdateModal>}
+                >
 
                 </OpenModalButton>
             )
@@ -86,7 +88,12 @@ const CommentCard = ({ comment, activityTitle, activityId, ownerId, activitiesTy
 
                     <div className="comment-card-owner-container">
                         <div className="comment-card-owner-image">
-                            <i className="fas fa-user-circle" />
+                            {comment.owner_profile_picture ?
+                                <img src={comment.owner_profile_picture}></img>
+                                :
+                                <i className="fas fa-user-circle" />
+
+                            }
                         </div>
                         <div className="comment-card-owner-information">
                             <div className="comment-card-owner-name">
@@ -113,7 +120,12 @@ const CommentCard = ({ comment, activityTitle, activityId, ownerId, activitiesTy
 
                     <div className="comment-card-owner-container">
                         <div className="comment-card-owner-image">
-                            <i className="fas fa-user-circle" />
+                            {comment.owner_profile_picture ?
+                                <img src={comment.owner_profile_picture}></img>
+                                :
+                                <i className="fas fa-user-circle" />
+
+                            }
                         </div>
                         <div className="comment-card-owner-information">
                             <div className="comment-card-owner-name">
