@@ -33,7 +33,6 @@ function ProfileImageModal({ type, userId }) {
             await res.json();
             setImageLoading(false);
             dispatch(authenticate())
-            console.log(type)
             if(type === "Following"){
                 dispatch(getAllFollowedActivitiesThunk())
             }
