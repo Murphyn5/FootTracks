@@ -143,19 +143,14 @@ def upload_image(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print("???????", form.data)
         image = form.data["image"]
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print(upload)
-        print(upload)
-        print(upload)
         if "url" not in upload:
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
             # return render_template("post_form.html", form=form, errors=[upload])
-            print("HIIJIJIIJIHJI", upload)
             return "failed"
 
         url = upload["url"]

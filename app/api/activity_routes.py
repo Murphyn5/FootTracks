@@ -144,7 +144,6 @@ def create_new_activity():
     form = ActivityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = request.get_json()
-    print('?????????', data)
     user_id = int(current_user.get_id())
     user = User.query.get(user_id)
     dt = datetime.strptime(data['date_time'], '%Y-%m-%d %H:%M:%S')

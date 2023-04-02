@@ -4,11 +4,11 @@ import "./ProfileImageModal.css";
 import { useModal } from "../../../context/Modal";
 import { useHistory } from "react-router-dom";
 import { authenticate } from "../../../store/session";
+import { getAllFollowedActivitiesThunk, getCurrentActivitiesThunk } from "../../../store/activities";
 
 
 
-
-function ProfileImageModal({ userId }) {
+function ProfileImageModal({ type, userId }) {
     const { closeModal } = useModal();
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const [image, setImage] = useState(null);
@@ -33,6 +33,13 @@ function ProfileImageModal({ userId }) {
             await res.json();
             setImageLoading(false);
             dispatch(authenticate())
+            console.log(type)
+            if(type === "Following"){
+                dispatch(getAllFollowedActivitiesThunk())
+            }
+            if(type === "My Activities"){
+                dispatch(getCurrentActivitiesThunk())
+            }
             closeModal()
         }
         else {

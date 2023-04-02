@@ -25,7 +25,6 @@ function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initial
     const [placeHolderColor, setPlaceHolderColor] = useState("")
     const [kudosBoolean, setKudosBoolean] = useState(false)
     const [disabled, setDisabled] = useState("")
-    console.log(ownerProfilePicture)
     useEffect(() => {
         if (initialLoad) {
             const commentAndLikesRestore = async () => {
