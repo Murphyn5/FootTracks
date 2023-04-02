@@ -76,7 +76,7 @@ function Splashpage() {
 
                     }
                     <OpenProfileImageModalButton
-                    modalComponent={<ProfileImageModal userId={sessionUser.id}></ProfileImageModal>}
+                    modalComponent={<ProfileImageModal userId={sessionUser.id} type={type}> </ProfileImageModal>}
                     ></OpenProfileImageModalButton>
                     <br></br>
                     <br></br>

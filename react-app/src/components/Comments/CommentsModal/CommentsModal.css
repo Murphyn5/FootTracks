@@ -25,6 +25,12 @@
     font-size: 32px;
 }
 
+.comment-modal-owner-image img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+
 .comment-modal-title {
     font-size: 20px;
     font-weight: 400;
@@ -126,6 +132,12 @@
     height: 56px;
     box-sizing: border-box;
     padding-right: 12px;
+}
+
+.comment-modal-comments-submit-container-profile-icon img{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
 }
 
 .comment-modal-comments-submit-input {

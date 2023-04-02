@@ -7,8 +7,8 @@ from datetime import date
 def seed_users():
     users = [
     User(first_name='John', last_name='Doe', email='john.doe@example.com', password='password', gender='male', profile_picture="https://nm-aws-pern-demo.s3.us-west-2.amazonaws.com/0d1d13dd41004b879bdcf3bfdc861246.png", birthday=date(1990, 1, 1)),
-    User(first_name='Marnie', last_name='Smith', email='marnie@aa.io', password='password', gender='female', profile_picture="https://nm-aws-pern-demo.s3.us-west-2.amazonaws.com/fb9791c81a064178a7cb47e71d10bb65.png", birthday=date(1995, 5, 5)),
-    User(first_name='Bobbie', last_name='Smith', email='bobbie@aa.io', password='password', gender='male', profile_picture="https://nm-aws-pern-demo.s3.us-west-2.amazonaws.com/3359003228bf403889ef173492370bec.png", birthday=date(1980, 12, 31))
+    User(first_name='Nick', last_name='Murphy', email='marnie@aa.io', password='password', gender='male', profile_picture="https://nm-aws-pern-demo.s3.us-west-2.amazonaws.com/8b5ce271d743429192faa7bc519dbbf2.jpeg", birthday=date(1995, 5, 5)),
+    User(first_name='Bobbie', last_name='Smith', email='bobbie@aa.io', password='password', gender='male', profile_picture="https://nm-aws-pern-demo.s3.us-west-2.amazonaws.com/54327c08896d48909712a411932f2931.png", birthday=date(1980, 12, 31))
     ]
     db.session.add_all(users)
     db. session.commit()

@@ -9,7 +9,7 @@ import OpenCommentsFromNoDeleteModalButton from "../../OpenCommentsFromNoDeleteM
 import CommentsModal from "../CommentsModal";
 
 
-function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId, ownerId, activitiesType }) {
+function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId, ownerProfilePicture, ownerId, activitiesType }) {
     const dispatch = useDispatch();
     const [body, setBody] = useState(commentBody)
     const [displayErrors, setDisplayErrors] = useState("Edit comment")
@@ -19,27 +19,6 @@ function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId,
 
     return (
         <>
-            {/* <div className="comment-delete-container">
-                <form className={"comment-delete-form"} onSubmit={handleSubmit}>
-                    <span>
-                        Are you sure you want to delete this comment? You can not undo this action.
-                    </span>
-                    <div>
-                        <OpenCommentsFromNoDeleteModalButton
-                            buttonText={"Cancel"}
-                            modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityId={activityId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
-                        ></OpenCommentsFromNoDeleteModalButton>
-                        &nbsp;&nbsp;
-                        <OpenCommentsFromUpdateModalButton
-                            buttonText={"Ok"}
-                            commentId={commentId}
-                            modalComponent={<CommentsModal commentId={commentId} ownerId={ownerId} activityId={activityId} activityTitle={activityTitle} type={"comments"}></CommentsModal>}
-                        ></OpenCommentsFromUpdateModalButton>
-                    </div>
-                    <button type="submit" onClick={handleSubmit} className={"enabled"}>Yes (Delete Comment)</button>
-          <button type="submit" onClick={closeModal} className={"accent"}>No (Keep Comment)</button>
-                </form>
-            </div> */}
             <form className="comment-update-modal-container">
                 <textarea
                     type="text"
@@ -59,6 +38,7 @@ function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId,
                         modalComponent={<CommentsModal
                             commentId={commentId}
                             ownerId={ownerId}
+                            ownerProfilePicture={ownerProfilePicture}
                             activityId={activityId}
                             activityTitle={activityTitle}
                             type={"comments"}
@@ -71,6 +51,7 @@ function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId,
                         modalComponent={<CommentsModal
                             commentId={commentId}
                             ownerId={ownerId}
+                            ownerProfilePicture={ownerProfilePicture}
                             activityId={activityId}
                             activityTitle={activityTitle}
                             type={"comments"}

@@ -11,7 +11,7 @@ import CommentCard from "../CommentCard";
 import KudosCard from "../KudosCard";
 import { postCommentThunk } from "../../../store/comments";
 
-function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId, activitiesType }) {
+function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initialLoad, type, ownerId, activitiesType }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const comments = useSelector(loadAllComments)
@@ -25,7 +25,6 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId, 
     const [placeHolderColor, setPlaceHolderColor] = useState("")
     const [kudosBoolean, setKudosBoolean] = useState(false)
     const [disabled, setDisabled] = useState("")
-
     useEffect(() => {
         if (initialLoad) {
             const commentAndLikesRestore = async () => {
@@ -164,6 +163,7 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId, 
                                     activityId={activityId}
                                     ownerId={ownerId}
                                     activitiesType={activitiesType}
+                                    ownerProfilePicture={ownerProfilePicture}
                                 >
                                 </CommentCard>
                             )
@@ -171,7 +171,12 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId, 
                     </div>
                     <form onSubmit={onSubmit} className="comment-modal-comments-submit-container">
                         <div className="comment-modal-comments-submit-container-profile-icon">
-                            <i className="fas fa-user-circle" style={{ fontSize: "24px" }} />
+                            {user.profile_picture ?
+                                <img src={user.profile_picture}></img>
+                                :
+                                <i className="fas fa-user-circle" style={{ fontSize: "24px" }} />
+
+                            }
                         </div>
                         <textarea
                             type="text"
@@ -223,8 +228,13 @@ function CommentsModal({ activityTitle, activityId, initialLoad, type, ownerId, 
             <div className="comment-modal-container">
 
                 <div className="comment-modal-activity-info-container">
-                    <div className="activity-card-owner-image">
-                        <i className="fas fa-user-circle" />
+                    <div className="comment-modal-owner-image">
+                        {ownerProfilePicture ?
+                            <img src={ownerProfilePicture}></img>
+                            :
+                            <i className="fas fa-user-circle" />
+
+                        }
                     </div>
                     &nbsp;&nbsp;&nbsp;
                     <div className="comment-modal-title">{activityTitle}</div>

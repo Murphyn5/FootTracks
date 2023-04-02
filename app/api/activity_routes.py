@@ -30,6 +30,7 @@ def get_activities():
             activity_dict["liked_users"].append(user.to_dict())
         activities_to_return.append(activity_dict)
 
+
     return {'activities': {activity_dict["id"]: activity_dict for activity_dict in activities_to_return}}
 
 
@@ -39,7 +40,27 @@ def get_activities():
 def get_followed_activities():
     user_id = int(current_user.get_id())
     user = User.query.get(user_id)
-    activities = []
+    activity_query = db.session.query(
+        Activity).filter(Activity.owner_id == user_id)
+    activities = activity_query.all()
+    activities_to_return = []
+    for activity in activities:
+        owner = User.query.get(activity.owner_id)
+        comments_length = len(activity.comments)
+        likes_length = len(activity.liked_users)
+        activity_dict = activity.to_dict()
+        activity_dict["owner_first_name"] = owner.first_name
+        activity_dict["owner_last_name"] = owner.last_name
+        activity_dict["owner_profile_picture"] = owner.profile_picture
+        activity_dict["comments_length"] = comments_length
+        activity_dict["likes_length"] = likes_length
+        activity_dict["liked_users"] = []
+        for user in activity.liked_users:
+            activity_dict["liked_users"].append(user.to_dict())
+        activities_to_return.append(activity_dict)
+
+    user_id = int(current_user.get_id())
+    user = User.query.get(user_id)
     for user in user.following:
         for activity in user.activities:
             owner = User.query.get(activity.owner_id)
@@ -54,9 +75,11 @@ def get_followed_activities():
             activity_dict["liked_users"] = []
             for user in activity.liked_users:
                 activity_dict["liked_users"].append(user.to_dict())
-            activities.append(activity_dict)
+            activities_to_return.append(activity_dict)
 
-    return {'activities': {activity_dict["id"]: activity_dict for activity_dict in activities}}
+
+
+    return {'activities': {activity_dict["id"]: activity_dict for activity_dict in activities_to_return}}
 
 
 # GET ALL ACTIVITIES BY CURRENT USER
@@ -121,7 +144,6 @@ def create_new_activity():
     form = ActivityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = request.get_json()
-    print('?????????', data)
     user_id = int(current_user.get_id())
     user = User.query.get(user_id)
     dt = datetime.strptime(data['date_time'], '%Y-%m-%d %H:%M:%S')
@@ -164,6 +186,7 @@ def get_comments_by_activity_id(id):
         owner = owner.to_dict()
         comment['owner_first_name'] = owner["first_name"]
         comment['owner_last_name'] = owner["last_name"]
+        comment['owner_profile_picture'] = owner["profile_picture"]
 
     return {"comments": {comment['id']: comment for comment in activity_comments}}
 
@@ -193,6 +216,7 @@ def create_new_comment(id):
         new_comment = new_comment.to_dict()
         new_comment['owner_first_name'] = user.first_name
         new_comment['owner_last_name'] = user.last_name
+        new_comment['owner_profile_picture'] = user.profile_picture
         return new_comment
     if form.errors:
         return {

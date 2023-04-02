@@ -71,9 +71,7 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = request.get_json()
-    print(data)
     dt = datetime.strptime(data['birthday'], '%Y-%m-%d')
-    print(form)
     if form.validate_on_submit():
         user = User(
             first_name=form.data['first_name'],
@@ -83,7 +81,7 @@ def sign_up():
             birthday=dt,
             gender=form.data['gender']
         )
-        print(user)
+
         db.session.add(user)
         db.session.commit()
         login_user(user)
