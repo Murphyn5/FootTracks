@@ -126,8 +126,9 @@ For recording activities, this applicates integrates into react a geotracker dev
 
 [Github Link](https://github.com/ng-the-engineer/running-tracker)
 
-![Screen Shot 2023-04-04 at 2 09 02 PM](https://user-images.githubusercontent.com/63930644/229922985-fe87677e-a764-42a3-8cf0-77fd510cb322.png)
+![Screen Shot 2023-04-04 at 2 11 14 PM](https://user-images.githubusercontent.com/63930644/229923438-0610bf3b-3542-41ea-988c-fb3492d46bad.png)
 
+![Screen Shot 2023-04-04 at 2 11 37 PM](https://user-images.githubusercontent.com/63930644/229923506-ffe2ea30-4a84-4614-9c9c-1d6f4ff9e48b.png)
 
 # Contact
 
