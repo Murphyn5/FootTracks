@@ -34,7 +34,7 @@ Database:
 
 # Usage
 
-This application integrates a geotracker developed by Anthony Ng that he shared in the following article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e)
+This application integrates a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the following article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e)
 
 <br>
 
