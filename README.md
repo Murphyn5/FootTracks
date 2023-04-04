@@ -90,7 +90,8 @@ Arriving at the login screen, visitors can either login as a demo user or login 
 
 Visitors can also sign up and create their own user profile.
 
-![Screen Shot 2023-04-04 at 12 12 54 PM](https://user-images.githubusercontent.com/63930644/229896368-f0b25ea7-8a2d-4496-a859-29fe9e0a72e9.png)
+![Screen Shot 2023-04-04 at 12 14 02 PM](https://user-images.githubusercontent.com/63930644/229896650-9dbfd712-0cd6-48b8-9099-c8f4b770659f.png)
+
 
 For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
 
