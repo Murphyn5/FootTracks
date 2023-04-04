@@ -25,7 +25,7 @@ Frameworks, Platforms and Libraries:
 [![Redux][redux.js]][redux-url]
 [![Python][python.js]][python-url]
 [![Flask][flask.js]][flask-url]
-[!Leaflet][https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white]
+[![Leaflet]][https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white]
 
 Database:
 
