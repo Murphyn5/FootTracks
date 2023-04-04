@@ -116,15 +116,18 @@ To create an activity, visitors can access the dropdown in the top right corner 
 
 ![Screen Shot 2023-04-04 at 2 00 57 PM](https://user-images.githubusercontent.com/63930644/229920452-6695a2e7-71f3-46e4-9191-50090531b21b.png)
 
-When manually creating an activity, visitors will will be required to submit data for distance, duration, title, Sport, and activity date of the activity. 
+For manually creating an activity, visitors will will be required to submit data for distance, duration, title, Sport, and activity date of the activity. 
 
-![Screen Shot 2023-04-04 at 2 04 12 PM](https://user-images.githubusercontent.com/63930644/229921628-b5bcd95d-5f07-48c7-92a1-28fce2aea94e.png)
+![Screen Shot 2023-04-04 at 2 09 29 PM](https://user-images.githubusercontent.com/63930644/229923077-f4d34004-3c70-404f-bc6a-c2842e028bf8.png)
 
 For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
 
 [Demo on Youtube](https://www.youtube.com/watch?v=Un9sFEMaWf8)
 
 [Github Link](https://github.com/ng-the-engineer/running-tracker)
+
+![Screen Shot 2023-04-04 at 2 09 02 PM](https://user-images.githubusercontent.com/63930644/229922985-fe87677e-a764-42a3-8cf0-77fd510cb322.png)
+
 
 # Contact
 
