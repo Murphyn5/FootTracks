@@ -88,8 +88,7 @@ This react application integrates a geotracker developed by [Anthony Ng](https:/
 
 [![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=Un9sFEMaWf8)
 
-https://www.youtube.com/watch?v=Un9sFEMaWf8
-https://youtu.be/watch?v=Un9sFEMaWf8
+[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/T-D1KVIuvjA)
 <br>
 
 # Contact
