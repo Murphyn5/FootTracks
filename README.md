@@ -32,12 +32,6 @@ Database:
 
 <br>
 
-# Usage
-
-This react application integrates a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
-
-<br>
-
 # Get Started
 
 To run this project locally, please perform the following steps:
@@ -86,6 +80,12 @@ To run this project locally, please perform the following steps:
    npm start
    ```
    
+<br>
+
+# Usage
+
+This react application integrates a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
+
 <br>
 
 # Contact
