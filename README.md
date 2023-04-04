@@ -74,12 +74,12 @@ To run this project locally, please perform the following steps:
    ```bash
    pipenv run flask run
    ```
-   
+
 7. Run the frontend server inside the `react-app` with npm start
    ```bash
    npm start
    ```
-   
+
 <br>
 
 # Usage
@@ -115,6 +115,7 @@ While viewing the comments modal, visitors will: have the ability to post/edit/ 
 To create an activity, visitors can access the dropdown in the top right corner of the window to either manually create an activity or to record an activity.
 
 ![Screen Shot 2023-04-04 at 2 00 57 PM](https://user-images.githubusercontent.com/63930644/229920452-6695a2e7-71f3-46e4-9191-50090531b21b.png)
+
 
 For manually creating an activity, visitors will will be required to submit data for distance, duration, title, Sport, and activity date of the activity. 
 
