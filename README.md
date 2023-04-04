@@ -102,9 +102,11 @@ After clicking the button to "Find Friends" or by searching for friends using th
 
 Returning to their feed, visitors will then be able to see activities in the "Following" Tab and the "My Activities" tab ordered by activity date. The "Following" tab includes activities created by the visitor and users that they follow. The "My Activities" tab includes activities created only by the user.
 
-![Screen Shot 2023-04-04 at 12 31 13 PM](https://user-images.githubusercontent.com/63930644/229900129-8de69098-2d67-46fd-a3bd-a9c5fd231720.png)
+![Screen Shot 2023-04-04 at 12 36 03 PM](https://user-images.githubusercontent.com/63930644/229901034-c6817f87-51c7-4d0d-a874-78e0ad26e7db.png)
 
-![Screen Shot 2023-04-04 at 12 31 28 PM](https://user-images.githubusercontent.com/63930644/229900190-222cf7f0-17b0-4d7e-8dd6-d1ed4db35b93.png)
+![Screen Shot 2023-04-04 at 12 36 15 PM](https://user-images.githubusercontent.com/63930644/229901074-20fc9bf6-99a8-4569-9f49-8817bffdb214.png)
+
+
 
 
 For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
