@@ -96,8 +96,6 @@ After logging in, visitors arrive at their feed where they can view activities c
 
 ![Screen Shot 2023-04-04 at 12 20 26 PM](https://user-images.githubusercontent.com/63930644/229898033-6499ba1d-cb13-4042-9ca8-08eb8e3cca4c.png)
 
-![Screen Shot 2023-04-04 at 12 17 44 PM](https://user-images.githubusercontent.com/63930644/229897459-7ebc0816-6140-4a09-89e6-c207c4ed1dcf.png)
-
 For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
 
 [Demo on Youtube](https://www.youtube.com/watch?v=Un9sFEMaWf8)
