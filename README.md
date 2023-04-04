@@ -25,6 +25,7 @@ Frameworks, Platforms and Libraries:
 [![Redux][redux.js]][redux-url]
 [![Python][python.js]][python-url]
 [![Flask][flask.js]][flask-url]
+[![Leaflet][leaflet.js]][leaflet-url]
 
 Database:
 
