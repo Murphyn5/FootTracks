@@ -32,39 +32,9 @@ Database:
 
 <br>
 
-# Features Directions
+# Usage
 
-Example [modify later]:
-## Home Page Demo User
 
-[Insert description of feature + photo]
-![demo-user-features]
-
-[demo-user-features]:
-
-## Create Business as Logged-In User
-
-Logged-in users will be able to create a new business.
-![create-business-form]
-
-[create-business-form]:
-
-## Business Details Viewing Available For Anyone
-
-Business details can be accessed by anyone with additional features for logged in users, such as writing a review for someone else's business.
-![business-details]
-
-[business-details]:
-
-## Roadmap
-
-- <input type="checkbox" checked> User Authentication
-- <input type="checkbox" checked> Businesses (CRUD)
-- <input type="checkbox"> Reviews (CRUD)
-  - <input type="checkbox" checked> Create user reviews
-  - <input type="checkbox" checked> Read user reviews
-  - <input type="checkbox"> Update user reviews
-  - <input type="checkbox" checked> Delete user reviews
 
 <br>
 
