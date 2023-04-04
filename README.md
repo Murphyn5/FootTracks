@@ -104,7 +104,7 @@ Returning to their feed, visitors will then be able to see activities in the "Fo
 
 ![Screen Shot 2023-04-04 at 12 36 03 PM](https://user-images.githubusercontent.com/63930644/229901034-c6817f87-51c7-4d0d-a874-78e0ad26e7db.png)
 
-![Screen Shot 2023-04-04 at 12 36 15 PM](https://user-images.githubusercontent.com/63930644/229901074-20fc9bf6-99a8-4569-9f49-8817bffdb214.png)
+![Screen Shot 2023-04-04 at 1 50 18 PM](https://user-images.githubusercontent.com/63930644/229917520-079ef045-c846-4f32-9f96-84064c6abedc.png)
 
 
 
