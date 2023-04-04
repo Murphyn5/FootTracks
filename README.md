@@ -100,13 +100,17 @@ After clicking the button to "Find Friends" or by searching for friends using th
 
 ![Screen Shot 2023-04-04 at 1 50 44 PM](https://user-images.githubusercontent.com/63930644/229917700-9e3ac060-ab22-409b-891b-403e2ec4cd1f.png)
 
-Returning to their feed, visitors will then be able to see activities in the "Following" Tab and the "My Activities" tab ordered by activity date. The "Following" tab includes activities created by the visitor and users that they follow. The "My Activities" tab includes activities created only by the user.
+Returning to their feed, visitors will then be able to see activities in the "Following" Tab and the "My Activities" tab ordered by activity date. The "Following" tab includes activities created by the visitor and users that they follow. The "My Activities" tab includes activities created only by the user. For each activity, visitors will: be able to see the number of likes (displayed as kudos) and comments an activity has, have the option to like/unlike the activity if they are not the owner, and have the ability to open a modal to see comment and kudos details.
 
 ![Screen Shot 2023-04-04 at 1 52 23 PM](https://user-images.githubusercontent.com/63930644/229918078-770b7165-baef-4cf7-93f5-beb4037e1d15.png)
 
 ![Screen Shot 2023-04-04 at 1 50 18 PM](https://user-images.githubusercontent.com/63930644/229917520-079ef045-c846-4f32-9f96-84064c6abedc.png)
 
+While viewing the comments modal, visitors will: have the ability to post/edit/ or delete comments they are the owner of, have the ability to delete any comment if they are the owner of the activity, and view which users have liked an activity.
 
+![Screen Shot 2023-04-04 at 1 56 19 PM](https://user-images.githubusercontent.com/63930644/229918903-af451566-8403-4320-8295-0c54fe59bec7.png)
+
+![Screen Shot 2023-04-04 at 1 59 14 PM](https://user-images.githubusercontent.com/63930644/229919783-a17e3c28-2281-49fb-8c4e-373b48746c8f.png)
 
 
 For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
