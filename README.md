@@ -98,7 +98,7 @@ After logging in, visitors arrive at their feed where they can view activities c
 
 After clicking the button to "Find Friends" or by searching for friends using the search bar, visitors will be presented with a list of users that they can follow.
 
-![Screen Shot 2023-04-04 at 12 24 11 PM](https://user-images.githubusercontent.com/63930644/229898818-2f133c06-e545-47d8-876f-5c1b9e43c8ab.png)
+![Screen Shot 2023-04-04 at 1 50 44 PM](https://user-images.githubusercontent.com/63930644/229917700-9e3ac060-ab22-409b-891b-403e2ec4cd1f.png)
 
 Returning to their feed, visitors will then be able to see activities in the "Following" Tab and the "My Activities" tab ordered by activity date. The "Following" tab includes activities created by the visitor and users that they follow. The "My Activities" tab includes activities created only by the user.
 
