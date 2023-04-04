@@ -27,6 +27,7 @@ Frameworks, Platforms and Libraries:
 [![Flask][flask.js]][flask-url]
 [![Leaflet.js](https://img.shields.io/badge/Leaflet.js-%5E1.7.1-brightgreen.svg?style=flat-square&logo=leaflet&logoColor=white&labelColor=green&label=%20&height=28)](https://leafletjs.com/)
 
+
 Database:
 
 [![PostgreSQL][postgresql.js]][postgresql-url]
