@@ -24,8 +24,7 @@ Frameworks, Platforms and Libraries:
 [![React][react.js]][react-url]
 [![Redux][redux.js]][redux-url]
 [![Python][python.js]][python-url]
-[![Flask][flask.js]][flask-url]
-[![Leaflet.js](https://img.shields.io/badge/Leaflet.js-%5E1.7.1-brightgreen.svg)](https://leafletjs.com/)
+[![Flask][flask.js]][flask-url]![Leaflet.js](https://img.shields.io/badge/Leaflet.js-<text>-green?style=flat&logo=leaflet&logoColor=white&labelColor=green&color=2bbc8a&height=28)
 
 
 Database:
