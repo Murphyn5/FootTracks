@@ -84,7 +84,7 @@ To run this project locally, please perform the following steps:
 
 # Usage
 
-This react application integrates a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
+For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
 
 [Demo on Youtube](https://www.youtube.com/watch?v=Un9sFEMaWf8)
 
