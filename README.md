@@ -120,7 +120,7 @@ For manually creating an activity, visitors will will be required to submit data
 
 ![Screen Shot 2023-04-04 at 2 09 29 PM](https://user-images.githubusercontent.com/63930644/229923077-f4d34004-3c70-404f-bc6a-c2842e028bf8.png)
 
-For recording activities, this applicates integrates into react a running tracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
+For recording activities, this applicates integrates into react a running tracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). Recording an activity using this feature allows the visitor to toggle on/off a tracker that tracks the distance, duration, and elevation gain of an activity. When recording is toggled off, visitors can then choose to save the activity with the recorded data along with a map including a polyline displaying the visitor's path during the activity.
 
 [Demo on Youtube](https://www.youtube.com/watch?v=Un9sFEMaWf8)
 
