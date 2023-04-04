@@ -6,13 +6,13 @@ FootTracks is a web application inspired by Strava. It allows users to search fo
 
 # Wiki Links
 
-- [Feature List](https://github.com/truham/Plate-Pal/wiki/Feature-List)
-- [User Stories](https://github.com/truham/Plate-Pal/wiki/User-Stories)
-- [Database Schema](https://github.com/truham/Plate-Pal/wiki/Database-schema)
-- [API Routes](https://github.com/truham/Plate-Pal/wiki/API-Routes)
-- [Redux Store State Shape](https://github.com/truham/Plate-Pal/wiki/Store-Shape)
+- [Feature List](https://github.com/Murphyn5/FootTracks/wiki/MVP-Feature-List)
+- [User Stories](https://github.com/Murphyn5/FootTracks/wiki/User-Stories)
+- [Database Schema](https://github.com/Murphyn5/FootTracks/wiki/Database-Schema)
+- [WireFrame](https://github.com/Murphyn5/FootTracks/wiki/Wireframe)
 
 <br>
+
 
 # Tech Stack
 
