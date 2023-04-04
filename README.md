@@ -96,6 +96,10 @@ After logging in, visitors arrive at their feed where they can view activities c
 
 ![Screen Shot 2023-04-04 at 12 20 26 PM](https://user-images.githubusercontent.com/63930644/229898033-6499ba1d-cb13-4042-9ca8-08eb8e3cca4c.png)
 
+After clicking to prompt to Find Friends or by searching for friends using the search bar, visitors will be presented with a list of users that they can follow.
+
+![Screen Shot 2023-04-04 at 12 24 11 PM](https://user-images.githubusercontent.com/63930644/229898818-2f133c06-e545-47d8-876f-5c1b9e43c8ab.png)
+
 For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
 
 [Demo on Youtube](https://www.youtube.com/watch?v=Un9sFEMaWf8)
