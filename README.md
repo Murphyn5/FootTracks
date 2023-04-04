@@ -25,7 +25,7 @@ Frameworks, Platforms and Libraries:
 [![Redux][redux.js]][redux-url]
 [![Python][python.js]][python-url]
 [![Flask][flask.js]][flask-url]
-[![Leaflet.js](https://img.shields.io/badge/Leaflet.js-%5E1.7.1-brightgreen.svg???style=for-the-badge&logo=appveyor&logoColor=white&labelColor=green&label=%20&height=28)](https://leafletjs.com/)
+[![Leaflet.js](https://img.shields.io/badge/Leaflet.js-%5E1.7.1-brightgreen.svg)](https://leafletjs.com/)
 
 
 Database:
