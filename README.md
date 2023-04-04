@@ -132,7 +132,7 @@ For recording activities, this applicates integrates into react a running tracke
 
 The final feature included in FootTracks is the "My Activities" page where visitors have the option to edit/delete any of their owned activities.
 
-![Screen Shot 2023-04-04 at 2 19 50 PM](https://user-images.githubusercontent.com/63930644/229925154-791a5e38-3f65-4ece-bad1-7c7294172cbc.png)
+![Screen Shot 2023-04-04 at 2 26 08 PM](https://user-images.githubusercontent.com/63930644/229926449-e89c3cad-8e01-4a59-ad82-25880fe2d7f8.png)
 
 # Future Implementation Goals
 
