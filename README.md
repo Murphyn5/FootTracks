@@ -130,6 +130,10 @@ For recording activities, this applicates integrates into react a running tracke
 
 ![Screen Shot 2023-04-04 at 2 11 37 PM](https://user-images.githubusercontent.com/63930644/229923506-ffe2ea30-4a84-4614-9c9c-1d6f4ff9e48b.png)
 
+The final feature included in FootTracks is the "My Activities" page where visitors have the option to edit/delete any of their owned activities.
+
+![Screen Shot 2023-04-04 at 2 19 50 PM](https://user-images.githubusercontent.com/63930644/229925154-791a5e38-3f65-4ece-bad1-7c7294172cbc.png)
+
 # Contact
 
 Project Link: [https://github.com/Murphyn5/FootTracks](https://github.com/Murphyn5/FootTracks)
