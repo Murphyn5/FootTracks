@@ -88,10 +88,15 @@ Arriving at the login screen, visitors can either login as a demo user or login 
 
 ![Screen Shot 2023-04-04 at 11 57 50 AM](https://user-images.githubusercontent.com/63930644/229895426-1cc9a2dc-d9f0-48a3-906a-9136df7c823d.png)
 
-Visitors can also sign up and create their own user profile.
+Visitors can also login by signing up and create their own user profile.
 
 ![Screen Shot 2023-04-04 at 12 14 02 PM](https://user-images.githubusercontent.com/63930644/229896650-9dbfd712-0cd6-48b8-9099-c8f4b770659f.png)
 
+After logging in, visitors arrive at their feed where they can view activities created by users that they follow. If a visitor is not currently following other users, they will be prompted to follow another user before they can view any activities in their feed.
+
+![Screen Shot 2023-04-04 at 12 20 26 PM](https://user-images.githubusercontent.com/63930644/229898033-6499ba1d-cb13-4042-9ca8-08eb8e3cca4c.png)
+
+![Screen Shot 2023-04-04 at 12 17 44 PM](https://user-images.githubusercontent.com/63930644/229897459-7ebc0816-6140-4a09-89e6-c207c4ed1dcf.png)
 
 For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
 
