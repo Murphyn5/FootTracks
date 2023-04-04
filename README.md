@@ -74,7 +74,7 @@ To run this project locally, please perform the following steps:
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/truham/Plate-Pal
+   git clone https://github.com/Murphyn5/FootTracks.git
    ```
 2. Install dependencies at the root directory
    ```sh
@@ -119,13 +119,7 @@ To run this project locally, please perform the following steps:
 
 # Contact
 
-Project Link: [https://github.com/truham/Plate-Pal](https://github.com/truham/Plate-Pal)
-
-Team Members:
-
-- <input type="checkbox"> [Nick Murphy](https://github.com/Murphyn5)
-- <input type="checkbox"> [Zak Beg](https://github.com/zakariya23)
-- <input type="checkbox"> [Hamilton Truong](https://github.com/truham)
+Project Link: [https://github.com/Murphyn5/FootTracks](https://github.com/Murphyn5/FootTracks)
 
 <!-- References and Icons -->
 
