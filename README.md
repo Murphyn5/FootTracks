@@ -134,6 +134,10 @@ The final feature included in FootTracks is the "My Activities" page where visit
 
 ![Screen Shot 2023-04-04 at 2 19 50 PM](https://user-images.githubusercontent.com/63930644/229925154-791a5e38-3f65-4ece-bad1-7c7294172cbc.png)
 
+# Future Implementation Goals
+
+Features that are planned to be built into FootTracks at a later date include a user profile page, the ability for users to create/read/delete images to their activities, an activity details page, and the implementation of a groups feature that users can join and interact with activities from other members of the group.
+
 # Contact
 
 Project Link: [https://github.com/Murphyn5/FootTracks](https://github.com/Murphyn5/FootTracks)
