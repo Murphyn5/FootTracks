@@ -94,7 +94,7 @@ Visitors can also login by signing up and create their own user profile.
 
 After logging in, visitors arrive at their feed where they can view activities created by users that they follow. If a visitor is not currently following other users, they will be prompted to follow another user before they can view any activities in their feed.
 
-![Screen Shot 2023-04-04 at 12 37 16 PM](https://user-images.githubusercontent.com/63930644/229901279-454b83d2-2e75-4541-a1a1-30021986feeb.png)
+![Screen Shot 2023-04-04 at 1 51 34 PM](https://user-images.githubusercontent.com/63930644/229917946-943fe0ec-8766-4d1d-8720-8b6ee928a0bc.png)
 
 After clicking the button to "Find Friends" or by searching for friends using the search bar, visitors will be presented with a list of users that they can follow.
 
