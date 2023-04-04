@@ -106,7 +106,7 @@ Returning to their feed, visitors will then be able to see activities in the "Fo
 
 ![Screen Shot 2023-04-04 at 1 50 18 PM](https://user-images.githubusercontent.com/63930644/229917520-079ef045-c846-4f32-9f96-84064c6abedc.png)
 
-While viewing the comments modal, visitors will: have the ability to post/edit/ or delete comments they are the owner of, have the ability to delete any comment if they are the owner of the activity, and view which users have liked an activity.
+While viewing the comments modal, visitors will: have the ability to post/edit/ or delete comments they are the owner of, have the ability to delete any comment if they are the owner of the activity, and view details for users that have liked the activity.
 
 ![Screen Shot 2023-04-04 at 1 56 19 PM](https://user-images.githubusercontent.com/63930644/229918903-af451566-8403-4320-8295-0c54fe59bec7.png)
 
