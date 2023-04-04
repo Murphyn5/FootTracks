@@ -112,6 +112,9 @@ While viewing the comments modal, visitors will: have the ability to post/edit/ 
 
 ![Screen Shot 2023-04-04 at 1 59 14 PM](https://user-images.githubusercontent.com/63930644/229919783-a17e3c28-2281-49fb-8c4e-373b48746c8f.png)
 
+To create an activity, visitors can access the dropdown in the top right corner of the window to either manually create an activity or to record an activity.
+
+![Screen Shot 2023-04-04 at 2 00 57 PM](https://user-images.githubusercontent.com/63930644/229920452-6695a2e7-71f3-46e4-9191-50090531b21b.png)
 
 For recording activities, this applicates integrates into react a geotracker developed by [Anthony Ng](https://medium.com/@engineerng) that he shared in the article: [Make a running tracker with Geolocation API](https://medium.com/geekculture/make-a-running-tracker-with-geolocation-api-8b2ac541196e). 
 
