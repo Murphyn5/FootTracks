@@ -102,7 +102,7 @@ After clicking the button to "Find Friends" or by searching for friends using th
 
 Returning to their feed, visitors will then be able to see activities in the "Following" Tab and the "My Activities" tab ordered by activity date. The "Following" tab includes activities created by the visitor and users that they follow. The "My Activities" tab includes activities created only by the user.
 
-![Screen Shot 2023-04-04 at 12 36 03 PM](https://user-images.githubusercontent.com/63930644/229901034-c6817f87-51c7-4d0d-a874-78e0ad26e7db.png)
+![Screen Shot 2023-04-04 at 1 52 23 PM](https://user-images.githubusercontent.com/63930644/229918078-770b7165-baef-4cf7-93f5-beb4037e1d15.png)
 
 ![Screen Shot 2023-04-04 at 1 50 18 PM](https://user-images.githubusercontent.com/63930644/229917520-079ef045-c846-4f32-9f96-84064c6abedc.png)
 
