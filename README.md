@@ -50,7 +50,7 @@ To run this project locally, please perform the following steps:
    ```sh
    pipenv install -r requirements.txt
    ```
-3. Create a **.env** file based on the example with proper settings for your development environment
+3. Create a **.env** file based on the example with proper settings for your development environment (Amazon S3 credentials required to upload profile pictures)
 
 4. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
