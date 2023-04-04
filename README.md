@@ -116,7 +116,7 @@ To create an activity, visitors can access the dropdown in the top right corner 
 
 ![Screen Shot 2023-04-04 at 2 00 57 PM](https://user-images.githubusercontent.com/63930644/229920452-6695a2e7-71f3-46e4-9191-50090531b21b.png)
 
-For manually creating an activity, visitors will will be required to submit data for distance, duration, title, Sport, and activity date of the activity.
+For manually creating an activity, visitors will will be required to submit data for distance, duration, title, sport, and date of the activity.
 
 ![Screen Shot 2023-04-04 at 2 09 29 PM](https://user-images.githubusercontent.com/63930644/229923077-f4d34004-3c70-404f-bc6a-c2842e028bf8.png)
 
