@@ -143,7 +143,13 @@ Features that are planned to be built into FootTracks at a later date include a 
 
 # Contact
 
-Project Link: [https://github.com/Murphyn5/FootTracks](https://github.com/Murphyn5/FootTracks)
+# Contact
+
+Email: nlimurphy@gmail.com
+
+Portfolio: https://murphyn5.github.io/
+
+LinkedIn: https://linkedin.com/in/nicholas-murphy-1167b226b
 
 <!-- References and Icons -->
 
