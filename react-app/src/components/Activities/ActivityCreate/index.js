@@ -202,7 +202,7 @@ const ActivityCreate = () => {
                 <div className="activity-create-container">
                     <h1>Manual Entry</h1>
                     <form onSubmit={onSubmit} className="activity-create-form">
-                        <div className="activity-create-stats-container">
+                        <div className="activity-create-stats-container md:flex">
                             <div className="activity-create-distance-container">
                                 <div> Distance </div>
                                 <input
@@ -282,7 +282,7 @@ const ActivityCreate = () => {
                         </div>
                         <hr className="hr"></hr>
                         <br></br>
-                        <div className="activity-create-type-date-container">
+                        <div className="activity-create-type-date-container md:flex">
                             <div className="activity-create-type-container">
                                 <div> Sport </div>
                                 <select

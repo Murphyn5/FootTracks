@@ -64,10 +64,7 @@ function Splashpage() {
     return (
         <div className="splash-page-wrapper">
             <br></br>
-            <div className="splash-page-title">
-                <div></div>
-            </div>
-            <div className="splash-page-body">
+            <div className="splash-page-body grid-cols-1 lg:grid-cols-3">
                 <div className="splash-page-user-info-container ">
                     {sessionUser.profile_picture ?
                         <img className="splash-page-user-info-icon" src={sessionUser.profile_picture}></img>
@@ -76,7 +73,7 @@ function Splashpage() {
 
                     }
                     <OpenProfileImageModalButton
-                    modalComponent={<ProfileImageModal userId={sessionUser.id} type={type}> </ProfileImageModal>}
+                        modalComponent={<ProfileImageModal userId={sessionUser.id} type={type}> </ProfileImageModal>}
                     ></OpenProfileImageModalButton>
                     <br></br>
                     <br></br>
@@ -122,13 +119,16 @@ function Splashpage() {
                 <div className="activities-container">
                     {
                         sessionUser.following_length > 0 ?
-                            <select className="splash-page-activity-select"
-                                value={type}
-                                onChange={(e) => setType(e.target.value)}
-                            >
-                                <option className="splash-page-activity-option" value="Following">Following</option>
-                                <option className="splash-page-activity-option" value="My Activities">My Activities</option>
-                            </select>
+                            <div className="flex mt-10 lg:mt-0 justify-center lg:justify-start">
+                                <select className="splash-page-activity-select lg:absolute"
+                                    value={type}
+                                    onChange={(e) => setType(e.target.value)}
+                                >
+                                    <option className="splash-page-activity-option" value="Following">Following</option>
+                                    <option className="splash-page-activity-option" value="My Activities">My Activities</option>
+                                </select>
+                            </div>
+
                             :
                             null
                     }

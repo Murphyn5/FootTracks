@@ -11,9 +11,7 @@
     width: 1037px;
 }
 
-.activity-create-stats-container {
-    display: flex;
-}
+
 
 .activity-create-distance-container {
 
@@ -111,7 +109,6 @@
 
 .activity-create-type-date-container{
     width: 485px;
-    display: flex;
 }
 
 .activity-create-type-container input:focus {

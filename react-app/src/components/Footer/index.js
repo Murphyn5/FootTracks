@@ -8,7 +8,7 @@ const Footer = () => {
 
             <div id="main-footer" className="main-footer">
                 <div className="main-footer-container">
-                    <img className="logo-image" src={logo} alt="logo"></img>
+                    <img className="logo-image h-[80px]" src={logo} alt="logo"></img>
                     <div>© 2023 Nick Murphy</div>
                     <div className="main-footer-row">
                         <a href="https://github.com/Murphyn5">

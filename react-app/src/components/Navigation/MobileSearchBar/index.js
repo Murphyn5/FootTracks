@@ -20,10 +20,10 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search-container hidden lg:flex">
-      <form className="search-container-form" onSubmit={onSubmit}>
+    <div className="mobile-search-container">
+      <form className="mobile-search-container-form" onSubmit={onSubmit}>
         <input
-          className="search-container-input"
+          className="mobile-search-container-input"
           type="text"
           placeholder="Search for an athlete..."
           value={searchString}

@@ -1,4 +1,6 @@
 import React from "react";
+import "./index.css";
+
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -8,7 +10,7 @@ import * as sessionActions from "./store/session";
 import TrackerProvider from "./context/TrackerContext";
 import App from "./App";
 
-import "./index.css";
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {

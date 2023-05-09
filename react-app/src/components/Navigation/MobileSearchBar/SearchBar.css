@@ -1,13 +1,14 @@
-.search-container {
+.mobile-search-container {
   width: 100%;
 }
 
-.search-container-form {
+.mobile-search-container-form {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
 }
 
-.search-container-input {
+.mobile-search-container-input {
   width: 300px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
