@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./SearchBar.css";
 
-const SearchBar = () => {
+const SearchBar = ({setMobileMenuOpen}) => {
   const history = useHistory();
   const [searchString, setSearchString] = useState("");
   // const [userSearched, setUserSearched] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setMobileMenuOpen(false)
     if (searchString.length === 0) {
       setSearchString("");
       return history.push(`/users/search/`);

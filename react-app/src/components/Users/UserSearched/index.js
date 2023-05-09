@@ -31,9 +31,10 @@ const UserSearched = () => {
   return (
 
     <div className="users-search-container-background">
-      <div className="users-search-container">
+      <div className="users-search-container lg:w-[1216px]">
         <h1>Athlete Search</h1>
         <div style={{ lineHeight: "22px", fontWeight: "400", fontSize: "22px" }}>{users.length} {users.length === 1 ? "Athlete" : "Athletes"}</div>
+        <br></br>
         <hr style={{ marginBottom: "0", borderBottom: "0" }}></hr>
         {users.length === 0 ?
           <div>
