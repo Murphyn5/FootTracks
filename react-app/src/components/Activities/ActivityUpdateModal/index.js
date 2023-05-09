@@ -238,23 +238,21 @@ const ActivityUpdateModal = ({ activity }) => {
                 <div>
 
                 </div>
-                <div className="activity-update-container">
+                <div className="activity-create-container">
                     <h1>Update Activity</h1>
-                    <form onSubmit={onSubmit} className="activity-update-form">
-                        <div className="activity-update-stats-container">
-                            <div className="activity-update-distance-container">
+                    <form onSubmit={onSubmit} className="activity-create-form">
+                        <div className="activity-create-stats-container flex flex-col items-center md:flex-row md:items-start md:justify-start">
+                            <div className="activity-create-distance-container">
                                 <div> Distance </div>
                                 <input
                                     type="decimal"
                                     min="0"
                                     value={distance}
-                                    disabled={disabled}
                                     onChange={(e) => setDistance(e.target.value)}
                                     style={{ borderRight: "0" }}
                                 ></input>
                                 <select
                                     value={distanceType}
-                                    disabled={disabled}
                                     onChange={(e) => setDistanceType(e.target.value)}
                                 >
                                     <option value="miles">miles</option>
@@ -262,39 +260,37 @@ const ActivityUpdateModal = ({ activity }) => {
                                 </select>
                                 {distanceError ? <div className="error">{distanceError}</div> : <br></br>}
                             </div>
+                            <br className="md:hidden"></br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <div className="activity-update-duration">
+                            <div className="activity-create-duration">
                                 <div > Duration </div>
-                                <div className="activity-update-duration-input-wrapper">
-                                    <div className="activity-update-duration-input-container" >
-                                        <abbr className="activity-update-duration-placeholder">hr</abbr>
+                                <div className="activity-create-duration-input-wrapper">
+                                    <div className="activity-create-duration-input-container" >
+                                        <abbr className="activity-create-duration-placeholder">hr</abbr>
                                         <input
                                             type="number"
                                             min="0"
                                             value={hours}
-                                            disabled={disabled}
                                             onChange={(e) => setHours(e.target.value)}
                                             style={{ borderRight: "0" }}
                                         ></input>
                                     </div>
-                                    <div className="activity-update-duration-input-container" >
-                                        <abbr className="activity-update-duration-placeholder">min</abbr>
+                                    <div className="activity-create-duration-input-container" >
+                                        <abbr className="activity-create-duration-placeholder">min</abbr>
                                         <input
                                             type="number"
                                             min="0"
                                             value={minutes}
-                                            disabled={disabled}
                                             onChange={(e) => setMinutes(e.target.value)}
                                             style={{ borderRight: "0" }}
                                         ></input>
                                     </div>
-                                    <div className="activity-update-duration-input-container">
-                                        <abbr className="activity-update-duration-placeholder">s</abbr>
+                                    <div className="activity-create-duration-input-container">
+                                        <abbr className="activity-create-duration-placeholder">s</abbr>
                                         <input
                                             type="number"
                                             min="0"
                                             value={seconds}
-                                            disabled={disabled}
                                             onChange={(e) => setSeconds(e.target.value)}
                                         ></input>
                                     </div>
@@ -303,20 +299,18 @@ const ActivityUpdateModal = ({ activity }) => {
                                 {durationError ? <div className="error">{durationError}</div> : <br></br>}
                             </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <div className="activity-update-distance-container">
+                            <div className="activity-create-distance-container">
                                 <div> Elevation </div>
                                 <input
                                     type="number"
                                     min="0"
                                     value={elevation}
-                                    disabled={disabled}
                                     onChange={(e) => setElevation(e.target.value)}
                                     style={{ borderRight: "0" }}
                                 ></input>
                                 <select
                                     min="0"
                                     value={elevationType}
-                                    disabled={disabled}
                                     onChange={(e) => setElevationType(e.target.value)}
                                 >
                                     <option value="feet">feet</option>
@@ -326,10 +320,10 @@ const ActivityUpdateModal = ({ activity }) => {
                             </div>
 
                         </div>
-                        <hr className="hr"></hr>
+                        <hr className="hr hidden md:flex"></hr>
                         <br></br>
-                        <div className="activity-update-type-date-container">
-                            <div className="activity-update-type-container">
+                        <div className="activity-create-type-date-container flex flex-col items-center md:flex-row md:items-start md:justify-start">
+                            <div className="activity-create-type-container">
                                 <div> Sport </div>
                                 <select
                                     value={type}
@@ -342,7 +336,7 @@ const ActivityUpdateModal = ({ activity }) => {
                                 </select>
                             </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <div className="activity-update-distance-container">
+                            <div className="activity-create-distance-container">
                                 <div> Date & Time </div>
                                 <input
                                     type="date"
@@ -361,8 +355,7 @@ const ActivityUpdateModal = ({ activity }) => {
                             </div>
                         </div>
                         <br></br>
-                        <br></br>
-                        <div className="activity-update-title-container">
+                        <div className="activity-create-title-container w-[237px] md:w-[485px] m-auto md:m-0">
                             <div> Title </div>
                             <input
                                 type="text"
@@ -373,7 +366,7 @@ const ActivityUpdateModal = ({ activity }) => {
                         </div>
                         <br></br>
                         <br></br>
-                        <div className="activity-update-description-container">
+                        <div className="activity-create-description-container  w-[237px] md:w-[485px] m-auto md:m-0">
                             <div> Description </div>
                             <textarea
                                 type="text"
@@ -383,7 +376,7 @@ const ActivityUpdateModal = ({ activity }) => {
                             ></textarea>
                             {descriptionError ? <div className="error">{descriptionError}</div> : <br></br>}
                         </div>
-                        <br></br>
+
                         <br></br>
                         <br></br>
                         <br></br>
@@ -391,7 +384,7 @@ const ActivityUpdateModal = ({ activity }) => {
                         <br></br>
                         <hr className="hr"></hr>
                         <br></br>
-                        <button type="submit" className="activity-update-submit-button">Update</button>
+                        <button type="submit" className="activity-create-submit-button">Update</button>
                     </form>
 
                 </div>

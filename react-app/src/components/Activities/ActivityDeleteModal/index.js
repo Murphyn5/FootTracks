@@ -26,7 +26,7 @@ function ActivityDeleteModal({ activityId }) {
 
   return (
     <>
-      <div className="comment-delete-container">
+      <div className="comment-delete-container w-[300px] h-[163px] md:w-[600px] md:h-[123px]">
         <form className={"comment-delete-form"} onSubmit={handleSubmit}>
           <span>
             Are you sure you want to delete this activity? You can not undo this action.

@@ -128,7 +128,7 @@ const ActivityCreate = () => {
                     setDurationError("Duration is required")
                 }
                 if(validationErrors.includes('duration : Duration must be between 0 and 1000000.')){
-                    setDurationError("Max duration: 277 hours")
+                    setDurationError("Max duration: 100 hours")
                 }
                 if(validationErrors.includes('elevation : Elevation must be between 0 and 1000000.')){
                     setElevationError("Max elevation: 1000000 ft")
@@ -202,15 +202,17 @@ const ActivityCreate = () => {
                 <div className="activity-create-container">
                     <h1>Manual Entry</h1>
                     <form onSubmit={onSubmit} className="activity-create-form">
-                        <div className="activity-create-stats-container md:flex">
+                        <div className="activity-create-stats-container flex flex-col items-center md:flex-row md:items-start md:justify-start">
                             <div className="activity-create-distance-container">
                                 <div> Distance </div>
                                 <input
                                     type="decimal"
-                                    min="0"
+                                    min={0}
                                     value={distance}
                                     onChange={(e) => setDistance(e.target.value)}
                                     style={{ borderRight: "0" }}
+                                    max={1000000}
+
                                 ></input>
                                 <select
                                     value={distanceType}
@@ -221,6 +223,7 @@ const ActivityCreate = () => {
                                 </select>
                                 {distanceError ? <div className="error">{distanceError}</div> : <br></br>}
                             </div>
+                            <br className="md:hidden"></br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <div className="activity-create-duration">
                                 <div > Duration </div>
@@ -229,20 +232,22 @@ const ActivityCreate = () => {
                                         <abbr className="activity-create-duration-placeholder">hr</abbr>
                                         <input
                                             type="number"
-                                            min="0"
+                                            min={0}
                                             value={hours}
                                             onChange={(e) => setHours(e.target.value)}
                                             style={{ borderRight: "0" }}
+                                            max={99}
                                         ></input>
                                     </div>
                                     <div className="activity-create-duration-input-container" >
                                         <abbr className="activity-create-duration-placeholder">min</abbr>
                                         <input
                                             type="number"
-                                            min="0"
+                                            min={0}
                                             value={minutes}
                                             onChange={(e) => setMinutes(e.target.value)}
                                             style={{ borderRight: "0" }}
+                                            max={60}
                                         ></input>
                                     </div>
                                     <div className="activity-create-duration-input-container">
@@ -252,6 +257,7 @@ const ActivityCreate = () => {
                                             min="0"
                                             value={seconds}
                                             onChange={(e) => setSeconds(e.target.value)}
+                                            max={60}
                                         ></input>
                                     </div>
 
@@ -280,9 +286,9 @@ const ActivityCreate = () => {
                             </div>
 
                         </div>
-                        <hr className="hr"></hr>
+                        <hr className="hr hidden md:flex"></hr>
                         <br></br>
-                        <div className="activity-create-type-date-container md:flex">
+                        <div className="activity-create-type-date-container flex flex-col items-center md:flex-row md:items-start md:justify-start">
                             <div className="activity-create-type-container">
                                 <div> Sport </div>
                                 <select
@@ -315,8 +321,7 @@ const ActivityCreate = () => {
                             </div>
                         </div>
                         <br></br>
-                        <br></br>
-                        <div className="activity-create-title-container">
+                        <div className="activity-create-title-container w-[237px] md:w-[485px] m-auto md:m-0">
                             <div> Title </div>
                             <input
                                 type="text"
@@ -327,7 +332,7 @@ const ActivityCreate = () => {
                         </div>
                         <br></br>
                         <br></br>
-                        <div className="activity-create-description-container">
+                        <div className="activity-create-description-container  w-[237px] md:w-[485px] m-auto md:m-0">
                             <div> Description </div>
                             <textarea
                                 type="text"
@@ -337,7 +342,7 @@ const ActivityCreate = () => {
                             ></textarea>
                             {descriptionError ? <div className="error">{descriptionError}</div> : <br></br>}
                         </div>
-                        <br></br>
+
                         <br></br>
                         <br></br>
                         <br></br>
