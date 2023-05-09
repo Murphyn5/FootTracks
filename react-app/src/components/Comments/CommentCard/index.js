@@ -82,7 +82,7 @@ const CommentCard = ({ ownerProfilePicture, comment, activityTitle, activityId, 
     }
 
     return (
-        <div className="comment-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <div className="comment-card w-[300px] md:w-[725px]" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             {hover ? (
                 <div className="comment-card-content">
 

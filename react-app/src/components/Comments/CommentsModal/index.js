@@ -225,7 +225,7 @@ function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initial
 
     return (
         <>
-            <div className="comment-modal-container">
+            <div className="comment-modal-container min-w-[363px] md:min-w-[804px]">
 
                 <div className="comment-modal-activity-info-container">
                     <div className="comment-modal-owner-image">

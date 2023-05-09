@@ -119,7 +119,7 @@ function Splashpage() {
                     {
                         sessionUser.following_length > 0 ?
                             <div className="flex justify-center lg:justify-start my-5">
-                                <select className="splash-page-activity-select ml-[80px] "
+                                <select className="splash-page-activity-select lg:ml-[80px] "
                                     value={type}
                                     onChange={(e) => setType(e.target.value)}
                                 >

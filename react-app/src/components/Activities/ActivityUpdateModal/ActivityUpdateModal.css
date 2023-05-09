@@ -1,7 +1,7 @@
 .activity-update-container-background {
 
     height: calc(100% - 81px);
-    width: 1200px;
+    max-width: 1200px;
     padding: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -197,6 +197,7 @@
     font-size: 14px;
     color: white;
     transition-property: background-color;
+    background-color: #ff5353;
     transition-duration: 0.5s;
     cursor: pointer;
 }

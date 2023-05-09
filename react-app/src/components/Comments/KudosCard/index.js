@@ -21,7 +21,7 @@ const KudosCard = ({ likedUser, activityTitle, activityId, ownerId }) => {
 
 
     return (
-        <div className="kudos-card">
+        <div className="kudos-card w-[300px] md:w-[725px]">
             <div className="kudos-card-content">
                 <div className="kudos-card-owner-container">
                     <div className="kudos-card-owner-image">
