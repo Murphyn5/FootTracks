@@ -11,7 +11,7 @@ const LoginSignupFooter = () => {
                 <br></br>
                 <br></br>
                 <br></br>
-                    <img className="logo-image" src={logo} alt="logo"></img>
+                    <img className="logo-image h-[80px]" src={logo} alt="logo"></img>
                     <div>© 2023 Nick Murphy</div>
                     <div className="login-footer-row">
                         <a href="https://github.com/Murphyn5">

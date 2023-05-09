@@ -25,9 +25,9 @@
 }
 
 /* hide menu when not clicked on */
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 /* styling menu buttons, rounded with spacing */
 
@@ -236,7 +236,7 @@ ul {
 
 /* resize logo to be slightly smaller than full parent size */
 .logo-image {
-  height: 80px;
+  min-width: 133px;
 }
 
 .nav-right-container {

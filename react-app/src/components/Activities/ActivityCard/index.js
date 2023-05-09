@@ -176,8 +176,8 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
 
     return (
-        <div className="activity-card">
-            <div className="activity-card-content">
+        <div className="activity-card w-[350px] md:w-[592px]">
+            <div className="activity-card-content w-[340px] md:w-[480px]">
 
                 <div className="activity-card-owner-container">
                     <div className="activity-card-owner-image">
@@ -231,7 +231,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
             </div>
 
-            {activity.coordinates ? <><br></br><div id={`tracker${activity.id}`} style={{ width: "548px", height: "218px", borderRadius: "4px", margin: "auto", zIndex: "0" }}></div></>
+            {activity.coordinates ? <><br></br><div id={`tracker${activity.id}`} className='w-[306px] md:w-[548px]' style={{ height: "218px", borderRadius: "4px", margin: "auto", zIndex: "0" }}></div></>
                 : <></>
             }
 

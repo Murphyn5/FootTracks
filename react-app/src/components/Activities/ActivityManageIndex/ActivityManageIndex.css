@@ -3,12 +3,14 @@
     min-height: calc((100% - 80px) * .8);
     padding: 20px;
     box-sizing: border-box;
+    overflow-x: auto;
 }
 
 .activities-manage-container {
     width: 1216px;
     margin: auto;
     overflow-y: auto;
+
 }
 
 .activities-manage-headers{

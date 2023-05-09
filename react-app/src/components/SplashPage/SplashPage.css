@@ -6,7 +6,6 @@
 
 .splash-page-body {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
 }
 
@@ -19,7 +18,6 @@
 }
 
 .splash-page-activity-select {
-  position: absolute;
   /* width: 97px ; */
   top: 95px;
   height: 40px;
