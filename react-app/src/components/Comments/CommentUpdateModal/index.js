@@ -19,7 +19,7 @@ function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId,
 
     return (
         <>
-            <form className="comment-update-modal-container">
+            <form className="comment-update-modal-container w-[300px] md:w-[600px]">
                 <textarea
                     type="text"
                     className={`comment-modal-comments-submit-input ${placeHolderColor}`}

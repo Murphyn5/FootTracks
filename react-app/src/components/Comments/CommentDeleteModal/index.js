@@ -24,11 +24,12 @@ function CommentDeleteModal({ ownerProfilePicture, commentId, activityTitle, act
 
     return (
         <>
-            <div className="comment-delete-container">
+            <div className="comment-delete-container w-[300px] h-[163px] md:w-[600px] md:h-[123px]">
                 <form className={"comment-delete-form"} onSubmit={handleSubmit}>
                     <span>
                         Are you sure you want to delete this comment? You can not undo this action.
                     </span>
+                    <br className="md:hidden"></br>
                     <div>
                         <OpenCommentsFromNoDeleteModalButton
                             buttonText={"Cancel"}

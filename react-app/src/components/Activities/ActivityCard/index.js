@@ -177,7 +177,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
     return (
         <div className="activity-card w-[350px] md:w-[592px]">
-            <div className="activity-card-content w-[340px] md:w-[480px]">
+            <div className="activity-card-content w-[320px] md:w-[480px]">
 
                 <div className="activity-card-owner-container">
                     <div className="activity-card-owner-image">
@@ -188,8 +188,8 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
                         }
                     </div>
-                    <div className="activity-card-owner-information">
-                        <div className="activity-card-owner-name">{`${activity.owner_first_name} ${activity.owner_last_name[0]}.`}</div>
+                    <div className="activity-card-owner-information ">
+                        <div className="activity-card-owner-name ">{`${activity.owner_first_name} ${activity.owner_last_name[0]}.`}</div>
                         <div className="activity-card-rating-and-date-container">
                             <div className="activity-card-date">{date}</div>
                         </div>
@@ -222,7 +222,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
                     <div className="activity-card-stats-container">
                         <div>{Math.round(activity.distance * 100) / 100} mi</div>
                         <div>{activity.elevation} ft</div>
-                        <div>
+                        <div className="col-span-2">
                             {hours()} {minutes()}  {seconds()}
                         </div>
                     </div>
