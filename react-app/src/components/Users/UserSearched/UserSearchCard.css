@@ -1,6 +1,5 @@
 .users-search-item{
   display: grid;
-  grid-template-columns: 1fr 1fr;
   margin: auto;
   padding: 16px 0;
   height: 110px;
@@ -16,24 +15,16 @@
 .users-search-item-owner-container{
     padding: 0px 10px;
     display: grid;
-    gap: 50px;
     font-size: 17px;
     grid-template-columns: 40px 1fr;
 }
 
-.users-search-item-owner-container i{
-    font-size: 70px;
-}
-
 .users-search-item-owner-container img{
-  height: 70px;
-  width: 70px;
   border-radius: 50%;
 }
 
 .users-search-item-owner-information{
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   height: 100%;
 }
@@ -41,12 +32,15 @@
 .users-search-item-owner-name {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
 .users-search-item-owner-activities-info {
   width: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   grid-template-columns: 25% 56% 50%;
 
 }
@@ -64,8 +58,8 @@
 }
 
 .users-search-follow-submit-container {
-  height: 100%;
-  padding: 12px 24px;
+  height: 45px;
+  padding: 6px 0px;
   box-sizing: border-box;
   text-align: center;
   border: solid 1px #f0f0f5;
@@ -82,8 +76,8 @@
 }
 
 .users-search-unfollow-submit-container {
-  height: 100%;
-  padding: 12px 24px;
+  height: 45px;
+  padding: 6px 0px;
   box-sizing: border-box;
   text-align: center;
   border: solid 1px rgb(223, 223, 232);
@@ -102,8 +96,8 @@
 }
 
 .users-search-unfollow-submit-container:hover {
-  height: 100%;
-  padding: 12px 24px;
+  height: 45px;
+  padding: 6px 0px;
   box-sizing: border-box;
   text-align: center;
   border: solid 1px rgb(223, 223, 232);

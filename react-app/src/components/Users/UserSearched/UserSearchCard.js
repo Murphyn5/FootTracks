@@ -42,24 +42,24 @@ const UserSearchCard = ({ user, count }) => {
   const followButtonRender = () => {
     if (followingBoolean) {
       return (
-        <button onClick={unFollowSubmit} className={`users-search-unfollow-submit-container`}></button>
+        <button onClick={unFollowSubmit} className={`users-search-unfollow-submit-container w-[80px] md:w-[125px]`}></button>
       )
     } else {
       return (
-        <button onClick={followSubmit} className={`users-search-follow-submit-container`}>Follow</button>
+        <button onClick={followSubmit} className={`users-search-follow-submit-container w-[80px] md:w-[125px]`}>Follow</button>
       )
     }
   }
 
   return (
-    <div className={`users-search-item ${rowColor}`}>
-      <div className="users-search-item-owner-container">
+    <div className={`users-search-item  md:grid-cols-2`}>
+      <div className="users-search-item-owner-container gap-[20px] md:gap-[50px]">
 
-        <div className="users-search-item-owner-image">
+        <div className="users-search-item-owner-image flex items-center md:items-start w-[50px] md:w-[70px]">
           {user.profile_picture ?
-            <img src={user.profile_picture}></img>
+            <img src={user.profile_picture} className="w-[50px] h-[50px] md:w-[70px] md:h-[70px]"></img>
             :
-            <i className="fas fa-user-circle" />
+            <i className="fas fa-user-circle text-[50px] md:text-[70px]" />
 
           }
         </div>
@@ -67,18 +67,21 @@ const UserSearchCard = ({ user, count }) => {
         <div className="users-search-item-owner-information">
           <div className="users-search-item-owner-name">
             <div>
-              {`${user.first_name} ${user.last_name}.`}
+              {`${user.first_name} ${user.last_name}`}
             </div>
-            <div className="users-search-item-owner-activities-title">
-              <div style={{ position: "relative", right: "26px" }}>Activities</div>
-            </div>
+            {followButtonRender()}
+            {/* <div className="users-search-item-owner-activities-title">
+              <div style={{ position: "relative"}}>Activities</div>
+            </div> */}
           </div>
           <div className="users-search-item-owner-activities-info">
-            {followButtonRender()}
-            <div></div>
-            <div style={{ position: "relative", bottom: "15px" }}>
-              <div>{user.ride_count === 0 ? null : (user.ride_count === 1 ? `${user.ride_count} Bike Ride` : `${user.ride_count} Bike Rides`)}</div>
-              <div>{user.run_count === 0 ? null : (user.run_count === 1 ? `${user.run_count} Run` : `${user.run_count} Runs`)}</div>
+            {/* {followButtonRender()} */}
+            <div className="users-search-item-owner-activities-title">
+              <div style={{ position: "relative"}}>Activities</div>
+            </div>
+            <div style={{ position: "relative" }}>
+              <div>{(user.ride_count === 1 ? `${user.ride_count} Bike Ride` : `${user.ride_count} Bike Rides`)}</div>
+              <div>{(user.run_count === 1 ? `${user.run_count} Run` : `${user.run_count} Runs`)}</div>
             </div>
           </div>
         </div>
