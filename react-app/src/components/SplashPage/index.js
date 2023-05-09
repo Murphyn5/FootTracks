@@ -63,9 +63,8 @@ function Splashpage() {
 
     return (
         <div className="splash-page-wrapper">
-            <br></br>
-            <div className="splash-page-body grid-cols-1 lg:grid-cols-3">
-                <div className="splash-page-user-info-container ">
+            <div className="splash-page-body grid-cols-1 lg:grid-cols-5">
+                <div className="splash-page-user-info-container mt-[60px] lg:mt-[80px]">
                     {sessionUser.profile_picture ?
                         <img className="splash-page-user-info-icon" src={sessionUser.profile_picture}></img>
                         :
@@ -116,11 +115,11 @@ function Splashpage() {
 
                     }
                 </div>
-                <div className="activities-container">
+                <div className="activities-container lg:col-span-3">
                     {
                         sessionUser.following_length > 0 ?
-                            <div className="flex mt-10 lg:mt-0 justify-center lg:justify-start">
-                                <select className="splash-page-activity-select lg:absolute"
+                            <div className="flex justify-center lg:justify-start my-5">
+                                <select className="splash-page-activity-select ml-[80px] "
                                     value={type}
                                     onChange={(e) => setType(e.target.value)}
                                 >
@@ -132,88 +131,91 @@ function Splashpage() {
                             :
                             null
                     }
-                    {
-                        sessionUser.following_length > 0 ? (
-                            activities.length > 0 ?
-                                activities.map((activity) => {
-                                    return (
-                                        <ActivityCard
-                                            activity={activity}
-                                            key={activity.id}
-                                            activitiesType={type}
-                                        />
-                                    );
-                                })
+                    <div className="">
+                        {
+                            sessionUser.following_length > 0 ? (
+                                activities.length > 0 ?
+                                    activities.map((activity) => {
+                                        return (
+                                            <ActivityCard
+                                                activity={activity}
+                                                key={activity.id}
+                                                activitiesType={type}
+                                            />
+                                        );
+                                    })
+                                    :
+                                    <>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <div className="no-activity-card">
+                                            <div>
+                                                No more recent activity available.
+                                            </div>
+                                            <div>
+                                                To see your full activity history, visit your Profile or Training Calendar.
+                                            </div>
+                                        </div>
+                                        <div className="no-activity-card">
+                                            <div>
+                                                No posts yet.
+                                            </div>
+                                        </div>
+                                    </>
+                            )
                                 :
+
                                 <>
                                     <br></br>
                                     <br></br>
                                     <br></br>
-                                    <div className="no-activity-card">
-                                        <div>
-                                            No more recent activity available.
-                                        </div>
-                                        <div>
-                                            To see your full activity history, visit your Profile or Training Calendar.
-                                        </div>
-                                    </div>
-                                    <div className="no-activity-card">
-                                        <div>
-                                            No posts yet.
+                                    <div className="getting-started-card">
+                                        <img src={img}></img>
+                                        <div className="getting-started-card-body">
+                                            <h3 style={{ fontSize: "28px", fontWeight: "400", margin: "5px 0px 15px 0px" }}>Getting Started</h3>
+                                            <div>We’ve listed a couple of steps to help you get set up on FootTracks.</div>
+                                            <br></br>
+                                            <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
+                                            <br></br>
+                                            <div className="getting-started-card-body-container">
+                                                <i style={{ fontSize: "64px", color: "rgb(0,0,0,.8)" }} className="fa-regular fa-compass"></i>
+                                                <div>
+                                                    <div style={{ fontWeight: "bold" }}>Record your first activity</div>
+                                                    <br></br>
+                                                    <div style={{ paddingRight: "30px" }}>
+                                                        Set up your GPS device and seamlessly upload your workouts right to FootTracks. No device? No problem – record and connect anytime, anywhere with our mobile app.
+                                                    </div>
+                                                    <br></br>
+                                                    <button onClick={showAlert} className="getting-started-connect-device-button">
+                                                        Connect device
+                                                    </button>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
+                                                </div>
+                                            </div>
+                                            <br></br>
+                                            <div className="getting-started-card-body-container">
+                                                <i style={{ fontSize: "45px", color: "rgb(0,0,0,.8)" }} className="fa-solid fa-user-group"></i>
+                                                <div>
+                                                    <div style={{ fontWeight: "bold" }}>See what your friends are doing</div>
+                                                    <br></br>
+                                                    <div style={{ paddingRight: "30px" }}>
+                                                        Find your friends on Strava or invite them to join you. Cheer them on, discover new workouts and start training with the athletes you already know.
+                                                    </div>
+                                                    <br></br>
+                                                    <button onClick={findFriends} className="getting-started-connect-device-button">
+                                                        Find Friends
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </>
-                        )
-                            :
+                        }
+                    </div>
 
-                            <>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <div className="getting-started-card">
-                                    <img src={img}></img>
-                                    <div className="getting-started-card-body">
-                                        <h3 style={{ fontSize: "28px", fontWeight: "400", margin: "5px 0px 15px 0px" }}>Getting Started</h3>
-                                        <div>We’ve listed a couple of steps to help you get set up on FootTracks.</div>
-                                        <br></br>
-                                        <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
-                                        <br></br>
-                                        <div className="getting-started-card-body-container">
-                                            <i style={{ fontSize: "64px", color: "rgb(0,0,0,.8)" }} className="fa-regular fa-compass"></i>
-                                            <div>
-                                                <div style={{ fontWeight: "bold" }}>Record your first activity</div>
-                                                <br></br>
-                                                <div style={{ paddingRight: "30px" }}>
-                                                    Set up your GPS device and seamlessly upload your workouts right to FootTracks. No device? No problem – record and connect anytime, anywhere with our mobile app.
-                                                </div>
-                                                <br></br>
-                                                <button onClick={showAlert} className="getting-started-connect-device-button">
-                                                    Connect device
-                                                </button>
-                                                <br></br>
-                                                <br></br>
-                                                <hr style={{ borderTop: "#6d6d78", width: "100%" }}></hr>
-                                            </div>
-                                        </div>
-                                        <br></br>
-                                        <div className="getting-started-card-body-container">
-                                            <i style={{ fontSize: "45px", color: "rgb(0,0,0,.8)" }} className="fa-solid fa-user-group"></i>
-                                            <div>
-                                                <div style={{ fontWeight: "bold" }}>See what your friends are doing</div>
-                                                <br></br>
-                                                <div style={{ paddingRight: "30px" }}>
-                                                    Find your friends on Strava or invite them to join you. Cheer them on, discover new workouts and start training with the athletes you already know.
-                                                </div>
-                                                <br></br>
-                                                <button onClick={findFriends} className="getting-started-connect-device-button">
-                                                    Find Friends
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </>
-                    }
                 </div>
             </div>
         </div>
