@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useModal } from "../../../context/Modal";
 import "./SearchBar.css";
 
 const SearchBar = ({setMobileMenuOpen}) => {
   const history = useHistory();
   const [searchString, setSearchString] = useState("");
-  // const [userSearched, setUserSearched] = useState(false);
+  const { closeModal } = useModal();
 
   const onSubmit = (e) => {
     e.preventDefault();
     setMobileMenuOpen(false)
+    closeModal()
     if (searchString.length === 0) {
       setSearchString("");
       return history.push(`/users/search/`);

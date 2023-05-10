@@ -270,10 +270,10 @@ const ActivitySummary = ({ }) => {
         <div>
 
         </div>
-        <div className="activity-summary-container">
+        <div className="activity-summary-container lg:w-[1037px]">
           <h1>Record Activity</h1>
           <form onSubmit={onSubmit} className="activity-summary-form">
-            <div className="activity-summary-stats-container">
+            <div className="activity-summary-stats-container flex-col items-center md:items-start md:flex-row md:justify-start">
               <div className="activity-summary-distance-container">
                 <div> Distance </div>
                 <input
@@ -358,10 +358,10 @@ const ActivitySummary = ({ }) => {
               </div>
 
             </div>
-            <hr className="hr"></hr>
+            <hr className="hr hidden lg:flex"></hr>
             <br></br>
-            <div className="activity-summary-lower-container">
-              <div className="activity-summary-type-date-container">
+            <div className="activity-summary-lower-container grid-cols-1 lg:grid-cols-2">
+              <div className="activity-summary-type-date-container flex-col items-center md:items-start md:flex-row md:justify-start">
                 <div className="activity-summary-type-container">
                   <div> Sport </div>
                   <select
@@ -395,12 +395,15 @@ const ActivitySummary = ({ }) => {
                   {dateTimeError ? <div className="error">{dateTimeError}</div> : <br></br>}
                 </div>
               </div>
+              <br className="lg:hidden"></br>
+              <div className="flex w-[100%] justify-center md:justify-start">
+                <div id="summaryTracker" className=" w-[300px] md:w-[500px]" style={{ height: "218px", borderRadius: "4px", zIndex: "0" }}></div>
+              </div>
 
-            <div id="summaryTracker" style={{ width: "500px", height: "218px", borderRadius:"4px", margin:"auto", zIndex:"0" }}></div>
             </div>
             <br></br>
             <br></br>
-            <div className="activity-summary-title-container">
+            <div className="activity-summary-title-container w-[237px] md:w-[485px]">
               <div> Title </div>
               <input
                 type="text"
@@ -411,7 +414,7 @@ const ActivitySummary = ({ }) => {
             </div>
             <br></br>
             <br></br>
-            <div className="activity-summary-description-container">
+            <div className="activity-summary-description-container w-[237px] md:w-[485px]">
               <div> Description </div>
               <textarea
                 type="text"
@@ -422,8 +425,6 @@ const ActivitySummary = ({ }) => {
               {descriptionError ? <div className="error">{descriptionError}</div> : <br></br>}
             </div>
 
-
-            <br></br>
             <br></br>
             <br></br>
             <br></br>

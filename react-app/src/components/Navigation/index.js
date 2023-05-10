@@ -12,6 +12,7 @@ import SearchBar from './SearchBar';
 import MobileSearchBar from "./MobileSearchBar"
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
+import { useModal } from '../../context/Modal';
 
 import { Fragment } from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
@@ -44,6 +45,7 @@ function Navigation({ isLoaded }) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 	const sessionUser = useSelector((state) => state.session.user);
 	const history = useHistory()
+	const { closeModal } = useModal();
 	const handleLogout = (e) => {
 		e.preventDefault();
 		dispatch(logout());
@@ -91,7 +93,7 @@ function Navigation({ isLoaded }) {
 		<header className="bg-white navbar">
 			<nav className="navbar-content px-8" aria-label="Global">
 				<div className="flex nav-left-container">
-					<NavLink exact to="/">
+					<NavLink exact to={"/"} onClick={() => {closeModal()}}>
 						<img className="logo-image h-10" src={logo} alt="logo"></img>
 					</NavLink>
 					&nbsp;&nbsp;
@@ -181,8 +183,8 @@ function Navigation({ isLoaded }) {
 				<div className="fixed inset-0 z-10" />
 				<Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
 					<div className="flex items-center justify-between">
-						<NavLink exact to="/">
-							<img className="h-10 w-auto" src={logo} alt="logo"></img>
+						<NavLink exact to="/" onClick={() => {closeModal();  setMobileMenuOpen(false);}}>
+							<img className="h-10 w-auto" src={logo} alt="logo" ></img>
 						</NavLink>
 						<button
 							type="button"
@@ -228,7 +230,7 @@ function Navigation({ isLoaded }) {
 																key={item.name}
 																as="a"
 																to={item.href}
-																onClick={() => { setMobileMenuOpen(false) }}
+																onClick={() => { setMobileMenuOpen(false); closeModal() }}
 																className="block rounded-lg py-2 pl-6 pr-3 text-sm font-assitant leading-7 text-black hover:bg-slate-100 hover:text-iyarina-light-green"
 															>
 																<item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
