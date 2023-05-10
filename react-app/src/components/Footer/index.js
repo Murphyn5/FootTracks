@@ -5,28 +5,36 @@ import logo from "../../assets/LittleFoot.png";
 const Footer = () => {
     return (
         <>
-
             <div id="main-footer" className="main-footer">
                 <div className="main-footer-container">
-                    <img className="logo-image h-[80px]" src={logo} alt="logo"></img>
-                    <div>© 2023 Nick Murphy</div>
                     <div className="main-footer-row">
-                        <a href="https://github.com/Murphyn5">
-                            <i className="fa-brands fa-github main-footer-icon"></i>
-                        </a>
-
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="https://linkedin.com/in/nicholas-murphy-1167b226b">
-                            <i className="fa-brands fa-linkedin main-footer-icon"></i>
-                        </a>
-
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="https://discordapp.com/users/646099988429930502.">
-                            <i className="fa-brands fa-discord main-footer-icon"></i>
-                        </a>
-
+                        <div className="h-[50px]" style={{ display: "flex", alignItems: "center", color: "#ea547f" }}>
+                            <img className="h-[50px] logo-image" src={logo} alt="logo"></img>
+                        </div>
+                        &nbsp;&nbsp;
+                        <div>© 2023 Nick Murphy</div>
                     </div>
-                    <a href="https://nicklimurphy.netlify.app/" style={{ color: "rgb(0,0,0,.8)" }}>About the developer</a>
+                    <br></br>
+                    <div className="main-footer-row">
+                        <a
+                            className="social-icon"
+                            href="https://www.linkedin.com/in/nicholas-murphy-1167b226b/"
+                        >
+                            <i className="fab fa-linkedin-in main-footer-icon"></i>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a className="social-icon" href="https://github.com/Murphyn5">
+                            <i className="fab fa-github main-footer-icon"></i>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a className="social-icon" href="https://murphyn5.github.io/">
+                            <i className="fas fa-user-circle main-footer-icon"></i>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a className="social-icon" href="mailto:nlimurphy@gmail.com">
+                            <i className="fa-solid fa-envelope main-footer-icon"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </>

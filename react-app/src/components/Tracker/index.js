@@ -324,7 +324,7 @@ function Tracker() {
                 </label>
             </div>
             <div className="log-control">
-                <div className="" onClick={openNav}><i className="fa fa-wrench log"></i></div>
+                {/* <div className="" onClick={openNav}><i className="fa fa-wrench log"></i></div> */}
             </div>
             <div className="meter-control">
                 <div className="meter-look glow">
