@@ -38,8 +38,8 @@ function LoginFormPage() {
 
   return (
     <div className="login-page-wrapper">
-      <div className="background-image" style={{ backgroundImage: `url(${background2})` }}></div>
-      <form className="login-page-container w-[100vw] md:w-[400px]" onSubmit={handleSubmit}>
+      <div className="background-image md:w-[100%]" style={{ backgroundImage: `url(${background2})` }}></div>
+      <form className="login-page-container w-[1000px] mx-auto " onSubmit={handleSubmit}>
         <br></br>
         <h1>Log In</h1>
 
@@ -89,7 +89,7 @@ function LoginFormPage() {
         <br></br>
         <br></br>
       </form>
-      <div className="background-image" style={{ backgroundImage: `url(${background})` }}></div>
+      <div className="background-image md:w-[100%]" style={{ backgroundImage: `url(${background})` }}></div>
     </div>
   );
 }
