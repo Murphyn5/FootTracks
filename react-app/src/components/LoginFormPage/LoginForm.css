@@ -1,5 +1,6 @@
 .login-page-wrapper{
   height: calc(100% - 261px);
+  min-height: 500px;
   display: flex;
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;

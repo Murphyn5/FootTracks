@@ -19,19 +19,20 @@ const Footer = () => {
                         <a
                             className="social-icon"
                             href="https://www.linkedin.com/in/nicholas-murphy-1167b226b/"
+                            target="_blank"
                         >
                             <i className="fab fa-linkedin-in main-footer-icon"></i>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a className="social-icon" href="https://github.com/Murphyn5">
+                        <a className="social-icon" href="https://github.com/Murphyn5" target="_blank">
                             <i className="fab fa-github main-footer-icon"></i>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a className="social-icon" href="https://murphyn5.github.io/">
+                        <a className="social-icon" href="https://murphyn5.github.io/" target="_blank">
                             <i className="fas fa-user-circle main-footer-icon"></i>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a className="social-icon" href="mailto:nlimurphy@gmail.com">
+                        <a className="social-icon" href="mailto:nlimurphy@gmail.com" target="_blank">
                             <i className="fa-solid fa-envelope main-footer-icon"></i>
                         </a>
                     </div>
