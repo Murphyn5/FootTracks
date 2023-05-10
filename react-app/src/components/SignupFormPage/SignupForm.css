@@ -2,6 +2,7 @@
   height: calc(100% - 261px);
   display: flex;
   background-size: cover;
+  min-height: 500px;
 }
 
 
@@ -9,38 +10,50 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 249px;
+  width: 349px;
   margin: auto;
   background: linear-gradient(180deg, rgba(0, 0, 0, .95) 20%, rgba(0, 0, 0, 0.6) 80%);
-  padding: 50px;
+  padding: 20px 50px;
+  height: 100%;
   color: white;
-  border-radius: 4px;
 }
 
 .sign-up-page-container>input {
-  width: 235px;
+  width: 100%;
   height: 25px;
   margin: 5px 0px;
   padding: 0px 5px;
+  color: black;
+}
+
+.sign-up-page-names{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+
 }
 
 .sign-up-page-names>input {
-  width: 110.5px;
+  width: 100%;
   height: 25px;
   margin: 5px 0px;
   padding: 0px 5px;
+  color: black;
 }
 
 .sign-up-page-names>select {
   width: 124.5px;
   height: 29px;
-  padding: 0px
+  padding: 0px;
+  color: black;
 }
 
 .sign-up-page-names-labels {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
+  gap: 10px;
 }
 
 .signup-form-button {
@@ -50,11 +63,12 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #ff5353;
 }
 
 .new-platepal-log-in {
-  color: #0073bb;
-  text-decoration: none;
+  color: #56beffe8;
+  text-decoration: underline;
 }
 
 .signup-form-errors {

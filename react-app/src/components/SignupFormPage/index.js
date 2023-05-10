@@ -65,7 +65,7 @@ function SignupFormPage() {
   return (
     <div className="sign-up-page-wrapper" style={{ backgroundImage: `url(${background})` }}>
       <form className="sign-up-page-container" onSubmit={handleSubmit}>
-        <h3 style={{ textAlign: "center", fontSize: "32px", marginTop: "0" }}>Join FootTracks today, it's Free.</h3>
+        <h3 style={{ textAlign: "center", fontSize: "32px", marginTop: "0", fontWeight: "bold" }}>Join FootTracks today, it's Free.</h3>
         <div className="sign-up-page-names-labels">
           <div>
             First Name:
@@ -92,8 +92,8 @@ function SignupFormPage() {
           />
         </div>
         <div className="sign-up-page-names-labels">
-          {firstNameError ? <div><div className="signup-form-errors">{firstNameError}</div><br></br></div> : <div></div>}
-          {lastNameError ? <div><div className="signup-form-errors">{lastNameError}</div><br></br></div> : null}
+          {firstNameError ? <div><div className="signup-form-errors">{firstNameError}</div></div> : <div></div>}
+          {lastNameError ? <div><div className="signup-form-errors">{lastNameError}</div></div> : null}
         </div>
         <div className="sign-up-page-names-labels">
           <div>
@@ -106,7 +106,7 @@ function SignupFormPage() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        {emailError ? <><div className="signup-form-errors">{emailError}</div><br></br></> : null}
+        {emailError ? <><div className="signup-form-errors">{emailError}</div></> : null}
 
         <div className="sign-up-page-names-labels">
           <div>
@@ -137,7 +137,8 @@ function SignupFormPage() {
             onChange={(e) => setBirthday(e.target.value)}
             required
           />
-          {birthdayError ? <><div className="signup-form-date-errors"><div></div><div>{birthdayError}</div></div><br></br></> : null}
+          <div></div>
+          {birthdayError ? <><div className="signup-form-date-errors"><div className="col-span-2">{birthdayError}</div></div></> : null}
         </div>
 
         <input
@@ -154,19 +155,20 @@ function SignupFormPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-        {passwordError ? <><div className="signup-form-errors">{passwordError}</div><br></br></> : <><br></br><br></br></>}
-        <button className="signup-form-button" type="submit">
-          Sign Up
-        </button>
+        {passwordError ? <><div className="signup-form-errors">{passwordError}</div></> : <><br></br></>}
+        <div className="h-[35px]">
+          <button className="signup-form-button" type="submit">
+            Sign Up
+          </button>
+        </div>
+
         <div className="new-platepal-container">
           Already on FootTracks?{" "}
-          <Link className="new-platepal-log-in" to="/login" style={{ color: "white" }}>
+          <Link className="new-platepal-log-in" to="/login" >
             Log in
           </Link>
         </div>
       </form>
-      <br></br>
-      <br></br>
     </div>
   );
 }
