@@ -48,6 +48,7 @@ function Navigation({ isLoaded }) {
 	const { closeModal } = useModal();
 	const handleLogout = (e) => {
 		e.preventDefault();
+		closeModal()
 		dispatch(logout());
 		setMobileMenuOpen(false)
 	};
