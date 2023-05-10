@@ -26,6 +26,8 @@ Frameworks, Platforms and Libraries:
 [![Python][python.js]][python-url]
 [![Flask][flask.js]][flask-url]
 [![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white)](https://leafletjs.com/)
+[![Tailwind][tailwind.js]][tailwind-url]
+[![MapBox][mapbox.js]][mapbox-url]
 
 
 Database:
@@ -169,3 +171,7 @@ LinkedIn: https://linkedin.com/in/nicholas-murphy-1167b226b
 [flask-url]: https://expressjs.com/
 [postgresql.js]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
 [postgresql-url]: https://www.postgresql.org/
+[tailwind.js]: https://img.shields.io/badge/Tailwind-38B2AC?style=for-the-badge&logo=tailwind&logoColor=white
+[tailwind-url]: https://tailwindcss.com/
+[mapbox.js]: https://img.shields.io/badge/Mapbox-2962ff?style=for-the-badge&logo=mapbox&logoColor=white
+[mapbox-url]: https://www.mapbox.com/
