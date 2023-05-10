@@ -4,12 +4,14 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useModal } from "../../context/Modal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   const sessionUser = useSelector((state) => state.session.user);
+  const { closeModal } = useModal();
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -30,6 +32,7 @@ function ProfileButton({ user }) {
   }, [showMenu]);
 
   const handleLogout = (e) => {
+    closeModal()
     e.preventDefault();
     dispatch(logout());
   };

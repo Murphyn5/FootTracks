@@ -1,4 +1,4 @@
-.login-footer {
+/* .login-footer {
     background-color: #242428;
     height: max-content;
     width: 100%;
@@ -27,4 +27,38 @@
 .login-footer-link{
     cursor: pointer;
     color: rgba(255, 255, 255, 0.8) !important;
+} */
+
+
+.login-footer {
+    background-color: #242428;
+    height: max-content;
+    width: 100%;
+    min-height: 200px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(128, 128, 128, 0.171);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8)
+    /* position: absolute;
+    bottom: 0; */
+}
+
+.login-footer-container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-footer-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8)
+}
+
+.login-footer-row {
+    display: flex;
+    align-items: center;
 }
