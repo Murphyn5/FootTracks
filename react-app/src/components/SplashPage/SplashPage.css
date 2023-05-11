@@ -117,7 +117,6 @@
 
 .no-activity-card {
   height: 164px;
-  width: 592px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,8 +125,6 @@
 
 .getting-started-card {
   position: relative;
-  top: -4px;
-  width: 592px;
   display: flex;
   background-color: white;
   flex-direction: column;

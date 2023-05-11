@@ -174,8 +174,12 @@ export default function UserProfile() {
 
                 <br></br>
 
-                {user.activities.length === 0 ?
-                    <div>No Activities to show!</div>
+                {activities.length === 0 ?
+                    <div className="no-activity-card m-auto">
+                        <div>
+                            No Activities yet.
+                        </div>
+                    </div>
                     :
                     <div>
                         {
