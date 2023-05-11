@@ -5,6 +5,7 @@ import { authenticate } from "../../../store/session";
 import { followUserThunk, loadUserFollowing, unfollowUserThunk, getUserThunk } from "../../../store/users";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./UserProfile.css"
+import ActivityCard from "../../Activities/ActivityCard";
 
 export default function UserProfile() {
 
@@ -70,7 +71,7 @@ export default function UserProfile() {
 
     return (
         <div className="p-4 md:p-16 max-w-[1500px] m-auto">
-            <div className="p-8 bg-white shadow mt-24">
+            <div className="p-8 bg-[rgb(255,255,255,0.7)] shadow mt-24">
                 <div className="grid grid-cols-1 md:grid-cols-3">
                     {user.id === sessionUser.id ? <div></div> :
                         <div className="grid grid-cols-2 text-center order-last md:order-first mt-10 md:mt-20 md:mt-0 w-[250px] mx-auto">
@@ -113,16 +114,16 @@ export default function UserProfile() {
                         >
                             Connect
                         </button> */}
-                          <h1 className="block md:hidden text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1>
+                            <h1 className="block md:hidden text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1>
                             {followButtonRender()}
                         </div>
 
                     }
                 </div>
 
-                {user.id === sessionUser.id ?                 <div className="mt-20 text-center border-b pb-12">
+                {user.id === sessionUser.id ? <div className="mt-20 text-center border-b pb-12">
                     {user.id === sessionUser.id ? <h1 className="text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1> :
-                    <h1 className="hidden md:block text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1>
+                        <h1 className="hidden md:block text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1>
                     }
 
                     {user.location ? <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p> : <></>}
@@ -144,32 +145,52 @@ export default function UserProfile() {
                         <></>}
                 </div> :
 
-                <div className="mt-10 text-center border-b pb-12">
-                {user.id === sessionUser.id ? <h1 className="text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1> :
-                <h1 className="hidden md:block text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1>
-                }
+                    <div className="mt-10 text-center border-b pb-12">
+                        {user.id === sessionUser.id ? <h1 className="text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1> :
+                            <h1 className="hidden md:block text-4xl font-medium text-gray-700">{user.first_name} {user.last_name} {user.age ? <span className="font-light text-gray-500">, 27</span> : <></>}</h1>
+                        }
 
-                {user.location ? <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p> : <></>}
-                {user.id === sessionUser.id ?
-                    <div className="grid grid-cols-2 text-center order-last md:order-first mt-10 md:mt-0 mx-auto w-[250px]">
-                        <div>
-                            <p className="font-bold text-gray-700 text-xl">{user.followers_count}</p>
-                            <p className="text-gray-400">Followers</p>
-                        </div>
-                        <div>
-                            <p className="font-bold text-gray-700 text-xl">{user.following_count}</p>
-                            <p className="text-gray-400">Following</p>
-                        </div>
-                        {/* <div>
+                        {user.location ? <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p> : <></>}
+                        {user.id === sessionUser.id ?
+                            <div className="grid grid-cols-2 text-center order-last md:order-first mt-10 md:mt-0 mx-auto w-[250px]">
+                                <div>
+                                    <p className="font-bold text-gray-700 text-xl">{user.followers_count}</p>
+                                    <p className="text-gray-400">Followers</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-700 text-xl">{user.following_count}</p>
+                                    <p className="text-gray-400">Following</p>
+                                </div>
+                                {/* <div>
                         <p className="font-bold text-gray-700 text-xl">89</p>
                         <p className="text-gray-400">Comments</p>
                     </div> */}
-                    </div> :
-                    <></>}
-            </div>}
+                            </div> :
+                            <></>}
+                    </div>}
 
+                <br></br>
 
+                {user.activities.length === 0 ?
+                    <div>No Activities to show!</div>
+                    :
+                    <div>
+                        {
+                            user.activities.map((activity) => {
+                                return (
+                                    <div className="">
+                                        <ActivityCard
+                                            activity={activity}
+                                            key={activity.id}
+                                        />
 
+                                    </div>
+                                );
+                            })
+                        }
+
+                    </div>
+                }
             </div>
         </div>
 

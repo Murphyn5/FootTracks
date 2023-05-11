@@ -81,6 +81,7 @@ function App() {
             <ProtectedRoute>
               <UserProfile>
               </UserProfile>
+              <Footer></Footer>
             </ProtectedRoute>
           </Route>
         </Switch>

@@ -31,19 +31,30 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
-    print("USERSDASDASDASD")
 
-    return user.to_dict()
+    user_dict = user.to_dict()
+
+    activity_query = db.session.query(
+        Activity).filter(Activity.owner_id == user.id)
+    activities = activity_query.all()
+    activities_to_return = []
+    for activity in activities:
+        comments_length = len(activity.comments)
+        likes_length = len(activity.liked_users)
+        activity_dict = activity.to_dict()
+        activity_dict["owner_first_name"] = user_dict["first_name"]
+        activity_dict["owner_last_name"] = user_dict["last_name"]
+        activity_dict["owner_profile_picture"] = user_dict["profile_picture"]
+        activity_dict["comments_length"] = comments_length
+        activity_dict["likes_length"] = likes_length
+        activity_dict["liked_users"] = []
+        for user in activity.liked_users:
+            activity_dict["liked_users"].append(user.to_dict())
+        activities_to_return.append(activity_dict)
+
+    user_dict['activities']  = [activity_dict for activity_dict in activities_to_return]
+
+    return user_dict
 
 # GET LIST OF WHO USER IS FOLLOWING BY USER ID
 

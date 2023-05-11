@@ -176,7 +176,7 @@ const ActivityCard = ({ activity, activitiesType }) => {
 
 
     return (
-        <div className="activity-card w-[350px] md:w-[592px]">
+        <div className="activity-card w-[350px] md:w-[592px] shadow">
             <div className="activity-card-content w-[320px] md:w-[480px]">
 
                 <div className="activity-card-owner-container">
