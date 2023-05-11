@@ -9,7 +9,7 @@ import OpenCommentsFromNoDeleteModalButton from "../../OpenCommentsFromNoDeleteM
 import CommentsModal from "../CommentsModal";
 
 
-function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId, ownerProfilePicture, ownerId, activitiesType }) {
+function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId, ownerProfilePicture, ownerId, activitiesType, userProfile, userId }) {
     const dispatch = useDispatch();
     const [body, setBody] = useState(commentBody)
     const [displayErrors, setDisplayErrors] = useState("Edit comment")
@@ -43,6 +43,8 @@ function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId,
                             activityTitle={activityTitle}
                             type={"comments"}
                             activitiesType={activitiesType}
+                            userProfile={userProfile}
+                            userId={userId}
                             ></CommentsModal>}
                     ></OpenCommentsFromUpdateModalButton>
                     &nbsp;&nbsp;
@@ -56,6 +58,8 @@ function CommentUpdateModal({ commentBody, commentId, activityTitle, activityId,
                             activityTitle={activityTitle}
                             type={"comments"}
                             activitiesType={activitiesType}
+                            userProfile={userProfile}
+                            userId={userId}
                             ></CommentsModal>}
                     ></OpenCommentsFromNoDeleteModalButton>
                 </div>

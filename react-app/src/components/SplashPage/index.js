@@ -141,6 +141,7 @@ function Splashpage() {
                                                 activity={activity}
                                                 key={activity.id}
                                                 activitiesType={type}
+                                                userProfile={false}
                                             />
                                         );
                                     })

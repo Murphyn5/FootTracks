@@ -6,9 +6,12 @@ import { followUserThunk, loadUserFollowing, unfollowUserThunk, getUserThunk } f
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./UserProfile.css"
 import ActivityCard from "../../Activities/ActivityCard";
+import { loadAllActivites } from "../../../store/activities";
 
 export default function UserProfile() {
 
+
+    let activities = useSelector(loadAllActivites)
     const { id } = useParams()
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -71,7 +74,7 @@ export default function UserProfile() {
 
     return (
         <div className="p-4 md:p-16 max-w-[1500px] m-auto">
-            <div className="p-8 bg-[rgb(255,255,255,0.7)] shadow mt-24">
+            <div className="p-8 bg-[rgb(255,255,255)] shadow mt-24">
                 <div className="grid grid-cols-1 md:grid-cols-3">
                     {user.id === sessionUser.id ? <div></div> :
                         <div className="grid grid-cols-2 text-center order-last md:order-first mt-10 md:mt-20 md:mt-0 w-[250px] mx-auto">
@@ -176,12 +179,14 @@ export default function UserProfile() {
                     :
                     <div>
                         {
-                            user.activities.map((activity) => {
+                            activities.map((activity) => {
                                 return (
                                     <div className="">
                                         <ActivityCard
                                             activity={activity}
                                             key={activity.id}
+                                            userProfile={true}
+                                            userId={user.id}
                                         />
 
                                     </div>

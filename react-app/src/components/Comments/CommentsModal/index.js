@@ -10,8 +10,9 @@ import { getAllFollowedActivitiesThunk, getCurrentActivitiesThunk } from "../../
 import CommentCard from "../CommentCard";
 import KudosCard from "../KudosCard";
 import { postCommentThunk } from "../../../store/comments";
+import { getUserThunk } from "../../../store/users";
 
-function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initialLoad, type, ownerId, activitiesType }) {
+function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initialLoad, type, ownerId, activitiesType, userProfile, userId }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const comments = useSelector(loadAllComments)
@@ -25,6 +26,7 @@ function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initial
     const [placeHolderColor, setPlaceHolderColor] = useState("")
     const [kudosBoolean, setKudosBoolean] = useState(false)
     const [disabled, setDisabled] = useState("")
+
     useEffect(() => {
         if (initialLoad) {
             const commentAndLikesRestore = async () => {
@@ -104,6 +106,9 @@ function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initial
                 setBody("")
                 setDisplayErrors("Add a comment")
                 setPlaceHolderColor("")
+                if(userProfile){
+                    await dispatch(getUserThunk(userId))
+                }
                 if (activitiesType === "Following") {
                     await dispatch(getAllFollowedActivitiesThunk())
                 }
@@ -124,6 +129,9 @@ function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initial
     const kudosSubmit = async () => {
         if (!kudosBoolean) {
             await dispatch(postLikeThunk(activityId))
+            if(userProfile){
+                await dispatch(getUserThunk(userId))
+            }
             if (activitiesType === "Following") {
                 await dispatch(getAllFollowedActivitiesThunk());
             }
@@ -132,6 +140,9 @@ function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initial
             }
         } else {
             await dispatch(deleteLikeThunk(activityId))
+            if(userProfile){
+                await dispatch(getUserThunk(userId))
+            }
             if (activitiesType === "Following") {
                 await dispatch(getAllFollowedActivitiesThunk());
             }
@@ -163,6 +174,8 @@ function CommentsModal({ ownerProfilePicture, activityTitle, activityId, initial
                                     activityId={activityId}
                                     ownerId={ownerId}
                                     activitiesType={activitiesType}
+                                    userProfile={userProfile}
+                                    userId={userId}
                                     ownerProfilePicture={ownerProfilePicture}
                                 >
                                 </CommentCard>

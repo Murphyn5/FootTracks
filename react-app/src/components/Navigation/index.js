@@ -204,8 +204,9 @@ function Navigation({ isLoaded }) {
 								<div className="-my-6 divide-y divide-gray-500/10">
 									<div className="space-y-2 py-6">
 										<Link
-											to="/login"
-											className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-assitant leading-7 text-black hover:bg-slate-100 hover:text-iyarina-light-green"
+											to={`/users/${sessionUser.id}`}
+											className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-assitant leading-7 text-black hover:bg-slate-100 "
+											onClick={() => {closeModal();  setMobileMenuOpen(false);}}
 										>
 											{sessionUser.profile_picture ?
 												<img className="profile-button-image inline" src={sessionUser.profile_picture}></img>

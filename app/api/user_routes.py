@@ -52,7 +52,7 @@ def user(id):
             activity_dict["liked_users"].append(user.to_dict())
         activities_to_return.append(activity_dict)
 
-    user_dict['activities']  = [activity_dict for activity_dict in activities_to_return]
+    user_dict['activities']  = {'activities': {activity_dict["id"]: activity_dict for activity_dict in activities_to_return}}
 
     return user_dict
 

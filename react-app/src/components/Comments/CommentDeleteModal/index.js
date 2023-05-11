@@ -10,7 +10,7 @@ import { getAllFollowedActivitiesThunk, getCurrentActivitiesThunk, decreaseComme
 import CommentsModal from "../CommentsModal";
 
 
-function CommentDeleteModal({ ownerProfilePicture, commentId, activityTitle, activityId, ownerId, activitiesType }) {
+function CommentDeleteModal({ ownerProfilePicture, commentId, activityTitle, activityId, ownerId, activitiesType, userProfile, userId }) {
     const dispatch = useDispatch();
 
     const { closeModal } = useModal();
@@ -41,6 +41,8 @@ function CommentDeleteModal({ ownerProfilePicture, commentId, activityTitle, act
                                 activityTitle={activityTitle}
                                 type={"comments"}
                                 activitiesType={activitiesType}
+                                userProfile={userProfile}
+                                userId={userId}
                                 ></CommentsModal>}
                         ></OpenCommentsFromNoDeleteModalButton>
                         &nbsp;&nbsp;
@@ -56,6 +58,8 @@ function CommentDeleteModal({ ownerProfilePicture, commentId, activityTitle, act
                                 activityTitle={activityTitle}
                                 type={"comments"}
                                 activitiesType={activitiesType}
+                                userProfile={userProfile}
+                                userId={userId}
                                 ></CommentsModal>}
                         ></OpenCommentsFromDeleteModalButton>
                     </div>

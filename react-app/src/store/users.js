@@ -1,3 +1,5 @@
+import { getActivitiesAction } from "./activities";
+
 /* ----- CONSTANTS ----- */
 const GET_SEARCHED_USERS = "users/GET_SEARCHED_USERS";
 const GET_USER_FOLLOWING = "users/GET_USER_FOLLOWING"
@@ -65,6 +67,7 @@ export const getUserThunk = (id) => async (dispatch) => {
         const user = await res.json();
         console.log(user)
         dispatch(getUserAction(user));
+        dispatch(getActivitiesAction(user.activities));
         return user;
     }
 };
