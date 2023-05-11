@@ -147,20 +147,9 @@ function Splashpage() {
                                     })
                                     :
                                     <>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <div className="no-activity-card">
+                                        <div className="no-activity-card m-auto">
                                             <div>
-                                                No more recent activity available.
-                                            </div>
-                                            <div>
-                                                To see your full activity history, visit your Profile or Training Calendar.
-                                            </div>
-                                        </div>
-                                        <div className="no-activity-card">
-                                            <div>
-                                                No posts yet.
+                                                No Activities yet.
                                             </div>
                                         </div>
                                     </>
@@ -171,7 +160,7 @@ function Splashpage() {
                                     <br></br>
                                     <br></br>
                                     <br></br>
-                                    <div className="getting-started-card">
+                                    <div className="getting-started-card m-auto w-[300px] md:w-[592px]">
                                         <img src={img}></img>
                                         <div className="getting-started-card-body">
                                             <h3 style={{ fontSize: "28px", fontWeight: "400", margin: "5px 0px 15px 0px" }}>Getting Started</h3>
@@ -213,6 +202,7 @@ function Splashpage() {
                                             </div>
                                         </div>
                                     </div>
+                                    <br></br>
                                 </>
                         }
                     </div>
