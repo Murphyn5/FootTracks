@@ -57,6 +57,13 @@ function ProfileButton({ user }) {
         <ul className={ulClassName} ref={ulRef}>
           {user ? (
             <div className="user-drop-down-menu">
+              <Link
+                to={`/users/${sessionUser.id}`}
+                className="user-drop-down-menu-button"
+                onClick={() => { closeModal(); closeMenu() }}
+              >
+                View Profile
+              </Link>
               <div
                 onClick={handleLogout}
                 style={{ cursor: "pointer" }}
@@ -64,13 +71,6 @@ function ProfileButton({ user }) {
               >
                 Log Out
               </div>
-              <Link
-                to={`/users/${sessionUser.id}`}
-                className="user-drop-down-menu-button"
-                onClick={() => {closeModal(); closeMenu()}}
-              >
-                View Profile
-              </Link>
             </div>
           ) : (
             <>
