@@ -51,13 +51,15 @@ const UserSearchCard = ({ user, count }) => {
     }
   }
 
+
+
   return (
     <div className={`users-search-item  md:grid-cols-2`}>
       <div className="users-search-item-owner-container gap-[20px] md:gap-[50px]">
 
         <div className="users-search-item-owner-image flex items-center md:items-start w-[50px] md:w-[70px]">
           {user.profile_picture ?
-            <img src={user.profile_picture} className="w-[50px] h-[50px] md:w-[70px] md:h-[70px]"></img>
+            <img src={user.profile_picture} className={`w-[50px] h-[50px] md:w-[70px] md:h-[70px]`}></img>
             :
             <i className="fas fa-user-circle text-[50px] md:text-[70px]" />
 

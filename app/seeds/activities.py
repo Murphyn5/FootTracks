@@ -170,6 +170,129 @@ def seed_activities():
                               2023, 3, 5, 23, 55, 59, 342380),
                           elevation=400)
 
+    activity17 = Activity(owner_id=4,
+                          title='Afternoon Ride',
+                          description='A challenging bike ride with some friends',
+                          type='Ride',
+                          distance=20.0,
+                          duration=7200,
+                          calories=1000,
+                          activity_date=datetime(
+                               2023, 1, 29, 23, 55, 59, 342380),
+                          elevation=200)
+    activity18 = Activity(owner_id=4,
+                          title='Valentines Day Morning Run',
+                          description='A peaceful morning run in the park',
+                          type='Run',
+                          distance=4.0,
+                          duration=1800,
+                          calories=250,
+                          activity_date=datetime(
+                              2023, 2, 14, 23, 55, 59, 342380),
+                          elevation=30)
+    activity19 = Activity(owner_id=4,
+                          title='Evening Ride',
+                          description='A relaxing bike ride at sunset',
+                          type='Ride',
+                          distance=15.0,
+                          duration=5400,
+                          calories=700,
+                          activity_date=datetime(
+                              2023, 3, 14, 23, 55, 59, 342380),
+                          elevation=150)
+    activity20 = Activity(owner_id=4,
+                          title='Afternoon Run',
+                          description='A challenging trail run in the mountains',
+                          type='Run',
+                          distance=7.0,
+                          duration=3600,
+                          calories=600,
+                          activity_date=datetime(
+                              2023, 3, 5, 23, 55, 59, 342380),
+                          elevation=400)
+
+    activity21 = Activity(owner_id=5,
+                          title='Afternoon Ride',
+                          description='A challenging bike ride with some friends',
+                          type='Ride',
+                          distance=20.0,
+                          duration=7200,
+                          calories=1000,
+                          activity_date=datetime(
+                               2023, 1, 29, 23, 55, 59, 342380),
+                          elevation=200)
+    activity22 = Activity(owner_id=5,
+                          title='Valentines Day Morning Run',
+                          description='A peaceful morning run in the park',
+                          type='Run',
+                          distance=4.0,
+                          duration=1800,
+                          calories=250,
+                          activity_date=datetime(
+                              2023, 2, 14, 23, 55, 59, 342380),
+                          elevation=30)
+    activity23 = Activity(owner_id=5,
+                          title='Evening Ride',
+                          description='A relaxing bike ride at sunset',
+                          type='Ride',
+                          distance=15.0,
+                          duration=5400,
+                          calories=700,
+                          activity_date=datetime(
+                              2023, 3, 14, 23, 55, 59, 342380),
+                          elevation=150)
+    activity24 = Activity(owner_id=5,
+                          title='Afternoon Run',
+                          description='A challenging trail run in the mountains',
+                          type='Run',
+                          distance=7.0,
+                          duration=3600,
+                          calories=600,
+                          activity_date=datetime(
+                              2023, 3, 5, 23, 55, 59, 342380),
+                          elevation=400)
+
+    activity25 = Activity(owner_id=6,
+                          title='Afternoon Ride',
+                          description='A challenging bike ride with some friends',
+                          type='Ride',
+                          distance=20.0,
+                          duration=7200,
+                          calories=1000,
+                          activity_date=datetime(
+                               2023, 1, 29, 23, 55, 59, 342380),
+                          elevation=200)
+    activity26 = Activity(owner_id=6,
+                          title='Valentines Day Morning Run',
+                          description='A peaceful morning run in the park',
+                          type='Run',
+                          distance=4.0,
+                          duration=1800,
+                          calories=250,
+                          activity_date=datetime(
+                              2023, 2, 14, 23, 55, 59, 342380),
+                          elevation=30)
+    activity27 = Activity(owner_id=6,
+                          title='Evening Ride',
+                          description='A relaxing bike ride at sunset',
+                          type='Ride',
+                          distance=15.0,
+                          duration=5400,
+                          calories=700,
+                          activity_date=datetime(
+                              2023, 3, 14, 23, 55, 59, 342380),
+                          elevation=150)
+    activity28 = Activity(owner_id=6,
+                          title='Afternoon Run',
+                          description='A challenging trail run in the mountains',
+                          type='Run',
+                          distance=7.0,
+                          duration=3600,
+                          calories=600,
+                          activity_date=datetime(
+                              2023, 3, 5, 23, 55, 59, 342380),
+                          elevation=400)
+
     db.session.add_all([
         activity1,
         activity2,
@@ -187,6 +310,18 @@ def seed_activities():
         activity14,
         activity15,
         activity16,
+        activity17,
+        activity18,
+        activity19,
+        activity20,
+        activity21,
+        activity22,
+        activity23,
+        activity24,
+        activity25,
+        activity26,
+        activity27,
+        activity28
     ])
 
     db.session.commit()
