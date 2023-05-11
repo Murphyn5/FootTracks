@@ -72,6 +72,10 @@ export default function UserProfile() {
         )
     }
 
+    activities?.sort(
+        (a, b) => Date.parse(b.activity_date) - Date.parse(a.activity_date)
+    );
+
     return (
         <div className="p-4 md:p-16 max-w-[1500px] m-auto">
             <div className="p-8 bg-[rgb(255,255,255)] shadow mt-24">
