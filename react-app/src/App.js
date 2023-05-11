@@ -14,6 +14,7 @@ import ActivitiesManageIndex from "./components/Activities/ActivityManageIndex";
 import UserSearched from "./components/Users/UserSearched";
 import Footer from "./components/Footer";
 import LoginSignupFooter from "./components/LoginSignupFooter";
+import UserProfile from "./components/Users/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -74,6 +75,12 @@ function App() {
             <ProtectedRoute>
               <TrackerSummary></TrackerSummary>
               <Footer></Footer>
+            </ProtectedRoute>
+          </Route>
+          <Route exact path="/users/:id">
+            <ProtectedRoute>
+              <UserProfile>
+              </UserProfile>
             </ProtectedRoute>
           </Route>
         </Switch>

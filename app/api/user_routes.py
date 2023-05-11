@@ -10,6 +10,8 @@ from app.api.aws_helpers import (
 user_routes = Blueprint('users', __name__)
 
 # GET ALL USER
+
+
 @user_routes.route('/')
 @login_required
 def users():
@@ -20,6 +22,8 @@ def users():
     return {'users': [user.to_dict() for user in users]}
 
 # GET USER BY USER ID
+
+
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
@@ -27,9 +31,23 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+    print("USERSDASDASDASD")
+
     return user.to_dict()
 
 # GET LIST OF WHO USER IS FOLLOWING BY USER ID
+
+
 @user_routes.route('/current/following')
 @login_required
 def get_comments_by_activity_id():
@@ -44,7 +62,7 @@ def get_comments_by_activity_id():
     return {"following": {user.id: user.to_dict() for user in user.following}}
 
 
-## FOLLOW A USER
+# FOLLOW A USER
 @user_routes.route('/<int:id>/follow', methods=["POST"])
 @login_required
 def user_follow(id):
@@ -68,6 +86,8 @@ def user_follow(id):
     return user_to_follow.to_dict(), 201
 
 # UNFOLLOW A USER
+
+
 @user_routes.route('/<int:id>/unfollow', methods=["DELETE"])
 @login_required
 def user_unfollow(id):
@@ -86,12 +106,14 @@ def user_unfollow(id):
             "status_code": 403
         }, 403
 
-
-    user.following = [user for user in user.following if user.id != user_to_unfollow.id]
+    user.following = [
+        user for user in user.following if user.id != user_to_unfollow.id]
     db.session.commit()
     return {"following": {user.id: user.to_dict() for user in user.following}}
 
 # SEARCH FOR A USER
+
+
 @user_routes.route('/search')
 @login_required
 def user_search():
@@ -99,7 +121,8 @@ def user_search():
         search_query = request.args['query']
         user_id = int(current_user.get_id())
         session_user = User.query.get(user_id)
-        users = [user.to_dict() for user in User.query.all() if user.id != session_user.id]
+        users = [user.to_dict() for user in User.query.all()
+                 if user.id != session_user.id]
         if search_query == "undefined":
             pass
         else:
@@ -108,15 +131,15 @@ def user_search():
                 (User.last_name.ilike(f'%{search_query}%'))
             )
 
-            users = [user.to_dict() for user in users_query.all() if user.id != session_user.id]
-
+            users = [user.to_dict() for user in users_query.all()
+                     if user.id != session_user.id]
 
         for user in users:
             activities_query = db.session.query(Activity).filter(
                 Activity.owner_id == user["id"])
             activities = activities_query.all()
-            runs = [ activity for activity in activities if activity.type == "Run" ]
-            rides = [ activity for activity in activities if activity.type == "Ride" ]
+            runs = [activity for activity in activities if activity.type == "Run"]
+            rides = [activity for activity in activities if activity.type == "Ride"]
             user["ride_count"] = len(rides)
             user["run_count"] = len(runs)
             # Handle reviews
@@ -135,7 +158,9 @@ def user_search():
 
     return {'users': {}}
 
-## ADD A PROFILE PICTURE
+# ADD A PROFILE PICTURE
+
+
 @user_routes.route('/<int:id>/profile', methods=["POST"])
 @login_required
 def upload_image(id):
@@ -147,9 +172,9 @@ def upload_image(id):
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
         if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
             # return render_template("post_form.html", form=form, errors=[upload])
             return "failed"
 
@@ -157,7 +182,7 @@ def upload_image(id):
         session_user = User.query.get(int(current_user.get_id()))
         session_user.profile_picture = url
         db.session.commit()
-        return { "url" : url}
+        return {"url": url}
 
     if form.errors:
         print(form.errors)
