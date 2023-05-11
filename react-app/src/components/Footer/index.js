@@ -18,7 +18,7 @@ const Footer = () => {
                     <div className="main-footer-row">
                         <a
                             className="social-icon"
-                            href="https://www.linkedin.com/in/nicholas-murphy-1167b226b/"
+                            href="https://www.linkedin.com/in/nicholas-murphy-dev/"
                             target="_blank"
                         >
                             <i className="fab fa-linkedin-in main-footer-icon"></i>
