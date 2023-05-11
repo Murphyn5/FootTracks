@@ -151,7 +151,7 @@ Email: nlimurphy@gmail.com
 
 Portfolio: https://murphyn5.github.io/
 
-LinkedIn: https://linkedin.com/in/nicholas-murphy-1167b226b
+LinkedIn: https://linkedin.com/in/nicholas-murphy-dev
 
 <!-- References and Icons -->
 
