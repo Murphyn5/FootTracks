@@ -1,0 +1,58 @@
+.user-profile-follow-submit-container {
+    height: 45px;
+    padding: 6px 0px;
+    box-sizing: border-box;
+    text-align: center;
+    border: solid 1px #f0f0f5;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    cursor: pointer;
+  }
+
+  .user-profile-follow-submit-container:hover {
+    background-color: #d03e3e;
+  }
+
+  .user-profile-unfollow-submit-container {
+    height: 45px;
+    padding: 6px 0px;
+    box-sizing: border-box;
+    text-align: center;
+    border: solid 1px rgb(223, 223, 232);
+    background-color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    color: rgb(36, 36, 40);
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    cursor: pointer;
+    font-weight: 400;
+  }
+
+  .user-profile-unfollow-submit-container::Before {
+    content: "Following";
+  }
+
+  .user-profile-unfollow-submit-container:hover {
+    height: 45px;
+    padding: 6px 0px;
+    box-sizing: border-box;
+    text-align: center;
+    border: solid 1px rgb(223, 223, 232);
+    background-color: #d03e3e;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    cursor: pointer;
+    font-weight: 400;
+    content: "UnFollow";
+  }
+
+  .user-profile-unfollow-submit-container:hover::before {
+    content: "UnFollow";
+  }

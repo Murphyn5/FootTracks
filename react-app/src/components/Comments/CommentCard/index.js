@@ -11,7 +11,7 @@ import CommentUpdateModal from "../CommentUpdateModal";
 import { useState } from "react";
 
 
-const CommentCard = ({ ownerProfilePicture, comment, activityTitle, activityId, ownerId, activitiesType }) => {
+const CommentCard = ({ ownerProfilePicture, comment, activityTitle, activityId, ownerId, activitiesType, userProfile, userId }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
@@ -55,6 +55,8 @@ const CommentCard = ({ ownerProfilePicture, comment, activityTitle, activityId, 
                         ownerProfilePicture={ownerProfilePicture}
                         commentId={comment.id}
                         activitiesType={activitiesType}
+                        userProfile={userProfile}
+                        userId={userId}
                     ></CommentDeleteModal>}
                 >
                 </OpenModalButton>
@@ -74,6 +76,8 @@ const CommentCard = ({ ownerProfilePicture, comment, activityTitle, activityId, 
                         ownerId={ownerId}
                         commentId={comment.id}
                         activitiesType={activitiesType}
+                        userProfile={userProfile}
+                        userId={userId}
                     ></CommentUpdateModal>}
                 >
 

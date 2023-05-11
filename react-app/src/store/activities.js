@@ -12,7 +12,7 @@ const DECREASE_COMMENTS_LENGTH = "activities/DECREASE_COMMENTS_LENGTH";
 export const loadAllActivites = (state) => Object.values(state.activities.activities)
 
 /* ----- ACTIONS ----- */
-const getActivitiesAction = (activities) => {
+export const getActivitiesAction = (activities) => {
   return {
     type: GET_ACTIVITIES,
     activities,

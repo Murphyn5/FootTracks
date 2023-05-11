@@ -101,7 +101,9 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_picture': self.profile_picture,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'followers_count': len(self.followers),
+            'following_count': len(self.following)
         }
 
 

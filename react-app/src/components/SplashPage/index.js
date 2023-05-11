@@ -64,7 +64,7 @@ function Splashpage() {
     return (
         <div className="splash-page-wrapper">
             <div className="splash-page-body grid-cols-1 lg:grid-cols-5">
-                <div className="splash-page-user-info-container mt-[60px] lg:mt-[80px]">
+                <div className="splash-page-user-info-container mt-[60px] lg:mt-[80px] shadow">
                     {sessionUser.profile_picture ?
                         <img className="splash-page-user-info-icon" src={sessionUser.profile_picture}></img>
                         :
@@ -141,6 +141,7 @@ function Splashpage() {
                                                 activity={activity}
                                                 key={activity.id}
                                                 activitiesType={type}
+                                                userProfile={false}
                                             />
                                         );
                                     })

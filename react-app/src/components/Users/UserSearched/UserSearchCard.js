@@ -66,9 +66,15 @@ const UserSearchCard = ({ user, count }) => {
 
         <div className="users-search-item-owner-information">
           <div className="users-search-item-owner-name">
-            <div>
-              {`${user.first_name} ${user.last_name}`}
-            </div>
+
+            <Link
+              to={`/users/${user.id}`}
+            >
+              <span className="hover:underline">
+                {`${user.first_name} ${user.last_name}`}
+              </span>
+            </Link>
+
             {followButtonRender()}
             {/* <div className="users-search-item-owner-activities-title">
               <div style={{ position: "relative"}}>Activities</div>
@@ -77,7 +83,7 @@ const UserSearchCard = ({ user, count }) => {
           <div className="users-search-item-owner-activities-info">
             {/* {followButtonRender()} */}
             <div className="users-search-item-owner-activities-title">
-              <div style={{ position: "relative"}}>Activities</div>
+              <div style={{ position: "relative" }}>Activities</div>
             </div>
             <div style={{ position: "relative" }}>
               <div>{(user.ride_count === 1 ? `${user.ride_count} Bike Ride` : `${user.ride_count} Bike Rides`)}</div>

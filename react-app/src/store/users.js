@@ -1,6 +1,9 @@
+import { getActivitiesAction } from "./activities";
+
 /* ----- CONSTANTS ----- */
 const GET_SEARCHED_USERS = "users/GET_SEARCHED_USERS";
 const GET_USER_FOLLOWING = "users/GET_USER_FOLLOWING"
+const GET_USER = 'users/GET_USER'
 const FOLLOW_USER = "users/FOLLOW_USER";
 const UNFOLLOW_USER = "users/UNFOLLOW_USER";
 
@@ -30,9 +33,16 @@ const followUserAction = (user) => {
     };
 };
 
+const getUserAction = (user) => {
+    return {
+        type: GET_USER,
+        user,
+    }
+}
+
 const unfollowUserAction = (following) => {
     return {
-        type: GET_USER_FOLLOWING,
+        type: UNFOLLOW_USER,
         following,
     };
 };
@@ -46,6 +56,19 @@ export const getUsersSearchThunk = (searchString) => async (dispatch) => {
         const searchResults = await res.json();
         dispatch(getUsersSearchAction(searchResults));
         return searchResults;
+    }
+};
+
+export const getUserThunk = (id) => async (dispatch) => {
+    console.log("hi")
+    const res = await fetch(`/api/users/${id}`);
+    console.log(res)
+    if (res.ok) {
+        const user = await res.json();
+        console.log(user)
+        dispatch(getUserAction(user));
+        dispatch(getActivitiesAction(user.activities));
+        return user;
     }
 };
 
@@ -88,6 +111,7 @@ export const getUserFollowingThunk = () => async (dispatch) => {
 
 /* ----- INITIAL STATE ----- */
 const initialState = {
+    user: {},
     users: {},
     filteredusers: {},
     following: {}
@@ -105,9 +129,18 @@ const usersReducer = (state = initialState, action) => {
             return newState;
         case FOLLOW_USER:
             newState.following[action.user.id] = action.user;
+            if(newState.user){
+                newState.user.followers_count += 1
+            }
             return newState;
         case UNFOLLOW_USER:
             newState.following = action.following.following;
+            if(newState.user){
+                newState.user.followers_count -= 1
+            }
+            return newState;
+        case GET_USER:
+            newState.user = action.user;
             return newState;
         default:
             return state;

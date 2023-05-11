@@ -9,9 +9,10 @@ import OpenKudosModalButton from "../../OpenKudosModalButton";
 import CommentsModal from "../../Comments/CommentsModal";
 import { postLikeThunk, deleteLikeThunk, loadAllLikes } from "../../../store/likes";
 import { getAllFollowedActivitiesThunk } from "../../../store/activities";
+import { getUserThunk } from "../../../store/users";
 import { useTracker } from "../../../context/TrackerContext";
 
-const ActivityCard = ({ activity, activitiesType }) => {
+const ActivityCard = ({ activity, activitiesType, userProfile, userId }) => {
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -167,16 +168,27 @@ const ActivityCard = ({ activity, activitiesType }) => {
     const kudosSubmit = async () => {
         if (!kudosBoolean) {
             await dispatch(postLikeThunk(activity.id))
-            await dispatch(getAllFollowedActivitiesThunk());
+            if (!userProfile) {
+                await dispatch(getAllFollowedActivitiesThunk());
+            }
+            else {
+                await dispatch(getUserThunk(userId))
+            }
         } else {
             await dispatch(deleteLikeThunk(activity.id))
-            await dispatch(getAllFollowedActivitiesThunk());
+            if (!userProfile) {
+                await dispatch(getAllFollowedActivitiesThunk());
+            }
+            else {
+                await dispatch(getUserThunk(userId))
+            }
+
         }
     }
 
 
     return (
-        <div className="activity-card w-[350px] md:w-[592px]">
+        <div className="activity-card w-[350px] md:w-[592px] shadow">
             <div className="activity-card-content w-[320px] md:w-[480px]">
 
                 <div className="activity-card-owner-container">
@@ -189,7 +201,12 @@ const ActivityCard = ({ activity, activitiesType }) => {
                         }
                     </div>
                     <div className="activity-card-owner-information ">
-                        <div className="activity-card-owner-name ">{`${activity.owner_first_name} ${activity.owner_last_name[0]}.`}</div>
+                        <Link
+                            to={`/users/${activity.owner_id}`}
+                        >
+                            <span className="activity-card-owner-name hover:underline">{`${activity.owner_first_name} ${activity.owner_last_name[0]}.`}</span>
+                        </Link>
+
                         <div className="activity-card-rating-and-date-container">
                             <div className="activity-card-date">{date}</div>
                         </div>
@@ -248,6 +265,8 @@ const ActivityCard = ({ activity, activitiesType }) => {
                             ownerId={activity.owner_id}
                             ownerProfilePicture={activity.owner_profile_picture}
                             activitiesType={activitiesType}
+                            userProfile={userProfile}
+                            userId={userId}
                         >
                         </CommentsModal>}
                     likesLength={activity.likes_length}
@@ -267,6 +286,8 @@ const ActivityCard = ({ activity, activitiesType }) => {
                                 ownerId={activity.owner_id}
                                 ownerProfilePicture={activity.owner_profile_picture}
                                 activitiesType={activitiesType}
+                                userProfile={userProfile}
+                                userId={userId}
                             >
                             </CommentsModal>}
                         commentsLength={activity.comments_length}

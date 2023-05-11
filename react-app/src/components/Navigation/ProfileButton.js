@@ -64,6 +64,13 @@ function ProfileButton({ user }) {
               >
                 Log Out
               </div>
+              <Link
+                to={`/users/${sessionUser.id}`}
+                className="user-drop-down-menu-button"
+                onClick={() => {closeModal(); closeMenu()}}
+              >
+                View Profile
+              </Link>
             </div>
           ) : (
             <>
