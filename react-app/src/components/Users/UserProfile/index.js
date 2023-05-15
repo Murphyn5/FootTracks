@@ -77,7 +77,7 @@ export default function UserProfile() {
     );
 
     return (
-        <div className="p-4 md:p-16 max-w-[1500px] m-auto">
+        <div className="p-0 md:p-16 max-w-[1500px] m-auto">
             <div className="p-8 bg-[rgb(255,255,255)] shadow mt-24">
                 <div className="grid grid-cols-1 md:grid-cols-3">
                     {user.id === sessionUser.id ? <div></div> :
