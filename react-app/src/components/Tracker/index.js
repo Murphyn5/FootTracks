@@ -16,6 +16,8 @@ function Tracker() {
         setTrackerCoordinates,
         trackerElevation,
         setTrackerElevation } = useTracker()
+        let segmentDistance = 0
+
 
 
 
@@ -143,7 +145,10 @@ function Tracker() {
             asyncElevation(latitude, longitude)
 
             report(`2. Received lat: ${latitude} | lng: ${longitude} | accuracy: ${accuracy} | altitude: ${altitudeGain} | altitudeAccuracy ${altitudeAccuracy} | heading: ${heading} | speed: ${speed} | timestamp: ${timestamp}`);
-            coordinates.push(`${latitude},${longitude}`)
+            if(segmentDistance >= .1){
+                coordinates.push(`${latitude},${longitude}`)
+                segmentDistance = 0
+            }
             drawNewSegment(event.detail)
                 .then((detail) => drawNewMarker(detail))
                 .then((detail) => refreshMeter(detail))
@@ -210,6 +215,8 @@ function Tracker() {
 
                 const delta = calculateDelta(path._latlngs)
                 accumulatedDistance += delta;
+                segmentDistance += delta;
+
 
                 const formattedDistance = (round(accumulatedDistance, 3)).toLocaleString('en-US', { minimumFractionDigits: 3 })
                 distanceBox.textContent = formattedDistance;
