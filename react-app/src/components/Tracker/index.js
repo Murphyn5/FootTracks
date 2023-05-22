@@ -146,7 +146,7 @@ function Tracker() {
 
             report(`2. Received lat: ${latitude} | lng: ${longitude} | accuracy: ${accuracy} | altitude: ${altitudeGain} | altitudeAccuracy ${altitudeAccuracy} | heading: ${heading} | speed: ${speed} | timestamp: ${timestamp}`);
             if(segmentDistance >= .1){
-
+                coordinates.push(`${latitude},${longitude}`)
                 segmentDistance = 0
             }
             drawNewSegment(event.detail)
