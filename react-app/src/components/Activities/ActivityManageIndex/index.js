@@ -29,7 +29,7 @@ function ActivitiesManageIndex() {
     return (
         <>
             <div className="bg-white">
-                <div className="px-[20px] pt-[20px] w-[1216px] m-auto">
+                <div className="px-[20px] pt-[20px] w-[1216px] m-auto overflow-x-auto overflow-y-hidden">
                     <h1>My Activities</h1>
                     <div style={{ lineHeight: "22px", fontWeight: "400", fontSize: "22px" }}>{activities.length} Activities</div>
                 </div>
