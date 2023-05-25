@@ -28,10 +28,13 @@ function ActivitiesManageIndex() {
     let count = 1
     return (
         <>
-            <div className="bg-white px-[20px] pt-[20px]">
-                <h1>My Activities</h1>
-                <div style={{ lineHeight: "22px", fontWeight: "400", fontSize: "22px" }}>{activities.length} Activities</div>
+            <div className="bg-white">
+                <div className="px-[20px] pt-[20px] w-[1216px] m-auto">
+                    <h1>My Activities</h1>
+                    <div style={{ lineHeight: "22px", fontWeight: "400", fontSize: "22px" }}>{activities.length} Activities</div>
+                </div>
             </div>
+
 
             <div className="activities-manage-container-background">
 
