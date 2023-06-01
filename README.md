@@ -1,6 +1,6 @@
 # About FootTracks
 
-FootTracks is a web application inspired by Strava. It allows users to search for other users, create/read/update/delete activities and comments, create/read/delete likes for avtivities and follows for users, upload profile pictures using Amazon AWS, and record and create activities using Leaflet.js. [Click here to visit FootTracks's live site](https://foottracks.onrender.com).
+FootTracks is a web application inspired by Strava. It allows users to search for other users, create/read/update/delete activities and comments, create/read/delete likes for avtivities and follows for users, upload profile pictures using Amazon AWS, and record and create activities using Leaflet.js. [Click here to visit FootTracks's live site](https://foottracks-myao.onrender.com).
 
 <br>
 
