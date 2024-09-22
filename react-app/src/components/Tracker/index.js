@@ -16,7 +16,7 @@ function Tracker() {
         setTrackerCoordinates,
         trackerElevation,
         setTrackerElevation } = useTracker()
-        let segmentDistance = 0
+    let segmentDistance = 0
 
 
 
@@ -82,19 +82,10 @@ function Tracker() {
 
 
 
-        L.tileLayer(
-            "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-            {
-                attribution:
-                    'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                maxZoom: 18,
-                id: "mapbox/streets-v11",
-                tileSize: 512,
-                zoomOffset: -1,
-                accessToken:
-                    "pk.eyJ1IjoibTQxaGlnaHdheSIsImEiOiJja295ZjQya2wwaTkxMnFtY203Z21wNjhzIn0.uF1S6TqlDfW7wmQ17Kp4NQ",
-            }
-        ).addTo(map);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
         const startTracking = () => {
             if (!navigator.geolocation) {
@@ -145,7 +136,7 @@ function Tracker() {
             asyncElevation(latitude, longitude)
 
             report(`2. Received lat: ${latitude} | lng: ${longitude} | accuracy: ${accuracy} | altitude: ${altitudeGain} | altitudeAccuracy ${altitudeAccuracy} | heading: ${heading} | speed: ${speed} | timestamp: ${timestamp}`);
-            if(segmentDistance >= .1){
+            if (segmentDistance >= .1) {
                 coordinates.push(`${latitude},${longitude}`)
                 segmentDistance = 0
             }
@@ -282,7 +273,7 @@ function Tracker() {
                 setTrackerDistance(accumulatedDistance * 0.621371)
                 setTrackerElevation(altitudeGain)
                 setTrackerCoordinates(coordinates.join(";"))
-                setTrackerDuration((endTime - startTime)/1000)
+                setTrackerDuration((endTime - startTime) / 1000)
 
                 history.push(`/tracker/summary`)
 
